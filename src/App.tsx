@@ -1,9 +1,11 @@
 import React from "react";
 import "./App.css";
 import ConnectMetaMask from "./components/ConnectMetaMask";
-import DaiBalance from "./components/DaiBalance";
+import USDCBalance from "./components/USDCBalance";
 import { Address } from "./types/types";
 import { providers } from "ethers";
+import DowgoContract from "./components/DowgoContract";
+import ApproveUSDC from "./components/ApproveUSDC";
 
 function App() {
   const [provider, setProvider] = React.useState<providers.Web3Provider|undefined>(undefined);
@@ -18,7 +20,15 @@ function App() {
           currentAccount,
           setCurrentAccount
         )}
-        {DaiBalance(
+        {USDCBalance(
+          provider,
+          currentAccount
+        )}
+        {DowgoContract(
+          provider,
+          currentAccount
+        )}
+        {ApproveUSDC(
           provider,
           currentAccount
         )}
