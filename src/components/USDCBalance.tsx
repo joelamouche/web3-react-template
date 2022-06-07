@@ -8,9 +8,9 @@ import { USDC_ADDRESS } from "../constants/contractAddresses";
 function USDCBalance(provider: providers.Web3Provider|undefined, userAddress: Address) {
   const [balance, setBalance] = React.useState<BigNumber>(BigNumber.from(0));
 
-  async function getBalance(contract: ERC20) {
-    console.log("k",userAddress,await contract.balanceOf(userAddress))
-    setBalance(await contract.balanceOf(userAddress));
+  async function getBalance(contract: ERC20,_userAddress:Address) {
+    console.log("balance",_userAddress,await contract.balanceOf(_userAddress))
+    _userAddress!=="0x" && setBalance(await contract.balanceOf(_userAddress));
   }
   useEffect(() => {
     if (provider && userAddress!=="0x") {
@@ -25,7 +25,7 @@ function USDCBalance(provider: providers.Web3Provider|undefined, userAddress: Ad
         ERC20_ABI,
         provider
       ) as ERC20;
-      getBalance(contract);
+      getBalance(contract,userAddress);
     }
   }, [provider,userAddress]);
   return (<div>{`Balance : ${Number(balance)/10**18} USDC`}</div>);
