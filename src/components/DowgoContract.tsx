@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { BigNumber, ethers, providers } from "ethers";
 import { Address } from "../types/types";
-import { ERC20_ABI } from "../constants/ERC20ABI";
-import { ERC20 } from "../types/ERC20";
 import { DOWGO_ADDRESS } from "../constants/contractAddresses";
 import { DowgoERC20 } from "../types/DowgoERC20";
 import { DowgoERC20ABI } from "../constants/DowgoERC20ABI";
 import { ONE_UNIT } from "../constants";
 
-function DowgoContract(provider: providers.Web3Provider|undefined, userAddress: Address) {
+function DowgoContract(provider: providers.Web3Provider|undefined, userAddress: Address,allowance:BigNumber) {
   const [balance, setBalance] = React.useState<BigNumber>(BigNumber.from(0));
   const [price, setPrice] = React.useState<BigNumber>(BigNumber.from(0));
   const [buyInput, setBuyInput] = React.useState<BigNumber>(BigNumber.from(0));

@@ -3,13 +3,14 @@ import "./App.css";
 import ConnectMetaMask from "./components/ConnectMetaMask";
 import USDCBalance from "./components/USDCBalance";
 import { Address } from "./types/types";
-import { providers } from "ethers";
+import { BigNumber, providers } from "ethers";
 import DowgoContract from "./components/DowgoContract";
 import ApproveUSDC from "./components/ApproveUSDC";
 
 function App() {
   const [provider, setProvider] = React.useState<providers.Web3Provider|undefined>(undefined);
   const [currentAccount, setCurrentAccount] = React.useState<Address>("0x");
+  const [allowance, setAllowance] = React.useState<BigNumber>(BigNumber.from(0));
 
   return (
     <div className="App">
@@ -26,11 +27,13 @@ function App() {
         )}
         {DowgoContract(
           provider,
-          currentAccount
+          currentAccount,
+          allowance
         )}
         {ApproveUSDC(
           provider,
-          currentAccount
+          currentAccount,
+          allowance, setAllowance
         )}
       </header>
     </div>

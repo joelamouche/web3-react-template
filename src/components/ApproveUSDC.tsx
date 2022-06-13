@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { BigNumber, ethers, providers } from "ethers";
-import { Address } from "../types/types";
+import { Address, SetStateFunction } from "../types/types";
 import { ERC20_ABI } from "../constants/ERC20ABI";
 import { ERC20 } from "../types/ERC20";
 import { DOWGO_ADDRESS, USDC_ADDRESS } from "../constants/contractAddresses";
 import { INFINITE_ALLOWANCE } from "../constants";
+import { Button } from "./displayComponents/Button";
 
-function ApproveUSDC(provider: providers.Web3Provider|undefined, userAddress: Address) {
-  const [allowance, setAllowance] = React.useState<BigNumber>(BigNumber.from(0));
+function ApproveUSDC(provider: providers.Web3Provider|undefined, userAddress: Address,allowance: BigNumber,
+  setAllowance: SetStateFunction<BigNumber>) {
 
   async function getAllowance(contract: ERC20,_userAddress:Address) {
     console.log("allowance",_userAddress,(await contract.allowance(_userAddress,DOWGO_ADDRESS)).toHexString())
@@ -47,15 +48,12 @@ function ApproveUSDC(provider: providers.Web3Provider|undefined, userAddress: Ad
       </div>
       <div>Dowgo Contract Address : {DOWGO_ADDRESS}</div>
       <div>
-        <button
-          type="button"
-          onMouseUp={() => {
-           approveUSDCToDowgo()
-          }}
-        >
-          Approve USDC transfer to Dowgo Contract
-        </button>
+      {Button(
+          approveUSDCToDowgo,
+          `Approve USDC transfer to Dowgo Contract`
+        )}
       </div>
+      
       </div>);
 }
 

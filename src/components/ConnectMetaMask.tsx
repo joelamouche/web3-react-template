@@ -3,6 +3,7 @@ import detectEthereumProvider from "@metamask/detect-provider";
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import { Address, ChainId, ConnectMMStatus, SetStateFunction } from "../types/types";
 import { ethers, providers } from "ethers";
+import { Button } from "./displayComponents/Button";
 
 function ConnectMetaMask(
   provider: providers.Web3Provider|undefined,
@@ -153,14 +154,12 @@ function ConnectMetaMask(
       </div>
       <div>Chain: {chainId ? ChainId[chainId] : "Unkown Chain"}</div>
       {provider && (
-        <button
-          type="button"
-          onMouseUp={() => {
+        Button(
+          () => {
             connect(window.ethereum as MetaMaskInpageProvider);
-          }}
-        >
-          Connect to MetaMask
-        </button>
+          },
+          `Connect to MetaMask`
+        )
       )}
     </div>
   );
