@@ -1,19 +1,21 @@
 import React from "react";
 import "./App.css";
 import ConnectMetaMask from "./components/ConnectMetaMask";
-import USDCBalance from "./components/USDCBalance";
 import { Address } from "./types/types";
 import { BigNumber, providers } from "ethers";
-import DowgoContract from "./components/DowgoContract";
+import DowgoContract from "./components/DowgoView";
 import ApproveUSDC from "./components/ApproveUSDC";
+import { BalancePanel } from "./components/BalanceView";
 
 function App() {
   const [provider, setProvider] = React.useState<providers.Web3Provider|undefined>(undefined);
   const [currentAccount, setCurrentAccount] = React.useState<Address>("0x");
   const [allowance, setAllowance] = React.useState<BigNumber>(BigNumber.from(0));
+  const [dowgoBalance, setDowgoBalance] = React.useState<BigNumber>(BigNumber.from(0));
+  const [usdcBalance, setUSDCBalance] = React.useState<BigNumber>(BigNumber.from(0));
 
   return (
-    <div>
+    <div className="App">
       <header>
         {ConnectMetaMask(
           provider,
@@ -21,14 +23,18 @@ function App() {
           currentAccount,
           setCurrentAccount
         )}
-        {USDCBalance(
-          provider,
-          currentAccount
+        {BalancePanel(
+          dowgoBalance,
+          usdcBalance
         )}
         {DowgoContract(
           provider,
           currentAccount,
-          allowance
+          allowance,
+          usdcBalance,
+          setUSDCBalance,
+          dowgoBalance, 
+          setDowgoBalance
         )}
         {ApproveUSDC(
           provider,

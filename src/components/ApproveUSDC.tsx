@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
 import { BigNumber, ethers, providers } from "ethers";
+import { useEffect } from "react";
 import { Address, SetStateFunction } from "../types/types";
 import { ERC20_ABI } from "../constants/ERC20ABI";
 import { ERC20 } from "../types/ERC20";
