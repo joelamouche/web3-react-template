@@ -13,8 +13,8 @@ function App() {
   const [allowance, setAllowance] = React.useState<BigNumber>(BigNumber.from(0));
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <header>
         {ConnectMetaMask(
           provider,
           setProvider,

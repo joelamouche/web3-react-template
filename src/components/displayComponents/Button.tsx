@@ -1,10 +1,12 @@
-export const Button=(action:()=>any,text:string)=>{
-    return (<button
+import Button from 'react-bootstrap/Button';
+
+export const DButton=(action:()=>any,text:string)=>{
+    return (<Button variant="primary"
         type="button"
         onMouseUp={() => {
             action()
         }}
       >
-        {text}
-      </button>)
+      {text}
+      </Button>)
 }

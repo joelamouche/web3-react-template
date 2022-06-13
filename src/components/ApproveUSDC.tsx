@@ -5,7 +5,7 @@ import { ERC20_ABI } from "../constants/ERC20ABI";
 import { ERC20 } from "../types/ERC20";
 import { DOWGO_ADDRESS, USDC_ADDRESS } from "../constants/contractAddresses";
 import { INFINITE_ALLOWANCE } from "../constants";
-import { Button } from "./displayComponents/Button";
+import { DButton } from "./displayComponents/Button";
 
 function ApproveUSDC(provider: providers.Web3Provider|undefined, userAddress: Address,allowance: BigNumber,
   setAllowance: SetStateFunction<BigNumber>) {
@@ -48,7 +48,7 @@ function ApproveUSDC(provider: providers.Web3Provider|undefined, userAddress: Ad
       </div>
       <div>Dowgo Contract Address : {DOWGO_ADDRESS}</div>
       <div>
-      {Button(
+      {DButton(
           approveUSDCToDowgo,
           `Approve USDC transfer to Dowgo Contract`
         )}

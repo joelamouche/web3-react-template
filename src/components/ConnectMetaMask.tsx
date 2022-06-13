@@ -3,7 +3,9 @@ import detectEthereumProvider from "@metamask/detect-provider";
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import { Address, ChainId, ConnectMMStatus, SetStateFunction } from "../types/types";
 import { ethers, providers } from "ethers";
-import { Button } from "./displayComponents/Button";
+import { DButton } from "./displayComponents/Button";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 
 function ConnectMetaMask(
   provider: providers.Web3Provider|undefined,
@@ -145,23 +147,28 @@ function ConnectMetaMask(
         }
       });
   }
-
+  
   return (
-    <div>
-      <div>Status : {status}</div>
-      <div>
-        Account: {currentAccount !== "0x" ? currentAccount : "Not Connected"}
-      </div>
-      <div>Chain: {chainId ? ChainId[chainId] : "Unkown Chain"}</div>
-      {provider && (
-        Button(
-          () => {
-            connect(window.ethereum as MetaMaskInpageProvider);
-          },
-          `Connect to MetaMask`
-        )
-      )}
-    </div>
+    <Navbar bg="light" expand="lg">
+    <Container>
+      <Navbar.Brand>Dowgo</Navbar.Brand>
+      <Navbar.Text>Status : <span  style={{color:status=="Connected"?"green":status=="Disconnected"?"red":"yellow"}}>{status}</span></Navbar.Text>
+      <Navbar.Text>
+        Account: {currentAccount !== "0x" ? `${currentAccount.substring(0,4)}...${currentAccount.substring(38,42)}` : "Not Connected"}
+      </Navbar.Text>
+      <Navbar.Text>Chain: {chainId ? ChainId[chainId] : "Unkown Chain"}</Navbar.Text>
+      <Navbar.Text>
+        {provider && (
+          DButton(
+            () => {
+              connect(window.ethereum as MetaMaskInpageProvider);
+            },
+            `Connect to MetaMask`
+          )
+        )}
+      </Navbar.Text>
+    </Container>
+    </Navbar>
   );
 }
 
