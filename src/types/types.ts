@@ -11,9 +11,13 @@ export enum ChainId {
   HARMONY_MAINNET = 1666600000,
   HARMONY_TESTNET = 1666700000,
   MOONRIVER = 1285,
-  LOCAL_TESTNET = 1337
+  LOCAL_TESTNET = 1337,
 }
-export type ConnectMMStatus="Connected"|"Disconnected"|"Please connect to MetaMask"|"Please install MetaMask"
+export type ConnectMMStatus =
+  | "Connected"
+  | "Disconnected"
+  | "Please connect to MetaMask"
+  | "Please install MetaMask";
 export type Address = `0x${string}`;
 
 export type SetStateFunction<T> = Dispatch<React.SetStateAction<T>>;

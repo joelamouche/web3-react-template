@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { MetaMaskInpageProvider } from "@metamask/providers";
-import { Address, ChainId, ConnectMMStatus, SetStateFunction } from "../types/types";
+import {
+  Address,
+  ChainId,
+  ConnectMMStatus,
+  SetStateFunction,
+} from "../types/types";
 import { ethers, providers } from "ethers";
 import { DButton } from "./displayComponents/Button";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 
 function ConnectMetaMask(
-  provider: providers.Web3Provider|undefined,
-  setProvider: SetStateFunction<providers.Web3Provider|undefined>,
+  provider: providers.Web3Provider | undefined,
+  setProvider: SetStateFunction<providers.Web3Provider | undefined>,
   currentAccount: Address,
   setCurrentAccount: SetStateFunction<Address>
 ) {
@@ -26,7 +31,7 @@ function ConnectMetaMask(
       startApp(provider as MetaMaskInpageProvider); // Initialize your app
     } else {
       console.log("Please install MetaMask!");
-      setStatus("Please install MetaMask")
+      setStatus("Please install MetaMask");
     }
   }
 
@@ -38,9 +43,9 @@ function ConnectMetaMask(
     }
     // Access the decentralized web!
     //@ts-ignore
-      const provider = new ethers.providers.Web3Provider(_provider);
+    const provider = new ethers.providers.Web3Provider(_provider);
     setProvider(provider);
-    setStatus("Connected")
+    setStatus("Connected");
   }
 
   // detect MM at the start of the Dapp
@@ -98,7 +103,7 @@ function ConnectMetaMask(
 
   // For now, 'eth_accounts' will continue to always return an array
   function handleAccountsChanged(accounts: unknown) {
-    console.log("accounts raw",accounts)
+    console.log("accounts raw", accounts);
     let accountList: Address[] = [];
     if (accounts && (accounts as string[]).length) {
       accountList = accounts as Address[];
@@ -106,10 +111,10 @@ function ConnectMetaMask(
     if (accountList.length === 0) {
       // MetaMask is locked or the user has not connected any accounts
       console.log("Please connect to MetaMask.");
-      setStatus("Please connect to MetaMask")
+      setStatus("Please connect to MetaMask");
     } else if (accountList[0] !== currentAccount) {
       setCurrentAccount(accountList[0]);
-      setStatus("Connected")
+      setStatus("Connected");
     }
   }
 
@@ -147,27 +152,45 @@ function ConnectMetaMask(
         }
       });
   }
-  
+
   return (
     <Navbar bg="light" expand="lg">
-    <Container>
-      <Navbar.Brand>Dowgo</Navbar.Brand>
-      <Navbar.Text>Status : <span  style={{color:status=="Connected"?"green":status=="Disconnected"?"red":"yellow"}}>{status}</span></Navbar.Text>
-      <Navbar.Text>
-        Account: {currentAccount !== "0x" ? `${currentAccount.substring(0,4)}...${currentAccount.substring(38,42)}` : "Not Connected"}
-      </Navbar.Text>
-      <Navbar.Text>Chain: {chainId ? ChainId[chainId] : "Unkown Chain"}</Navbar.Text>
-      <Navbar.Text>
-        {provider && (
-          DButton(
-            () => {
+      <Container>
+        <Navbar.Brand>Dowgo</Navbar.Brand>
+        <Navbar.Text>
+          Status :{" "}
+          <span
+            style={{
+              color:
+                status == "Connected"
+                  ? "green"
+                  : status == "Disconnected"
+                  ? "red"
+                  : "yellow",
+            }}
+          >
+            {status}
+          </span>
+        </Navbar.Text>
+        <Navbar.Text>
+          Account:{" "}
+          {currentAccount !== "0x"
+            ? `${currentAccount.substring(0, 4)}...${currentAccount.substring(
+                38,
+                42
+              )}`
+            : "Not Connected"}
+        </Navbar.Text>
+        <Navbar.Text>
+          Chain: {chainId ? ChainId[chainId] : "Unkown Chain"}
+        </Navbar.Text>
+        <Navbar.Text>
+          {provider &&
+            DButton(() => {
               connect(window.ethereum as MetaMaskInpageProvider);
-            },
-            `Connect to MetaMask`
-          )
-        )}
-      </Navbar.Text>
-    </Container>
+            }, `Connect to MetaMask`)}
+        </Navbar.Text>
+      </Container>
     </Navbar>
   );
 }
