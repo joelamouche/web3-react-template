@@ -1,5 +1,7 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useEffect } from "react";
+import Modal from "react-bootstrap/Modal";
+import Alert from "react-bootstrap/Alert";
 import { Address, SetStateFunction } from "../types/types";
 import { ERC20_ABI } from "../constants/ERC20ABI";
 import { ERC20 } from "../types/ERC20";
@@ -8,7 +10,7 @@ import { INFINITE_ALLOWANCE } from "../constants";
 import { DButton } from "./displayComponents/Button";
 
 function ApproveUSDC(provider: providers.Web3Provider|undefined, userAddress: Address,allowance: BigNumber,
-  setAllowance: SetStateFunction<BigNumber>) {
+  setAllowance: SetStateFunction<BigNumber>,displayModal:boolean,setDisplayModal:SetStateFunction<boolean>) {
 
   async function getAllowance(contract: ERC20,_userAddress:Address) {
     console.log("allowance",_userAddress,(await contract.allowance(_userAddress,DOWGO_ADDRESS)).toHexString())
@@ -29,9 +31,7 @@ function ApproveUSDC(provider: providers.Web3Provider|undefined, userAddress: Ad
     getAllowance(contract,userAddress)
   }
   useEffect(() => {
-    console.log("k",userAddress)
     if (provider && userAddress!=="0x") {
-      console.log("oj")
       // We connect to the Contract using a Provider, so we will only
       // have read-only access to the Contract
       let contract: ERC20 = new ethers.Contract(
@@ -42,19 +42,34 @@ function ApproveUSDC(provider: providers.Web3Provider|undefined, userAddress: Ad
       getAllowance(contract,userAddress);
     }
   }, [provider,userAddress]);
-  return (<div>
-      <div>
+  const handleClose = () => setDisplayModal(false);
+  return (
+    <Modal show={displayModal} onHide={handleClose}>
+    <Modal.Header closeButton>
+      <Modal.Title>Approve USDC Spendings</Modal.Title>
+    </Modal.Header>
+  
+    <Modal.Body>
+    <div>
         {allowance.toHexString()===INFINITE_ALLOWANCE? `Allowance to Dowgo Contract : Infinite`: `Allowance to Dowgo Contract : ${Number(allowance)/10**18} USDC`}
       </div>
       <div>Dowgo Contract Address : {DOWGO_ADDRESS}</div>
-      <div>
+      <Alert key={'warning'} variant={'warning'}>
+      You need to Approve USDC Spendings to the Dowgo Contract before you can buy Dowgo token.
+    </Alert>
+    </Modal.Body>
+  
+    <Modal.Footer>
+      {DButton(
+          handleClose,
+          `Close`
+        )}
       {DButton(
           approveUSDCToDowgo,
           `Approve USDC transfer to Dowgo Contract`
         )}
-      </div>
-      
-      </div>);
+    </Modal.Footer>
+  </Modal>);
 }
 
 export default ApproveUSDC;

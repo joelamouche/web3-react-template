@@ -14,7 +14,10 @@ import { ERC20_ABI } from "../../constants/ERC20ABI";
 import { BuyComponent } from "./BuyComponent";
 import { SellComponent } from "./SellComponent";
 
-function DowgoContract(provider: providers.Web3Provider|undefined, userAddress: Address,allowance:BigNumber,usdcBalance:BigNumber,setUSDCBalance: SetStateFunction<BigNumber>,dowgoBalance:BigNumber, setDowgoBalance: SetStateFunction<BigNumber>) {
+function DowgoContract(provider: providers.Web3Provider|undefined, userAddress: Address,
+  allowance:BigNumber,usdcBalance:BigNumber,
+  setUSDCBalance: SetStateFunction<BigNumber>,dowgoBalance:BigNumber, 
+  setDowgoBalance: SetStateFunction<BigNumber>,setDisplayModal:SetStateFunction<boolean>) {
   //const [balance, setBalance] = React.useState<BigNumber>(BigNumber.from(0));
   const [price, setPrice] = React.useState<BigNumber>(BigNumber.from(0));
   const [buyInput, setBuyInput] = React.useState<BigNumber>(BigNumber.from(0));
@@ -79,27 +82,13 @@ function DowgoContract(provider: providers.Web3Provider|undefined, userAddress: 
   }, [provider,userAddress]);
   return (
     <Card style={{width:"80vw",marginLeft:"10vw"}}>
-      <Card.Header>{`Dowgo (${Number(price)/10**18} USDC/Dowgo)`}</Card.Header>
+      <Card.Header>{`Dowgo (Price: ${Number(price)/10**18} USDC/Dowgo)`}</Card.Header>
       <Card.Body>
         <Container>
-        <Row> <Col>{BuyComponent(buyDowgo,buyInput,setBuyInput,price)}</Col>
-      <Col>{SellComponent(sellDowgo,sellInput,setSellInput,price)}</Col></Row>
+        <Row> <Col>{BuyComponent(buyDowgo,buyInput,setBuyInput,price,allowance,setDisplayModal)}</Col>
+      <Col>{SellComponent(sellDowgo,sellInput,setSellInput,price,dowgoBalance)}</Col></Row>
      </Container>
       </Card.Body>
-      {/* <div>
-        <input type="number" id="quantity" name="quantity" onChange={(e)=>{
-          setSellInput(BigNumber.from(e.target.value))
-        }}></input>
-        <button
-          type="button"
-          onMouseUp={() => {
-           sellDowgo()
-          }}
-        >
-          Sell Dowgo
-        </button>
-        <div>{`Value : ${Number(sellInput)*Number(price)/10**18} USDC`}</div>
-      </div> */}
     </Card>
   );
 }

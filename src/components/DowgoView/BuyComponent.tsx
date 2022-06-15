@@ -1,9 +1,11 @@
 import { BigNumber } from "ethers";
 import Card from "react-bootstrap/Card";
+import { ONE_UNIT } from "../../constants";
 import { SetStateFunction } from "../../types/types";
 
-export const BuyComponent=(buyDowgo:()=>void,buyInput:BigNumber,setBuyInput:SetStateFunction<BigNumber>,price:BigNumber)=>{
-
+export const BuyComponent=(buyDowgo:()=>void,buyInput:BigNumber,setBuyInput:SetStateFunction<BigNumber>,
+price:BigNumber,allowance:BigNumber,setDisplayModal:SetStateFunction<boolean>)=>{
+  //TODO: check after comma values
     return (<Card>
       <Card.Header>BUY</Card.Header>
       <Card.Body>
@@ -13,7 +15,11 @@ export const BuyComponent=(buyDowgo:()=>void,buyInput:BigNumber,setBuyInput:SetS
     <button
       type="button"
       onMouseUp={() => {
-       buyDowgo()
+        if (buyInput.mul(ONE_UNIT).gt(allowance)){
+          setDisplayModal(true)
+        } else {
+          buyDowgo()
+        }
       }}
     >
       Buy Dowgo

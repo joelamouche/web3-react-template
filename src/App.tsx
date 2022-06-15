@@ -13,6 +13,7 @@ function App() {
   const [allowance, setAllowance] = React.useState<BigNumber>(BigNumber.from(0));
   const [dowgoBalance, setDowgoBalance] = React.useState<BigNumber>(BigNumber.from(0));
   const [usdcBalance, setUSDCBalance] = React.useState<BigNumber>(BigNumber.from(0));
+  const [displayModal, setDisplayModal] = React.useState<boolean>(false);
 
   return (
     <div className="App">
@@ -34,12 +35,14 @@ function App() {
           usdcBalance,
           setUSDCBalance,
           dowgoBalance, 
-          setDowgoBalance
+          setDowgoBalance,
+          setDisplayModal
         )}
         {ApproveUSDC(
           provider,
           currentAccount,
-          allowance, setAllowance
+          allowance, setAllowance,
+          displayModal, setDisplayModal
         )}
       </header>
     </div>
