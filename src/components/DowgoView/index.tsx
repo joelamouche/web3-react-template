@@ -73,9 +73,18 @@ function DowgoContract(
       setUSDCBalance(await contract.balanceOf(_userEthAddress));
   }
 
-  function updateBalances() {
+  function updateContractInfo() {
+    let contract: DowgoERC20 = new ethers.Contract(
+      getDowgoEthAddress(chainId),
+      DowgoERC20ABI,
+      provider
+    ) as DowgoERC20;
     updateUSDCBalance(userEthAddress);
     updateDowgoBalance(userEthAddress);
+    updatePrice(contract);
+    updateTargetRatio(contract);
+    updateCollRange(contract);
+    updateTotalSupply(contract);
   }
 
   useEffect(() => {
@@ -86,11 +95,7 @@ function DowgoContract(
         DowgoERC20ABI,
         provider
       ) as DowgoERC20;
-      updateBalances();
-      updatePrice(contract);
-      updateTargetRatio(contract);
-      updateCollRange(contract);
-      updateTotalSupply(contract);
+      updateContractInfo();
     }
   }, [provider, userEthAddress]);
   return (
@@ -130,7 +135,7 @@ function DowgoContract(
                 price,
                 allowance,
                 setDisplayModal,
-                updateBalances
+                updateContractInfo
               )}
             </Col>
             <Col>
@@ -139,7 +144,7 @@ function DowgoContract(
                 chainId,
                 price,
                 dowgoBalance,
-                updateBalances
+                updateContractInfo
               )}
             </Col>
           </Row>

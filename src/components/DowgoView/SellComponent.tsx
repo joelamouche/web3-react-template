@@ -15,7 +15,7 @@ export const SellComponent = (
   chainId: ChainId | undefined,
   price: BigNumber,
   dowgoBalance: BigNumber,
-  updateBalances: () => void
+  updateContractInfo: () => void
 ) => {
   const [sellInput, setSellInput] = useState<BigNumber>(BigNumber.from(0));
   const [txStatus, setTxStatus] = useState<TxStatus | undefined>(undefined);
@@ -34,7 +34,7 @@ export const SellComponent = (
           await contract
             .connect(provider.getSigner())
             .sell_dowgo(sellInput.mul(ONE_DOWGO_UNIT)),
-        updateBalances
+        updateContractInfo
       );
     }
   }
@@ -52,7 +52,8 @@ export const SellComponent = (
           id="quantity"
           name="quantity"
           onChange={(e) => {
-            setSellInput(BigNumber.from(e.target.value));
+            Number(e.target.value) >= 0 &&
+              setSellInput(BigNumber.from(e.target.value));
           }}
         />
         <button

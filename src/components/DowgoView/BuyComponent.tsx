@@ -15,7 +15,7 @@ export const BuyComponent = (
   price: BigNumber,
   allowance: BigNumber,
   setDisplayModal: SetStateFunction<boolean>,
-  updateBalances: () => void
+  updateContractInfo: () => void
 ) => {
   const [buyInput, setBuyInput] = useState<BigNumber>(BigNumber.from(0));
   const [txStatus, setTxStatus] = useState<TxStatus | undefined>(undefined);
@@ -34,7 +34,7 @@ export const BuyComponent = (
           await contract
             .connect(provider.getSigner())
             .buy_dowgo(buyInput.mul(ONE_DOWGO_UNIT)),
-        updateBalances
+        updateContractInfo
       );
     }
   }
@@ -48,7 +48,8 @@ export const BuyComponent = (
           id="quantity"
           name="quantity"
           onChange={(e) => {
-            setBuyInput(BigNumber.from(e.target.value));
+            Number(e.target.value) >= 0 &&
+              setBuyInput(BigNumber.from(e.target.value));
           }}
         />
         <button

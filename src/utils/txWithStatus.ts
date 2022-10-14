@@ -6,6 +6,22 @@ const alreadySoldErrorMessage =
 const alreadyBoughtErrorMessage =
   "Contract already bought all dowgo tokens before next rebalancing";
 
+function checkTxStatus(
+  tx: ethers.ContractTransaction,
+  countdown: number,
+  cb: () => void
+) {
+  if (countdown === 0) {
+    cb();
+  } else {
+    setTimeout(() => {
+      console.log(countdown);
+      // console.log(tx.confirmations)
+      checkTxStatus(tx, countdown - 1, cb);
+    }, 15000);
+  }
+}
+
 export const launchTxWithStatus = async (
   setTxStatus: SetStateFunction<TxStatus | undefined>,
   call: () => Promise<ethers.ContractTransaction>,
@@ -18,6 +34,9 @@ export const launchTxWithStatus = async (
       status: "Tx Sent, Waiting For confirmation...",
       message: tx.hash,
     });
+    // checkTxStatus(tx,6,()=>{
+    //   callback()
+    // })
     await tx.wait(8);
     setTxStatus({ status: "Success: Tx Confirmed", message: tx.hash });
     callback();
