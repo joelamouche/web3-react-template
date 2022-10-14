@@ -40,9 +40,11 @@ function ApproveUSDC(
       provider && (await provider.getSigner().getAddress())
     );
     provider &&
-      (await contract
-        .connect(provider.getSigner())
-        .approve(DOWGO_ADDRESS, INFINITE_ALLOWANCE));
+      (await (
+        await contract
+          .connect(provider.getSigner())
+          .approve(DOWGO_ADDRESS, INFINITE_ALLOWANCE)
+      ).wait(8));
     console.log("allowed");
     getAllowance(contract, userAddress);
   }

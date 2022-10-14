@@ -61,9 +61,11 @@ function DowgoContract(
     ) as DowgoERC20;
     console.log("buy input", Number(buyInput.mul(ONE_UNIT)));
     provider &&
-      (await contract
-        .connect(provider.getSigner())
-        .buy_dowgo(buyInput.mul(ONE_UNIT)));
+      (await (
+        await contract
+          .connect(provider.getSigner())
+          .buy_dowgo(buyInput.mul(ONE_UNIT))
+      ).wait(8));
     console.log("allowed");
     updateDowgoBalance(contract, userAddress);
     updateUSDCBalance(userAddress);
@@ -77,9 +79,11 @@ function DowgoContract(
     ) as DowgoERC20;
     console.log("buy input", Number(buyInput.mul(ONE_UNIT)));
     provider &&
-      (await contract
-        .connect(provider.getSigner())
-        .sell_dowgo(sellInput.mul(ONE_UNIT)));
+      (await (
+        await contract
+          .connect(provider.getSigner())
+          .sell_dowgo(sellInput.mul(ONE_UNIT))
+      ).wait(8));
     console.log("allowed");
     updateDowgoBalance(contract, userAddress);
     updateUSDCBalance(userAddress);

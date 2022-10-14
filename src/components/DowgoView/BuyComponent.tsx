@@ -27,8 +27,8 @@ export const BuyComponent = (
         <button
           type="button"
           onMouseUp={() => {
-            console.log("oh",buyInput,Number(allowance))
-            if (buyInput.mul(10**6).gt(allowance)) {
+            console.log("oh", buyInput, Number(allowance));
+            if (buyInput.mul(price).gt(allowance)) {
               setDisplayModal(true);
             } else {
               buyDowgo();
@@ -38,7 +38,7 @@ export const BuyComponent = (
           Buy Dowgo
         </button>
         <div>{`Cost : ${
-          (Number(buyInput) * Number(price)) / 10 ** 18
+          (Number(buyInput) * Number(price)) / 10 ** 6
         } USDC`}</div>
       </Card.Body>
     </Card>
