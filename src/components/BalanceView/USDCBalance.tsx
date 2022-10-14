@@ -26,7 +26,7 @@ function USDCBalance(usdcBalance: BigNumber) {
   //     getUSDCBalance(contract,userAddress);
   //   }
   // }, [provider,userAddress]);
-  return <div>{`${Number(usdcBalance) / 10 ** 18} USDC`}</div>;
+  return <div>{`${Number(usdcBalance) / 10 ** 6} USDC`}</div>;
 }
 
 export default USDCBalance;

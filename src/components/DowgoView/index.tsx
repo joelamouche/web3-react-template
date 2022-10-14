@@ -101,7 +101,7 @@ function DowgoContract(
   return (
     <Card style={{ width: "80vw", marginLeft: "10vw" }}>
       <Card.Header>{`Dowgo (Price: ${
-        Number(price) / 10 ** 18
+        Number(price) / 10 ** 6
       } USDC/Dowgo)`}</Card.Header>
       <Card.Body>
         <Container>

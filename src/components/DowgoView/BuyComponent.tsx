@@ -27,7 +27,8 @@ export const BuyComponent = (
         <button
           type="button"
           onMouseUp={() => {
-            if (buyInput.mul(ONE_UNIT).gt(allowance)) {
+            console.log("oh",buyInput,Number(allowance))
+            if (buyInput.mul(10**6).gt(allowance)) {
               setDisplayModal(true);
             } else {
               buyDowgo();
