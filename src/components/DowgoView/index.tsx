@@ -4,108 +4,77 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { BigNumber, ethers, providers } from "ethers";
-import { Address, SetStateFunction } from "../../types/types";
-import { DOWGO_ADDRESS, USDC_ADDRESS } from "../../constants/contractAddresses";
+import { EthAddress, ChainId, SetStateFunction } from "../../types/types";
 import { DowgoERC20 } from "../../types/DowgoERC20";
 import { DowgoERC20ABI } from "../../constants/DowgoERC20ABI";
-import { ONE_UNIT } from "../../constants";
+import { ONE_USDC_UNIT } from "../../constants";
 import { ERC20 } from "../../types/ERC20";
 import { ERC20_ABI } from "../../constants/ERC20ABI";
 import { BuyComponent } from "./BuyComponent";
 import { SellComponent } from "./SellComponent";
+import {
+  getDowgoEthAddress,
+  getUSDCEthAddress,
+} from "../../constants/contractAddresses";
 
 function DowgoContract(
   provider: providers.Web3Provider | undefined,
-  userAddress: Address,
+  userEthAddress: EthAddress,
   allowance: BigNumber,
   usdcBalance: BigNumber,
   setUSDCBalance: SetStateFunction<BigNumber>,
   dowgoBalance: BigNumber,
   setDowgoBalance: SetStateFunction<BigNumber>,
-  setDisplayModal: SetStateFunction<boolean>
+  setDisplayModal: SetStateFunction<boolean>,
+  chainId: ChainId | undefined
 ) {
   //const [balance, setBalance] = React.useState<BigNumber>(BigNumber.from(0));
   const [price, setPrice] = React.useState<BigNumber>(BigNumber.from(0));
-  const [buyInput, setBuyInput] = React.useState<BigNumber>(BigNumber.from(0));
-  const [sellInput, setSellInput] = React.useState<BigNumber>(
-    BigNumber.from(0)
-  );
 
   async function updatePrice(contract: DowgoERC20) {
     setPrice(await contract.currentPrice());
   }
-  async function updateDowgoBalance(
-    contract: DowgoERC20,
-    _userAddress: Address
-  ) {
-    _userAddress !== "0x" &&
-      setDowgoBalance(await contract.balanceOf(_userAddress));
+  async function updateDowgoBalance(_userEthAddress: EthAddress) {
+    let contract: DowgoERC20 = new ethers.Contract(
+      getDowgoEthAddress(chainId),
+      DowgoERC20ABI,
+      provider
+    ) as DowgoERC20;
+    _userEthAddress !== "0x" &&
+      setDowgoBalance(await contract.balanceOf(_userEthAddress));
   }
-  async function updateUSDCBalance(_userAddress: Address) {
-    // USDC Address
+  async function updateUSDCBalance(_userEthAddress: EthAddress) {
+    // USDC EthAddress
     let contract: ERC20 = new ethers.Contract(
-      USDC_ADDRESS,
+      getUSDCEthAddress(chainId),
       ERC20_ABI,
       provider
     ) as ERC20;
-    _userAddress !== "0x" &&
-      setUSDCBalance(await contract.balanceOf(_userAddress));
+    _userEthAddress !== "0x" &&
+      setUSDCBalance(await contract.balanceOf(_userEthAddress));
   }
 
-  async function buyDowgo() {
-    //TODO catch errors (like rejection)
-    let contract: DowgoERC20 = new ethers.Contract(
-      DOWGO_ADDRESS,
-      DowgoERC20ABI,
-      provider
-    ) as DowgoERC20;
-    console.log("buy input", Number(buyInput.mul(ONE_UNIT)));
-    provider &&
-      (await (
-        await contract
-          .connect(provider.getSigner())
-          .buy_dowgo(buyInput.mul(ONE_UNIT))
-      ).wait(8));
-    console.log("allowed");
-    updateDowgoBalance(contract, userAddress);
-    updateUSDCBalance(userAddress);
+  function updateBalances() {
+    updateUSDCBalance(userEthAddress);
+    updateDowgoBalance(userEthAddress);
   }
-  async function sellDowgo() {
-    //TODO catch errors (like rejection)
-    let contract: DowgoERC20 = new ethers.Contract(
-      DOWGO_ADDRESS,
-      DowgoERC20ABI,
-      provider
-    ) as DowgoERC20;
-    console.log("buy input", Number(buyInput.mul(ONE_UNIT)));
-    provider &&
-      (await (
-        await contract
-          .connect(provider.getSigner())
-          .sell_dowgo(sellInput.mul(ONE_UNIT))
-      ).wait(8));
-    console.log("allowed");
-    updateDowgoBalance(contract, userAddress);
-    updateUSDCBalance(userAddress);
-  }
+
   useEffect(() => {
-    if (provider && userAddress !== "0x") {
+    if (provider && userEthAddress !== "0x") {
       // Dowgo
       let contract: DowgoERC20 = new ethers.Contract(
-        DOWGO_ADDRESS,
+        getDowgoEthAddress(chainId),
         DowgoERC20ABI,
         provider
       ) as DowgoERC20;
-      updateDowgoBalance(contract, userAddress);
-
-      updateUSDCBalance(userAddress);
+      updateBalances();
       updatePrice(contract);
     }
-  }, [provider, userAddress]);
+  }, [provider, userEthAddress]);
   return (
     <Card style={{ width: "80vw", marginLeft: "10vw" }}>
       <Card.Header>{`Dowgo (Price: ${
-        Number(price) / 10 ** 6
+        Number(price) / Number(ONE_USDC_UNIT)
       } USDC/Dowgo)`}</Card.Header>
       <Card.Body>
         <Container>
@@ -113,21 +82,21 @@ function DowgoContract(
             {" "}
             <Col>
               {BuyComponent(
-                buyDowgo,
-                buyInput,
-                setBuyInput,
+                provider,
+                chainId,
                 price,
                 allowance,
-                setDisplayModal
+                setDisplayModal,
+                updateBalances
               )}
             </Col>
             <Col>
               {SellComponent(
-                sellDowgo,
-                sellInput,
-                setSellInput,
+                provider,
+                chainId,
                 price,
-                dowgoBalance
+                dowgoBalance,
+                updateBalances
               )}
             </Col>
           </Row>

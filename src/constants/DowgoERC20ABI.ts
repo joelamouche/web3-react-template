@@ -18,7 +18,7 @@ export const DowgoERC20ABI = [
       },
       {
         internalType: "address",
-        name: "usdcTokenAddress",
+        name: "usdcTokenEthAddress",
         type: "address",
       },
     ],

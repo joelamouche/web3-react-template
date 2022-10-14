@@ -18,6 +18,15 @@ export type ConnectMMStatus =
   | "Disconnected"
   | "Please connect to MetaMask"
   | "Please install MetaMask";
-export type Address = `0x${string}`;
+export type EthAddress = `0x${string}`;
+
+export type TxStatus = {
+  status:
+    | "Error"
+    | "Waiting for signature"
+    | "Tx Sent, Waiting For confirmation..."
+    | "Success: Tx Confirmed";
+  message?: string;
+};
 
 export type SetStateFunction<T> = Dispatch<React.SetStateAction<T>>;

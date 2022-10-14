@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import {
-  Address,
+  EthAddress,
   ChainId,
   ConnectMMStatus,
   SetStateFunction,
@@ -15,11 +15,13 @@ import Navbar from "react-bootstrap/Navbar";
 function ConnectMetaMask(
   provider: providers.Web3Provider | undefined,
   setProvider: SetStateFunction<providers.Web3Provider | undefined>,
-  currentAccount: Address,
-  setCurrentAccount: SetStateFunction<Address>
+  currentAccount: EthAddress,
+  setCurrentAccount: SetStateFunction<EthAddress>,
+
+  chainId: ChainId | undefined,
+  setChainId: SetStateFunction<ChainId | undefined>
 ) {
   const [status, setStatus] = React.useState<ConnectMMStatus>("Disconnected");
-  const [chainId, setChainId] = React.useState<ChainId | undefined>(undefined);
 
   // CONNECT TO METAMASK
 
@@ -103,10 +105,9 @@ function ConnectMetaMask(
 
   // For now, 'eth_accounts' will continue to always return an array
   function handleAccountsChanged(accounts: unknown) {
-    console.log("accounts raw", accounts);
-    let accountList: Address[] = [];
+    let accountList: EthAddress[] = [];
     if (accounts && (accounts as string[]).length) {
-      accountList = accounts as Address[];
+      accountList = accounts as EthAddress[];
     }
     if (accountList.length === 0) {
       // MetaMask is locked or the user has not connected any accounts
@@ -162,11 +163,11 @@ function ConnectMetaMask(
           <span
             style={{
               color:
-                status == "Connected"
+                status === "Connected"
                   ? "green"
-                  : status == "Disconnected"
+                  : status === "Disconnected"
                   ? "red"
-                  : "yellow",
+                  : "orange",
             }}
           >
             {status}

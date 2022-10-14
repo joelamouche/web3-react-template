@@ -1,65 +1,77 @@
 import { BigNumber, ethers, providers } from "ethers";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
-import { Address, SetStateFunction } from "../types/types";
+import {
+  EthAddress,
+  ChainId,
+  SetStateFunction,
+  TxStatus,
+} from "../types/types";
 import { ERC20_ABI } from "../constants/ERC20ABI";
 import { ERC20 } from "../types/ERC20";
-import { DOWGO_ADDRESS, USDC_ADDRESS } from "../constants/contractAddresses";
 import { INFINITE_ALLOWANCE } from "../constants";
 import { DButton } from "./displayComponents/Button";
+import {
+  getDowgoEthAddress,
+  getUSDCEthAddress,
+} from "../constants/contractAddresses";
+import { DisplayTxStatus } from "./displayComponents/DisplayTxStatus";
+import { launchTxWithStatus } from "../utils/txWithStatus";
+
+async function getAllowance(
+  contract: ERC20,
+  _userEthAddress: EthAddress,
+  chainId: ChainId,
+  setAllowance: SetStateFunction<BigNumber>
+) {
+  _userEthAddress !== "0x" &&
+    setAllowance(
+      await contract.allowance(_userEthAddress, getDowgoEthAddress(chainId))
+    );
+}
 
 function ApproveUSDC(
   provider: providers.Web3Provider | undefined,
-  userAddress: Address,
+  chainId: ChainId | undefined,
+  userEthAddress: EthAddress,
   allowance: BigNumber,
   setAllowance: SetStateFunction<BigNumber>,
   displayModal: boolean,
   setDisplayModal: SetStateFunction<boolean>
 ) {
-  async function getAllowance(contract: ERC20, _userAddress: Address) {
-    console.log(
-      "allowance",
-      _userAddress,
-      (await contract.allowance(_userAddress, DOWGO_ADDRESS)).toHexString()
-    );
-    _userAddress !== "0x" &&
-      setAllowance(await contract.allowance(_userAddress, DOWGO_ADDRESS));
-  }
+  const [txStatus, setTxStatus] = useState<TxStatus | undefined>(undefined);
 
   async function approveUSDCToDowgo() {
     //TODO catch errors (like rejection)
     let contract: ERC20 = new ethers.Contract(
-      USDC_ADDRESS,
+      getUSDCEthAddress(chainId),
       ERC20_ABI,
       provider
     ) as ERC20;
-    console.log("approving...");
-    console.log(
-      "signer",
-      provider && (await provider.getSigner().getAddress())
-    );
-    provider &&
-      (await (
-        await contract
-          .connect(provider.getSigner())
-          .approve(DOWGO_ADDRESS, INFINITE_ALLOWANCE)
-      ).wait(8));
-    console.log("allowed");
-    getAllowance(contract, userAddress);
+    if (provider && chainId) {
+      launchTxWithStatus(
+        setTxStatus,
+        async () =>
+          await contract
+            .connect(provider.getSigner())
+            .approve(getDowgoEthAddress(chainId), INFINITE_ALLOWANCE),
+        () => getAllowance(contract, userEthAddress, chainId, setAllowance)
+      );
+    }
   }
   useEffect(() => {
-    if (provider && userAddress !== "0x") {
+    if (provider && chainId && userEthAddress !== "0x") {
       // We connect to the Contract using a Provider, so we will only
       // have read-only access to the Contract
       let contract: ERC20 = new ethers.Contract(
-        USDC_ADDRESS,
+        getUSDCEthAddress(chainId),
         ERC20_ABI,
         provider
       ) as ERC20;
-      getAllowance(contract, userAddress);
+      getAllowance(contract, userEthAddress, chainId, setAllowance);
     }
-  }, [provider, userAddress]);
+  }, [provider, userEthAddress, chainId, setAllowance]);
   const handleClose = () => setDisplayModal(false);
   return (
     <Modal show={displayModal} onHide={handleClose}>
@@ -75,11 +87,12 @@ function ApproveUSDC(
                 Number(allowance) / 10 ** 18
               } USDC`}
         </div>
-        <div>Dowgo Contract Address : {DOWGO_ADDRESS}</div>
+        <div>Dowgo Contract EthAddress : {getDowgoEthAddress(chainId)}</div>
         <Alert key={"warning"} variant={"warning"}>
           You need to Approve USDC Spendings to the Dowgo Contract before you
           can buy Dowgo token.
         </Alert>
+        {txStatus && chainId && DisplayTxStatus(txStatus, chainId)}
       </Modal.Body>
 
       <Modal.Footer>
