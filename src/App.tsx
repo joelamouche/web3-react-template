@@ -7,7 +7,7 @@ import DowgoContract from "./components/DowgoView";
 import ApproveUSDC from "./components/ApproveUSDC";
 import { BalancePanel } from "./components/BalanceView";
 
-function App() {
+export function DowgoDApp() {
   const [provider, setProvider] = React.useState<
     providers.Web3Provider | undefined
   >(undefined);
@@ -61,4 +61,4 @@ function App() {
   );
 }
 
-export default App;
+export default DowgoDApp;

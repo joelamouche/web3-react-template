@@ -1,6 +1,11 @@
 import { ethers } from "ethers";
 import { SetStateFunction, TxStatus } from "../types/types";
 
+const alreadySoldErrorMessage =
+  "Contract already sold all dowgo tokens before next rebalancing";
+const alreadyBoughtErrorMessage =
+  "Contract already bought all dowgo tokens before next rebalancing";
+
 export const launchTxWithStatus = async (
   setTxStatus: SetStateFunction<TxStatus | undefined>,
   call: () => Promise<ethers.ContractTransaction>,
@@ -19,9 +24,19 @@ export const launchTxWithStatus = async (
   } catch (e: any) {
     console.log("error");
     console.log(e);
+    const isAlreadySoldError =
+      e.toString().search(alreadySoldErrorMessage) > -1;
+    const isAlreadyBoughtError =
+      e.toString().search(alreadyBoughtErrorMessage) > -1;
     setTxStatus({
       status: "Error",
-      message: e.message ? e.message : e.toString(),
+      message: isAlreadySoldError
+        ? alreadySoldErrorMessage
+        : isAlreadyBoughtError
+        ? alreadyBoughtErrorMessage
+        : e.message
+        ? e.message
+        : e.toString(),
     });
   }
 };
