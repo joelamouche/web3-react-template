@@ -2,6 +2,7 @@
   "name": "web3-react-template",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dowgo.io",
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
     "@metamask/providers": "^8.1.1",
@@ -26,7 +27,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx prettier -w ."
+    "lint": "npx prettier -w .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -54,5 +57,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/joelamouche/web3-react-template/issues"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
