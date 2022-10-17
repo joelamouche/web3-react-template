@@ -11,6 +11,7 @@ import { ethers, providers } from "ethers";
 import { DButton } from "./displayComponents/Button";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import { ALLOWED_NETWORKS } from "../constants";
 
 function ConnectMetaMask(
   provider: providers.Web3Provider | undefined,
@@ -153,7 +154,8 @@ function ConnectMetaMask(
         }
       });
   }
-
+  const supportedNetwork =
+  chainId && ALLOWED_NETWORKS.includes(ChainId[chainId]);
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -184,6 +186,9 @@ function ConnectMetaMask(
         </Navbar.Text>
         <Navbar.Text>
           Chain: {chainId ? ChainId[chainId] : "Unkown Chain"}
+          {supportedNetwork ? null : (
+            <span style={{ color: "red" }}> Unsupported Network</span>
+          )}
         </Navbar.Text>
         <Navbar.Text>
           {provider &&
