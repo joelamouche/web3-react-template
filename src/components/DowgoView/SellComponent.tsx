@@ -15,7 +15,7 @@ export const SellComponent = (
   chainId: ChainId | undefined,
   price: BigNumber,
   dowgoBalance: BigNumber,
-  updateContractInfo: () => void
+  updateContractInfo: (_chainId: ChainId) => void
 ) => {
   const [sellInput, setSellInput] = useState<BigNumber>(BigNumber.from(0));
   const [txStatus, setTxStatus] = useState<TxStatus | undefined>(undefined);
@@ -27,14 +27,14 @@ export const SellComponent = (
       DowgoERC20ABI,
       provider
     ) as DowgoERC20;
-    if (provider) {
+    if (provider && chainId) {
       launchTxWithStatus(
         setTxStatus,
         async () =>
           await contract
             .connect(provider.getSigner())
             .sell_dowgo(sellInput.mul(ONE_DOWGO_UNIT)),
-        updateContractInfo
+        () => updateContractInfo(chainId)
       );
     }
   }
@@ -53,14 +53,19 @@ export const SellComponent = (
           name="quantity"
           onChange={(e) => {
             Number(e.target.value) >= 0 &&
-              setSellInput(BigNumber.from(e.target.value));
+              setSellInput(BigNumber.from(Math.floor(Number(e.target.value))));
           }}
+          value={Number(sellInput)}
         />
         <button
           type="button"
           onMouseUp={() => {
             if (sellInput.mul(ONE_DOWGO_UNIT).gt(dowgoBalance)) {
-              console.log("Not enoughn Dowgo tokens");
+              console.log("Not enough Dowgo tokens");
+              setTxStatus({
+                status: "Error",
+                message: "Not enough Dowgo tokens",
+              });
             } else {
               sellDowgo();
             }

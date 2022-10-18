@@ -27,9 +27,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx prettier -w .",
+    "lint": "npx prettier -w src && npx prettier -w public",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "echo 'dowgo.io' > ./build/CNAME && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

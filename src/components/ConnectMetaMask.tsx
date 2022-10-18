@@ -155,7 +155,7 @@ function ConnectMetaMask(
       });
   }
   const supportedNetwork =
-  chainId && ALLOWED_NETWORKS.includes(ChainId[chainId]);
+    chainId && ALLOWED_NETWORKS.includes(ChainId[chainId]);
   return (
     <Navbar bg="light" expand="lg">
       <Container>

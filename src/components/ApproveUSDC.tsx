@@ -56,7 +56,10 @@ function ApproveUSDC(
           await contract
             .connect(provider.getSigner())
             .approve(getDowgoEthAddress(chainId), INFINITE_ALLOWANCE),
-        () => getAllowance(contract, userEthAddress, chainId, setAllowance)
+        () => {
+          setDisplayModal(false);
+          getAllowance(contract, userEthAddress, chainId, setAllowance);
+        }
       );
     }
   }

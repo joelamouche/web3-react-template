@@ -22,6 +22,7 @@ export function DowgoDApp() {
   const [usdcBalance, setUSDCBalance] = React.useState<BigNumber>(
     BigNumber.from(0)
   );
+  const [price, setPrice] = React.useState<BigNumber>(BigNumber.from(0));
   const [displayModal, setDisplayModal] = React.useState<boolean>(false);
 
   return (
@@ -35,7 +36,7 @@ export function DowgoDApp() {
           chainId,
           setChainId
         )}
-        {BalancePanel(dowgoBalance, usdcBalance)}
+        {BalancePanel(dowgoBalance, usdcBalance, price)}
         {DowgoContract(
           provider,
           currentAccount,
@@ -45,7 +46,9 @@ export function DowgoDApp() {
           dowgoBalance,
           setDowgoBalance,
           setDisplayModal,
-          chainId
+          chainId,
+          price,
+          setPrice
         )}
         {ApproveUSDC(
           provider,

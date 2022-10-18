@@ -1,7 +1,11 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
-import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../constants";
+import {
+  INFINITE_ALLOWANCE,
+  ONE_DOWGO_UNIT,
+  ONE_USDC_UNIT,
+} from "../../constants";
 import { getDowgoEthAddress } from "../../constants/contractAddresses";
 import { DowgoERC20ABI } from "../../constants/DowgoERC20ABI";
 import { DowgoERC20 } from "../../types/DowgoERC20";
@@ -15,7 +19,7 @@ export const BuyComponent = (
   price: BigNumber,
   allowance: BigNumber,
   setDisplayModal: SetStateFunction<boolean>,
-  updateContractInfo: () => void
+  updateContractInfo: (_chainId: ChainId) => void
 ) => {
   const [buyInput, setBuyInput] = useState<BigNumber>(BigNumber.from(0));
   const [txStatus, setTxStatus] = useState<TxStatus | undefined>(undefined);
@@ -27,14 +31,16 @@ export const BuyComponent = (
       DowgoERC20ABI,
       provider
     ) as DowgoERC20;
-    if (provider) {
+    if (provider && chainId) {
       launchTxWithStatus(
         setTxStatus,
         async () =>
           await contract
             .connect(provider.getSigner())
             .buy_dowgo(buyInput.mul(ONE_DOWGO_UNIT)),
-        updateContractInfo
+        () => {
+          updateContractInfo(chainId);
+        }
       );
     }
   }
@@ -49,8 +55,9 @@ export const BuyComponent = (
           name="quantity"
           onChange={(e) => {
             Number(e.target.value) >= 0 &&
-              setBuyInput(BigNumber.from(e.target.value));
+              setBuyInput(BigNumber.from(Math.floor(Number(e.target.value))));
           }}
+          value={Number(buyInput)}
         />
         <button
           type="button"
@@ -65,9 +72,15 @@ export const BuyComponent = (
           Buy Dowgo
         </button>
         {txStatus && chainId && DisplayTxStatus(txStatus, chainId)}
-        <div>{`Cost : ${
-          (Number(buyInput) * Number(price)) / Number(ONE_USDC_UNIT)
-        } USDC`}</div>
+        <div>{`Cost : ${(
+          (Number(buyInput) * Number(price)) /
+          Number(ONE_USDC_UNIT)
+        ).toFixed(2)}`}</div>
+        <div>{`USDC Allowance to Dowgo : ${
+          allowance.toHexString() === INFINITE_ALLOWANCE
+            ? "Infinite"
+            : (Number(allowance) / Number(ONE_USDC_UNIT)).toFixed(2)
+        }`}</div>
       </Card.Body>
     </Card>
   );
