@@ -133,7 +133,9 @@ function DowgoContract(
                 ).toFixed(2)} USD`}
               </div>
               <div style={{ margin }}>
-                {`Max Buy/Sell Amount : ${
+                {`Max Buy/Sell Amount : Total Supply * Target Ratio (${
+                  Number(targetRatio) / 10 ** 2
+                }%) * Collateral Range (${Number(collRange) / 10 ** 2}%) = ${
                   Number(
                     totalSupply
                       .mul(targetRatio)
