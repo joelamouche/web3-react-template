@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import "./App.css";
 import ConnectMetaMask from "./components/ConnectMetaMask";
-import { EthAddress, ChainId } from "./types/types";
+import { EthAddress, ChainId, ContractAddresses } from "./types/types";
 import { BigNumber, providers } from "ethers";
 import DowgoContract from "./components/DowgoView";
 import ApproveUSDC from "./components/ApproveUSDC";
 import { BalancePanel } from "./components/BalanceView";
+import { getContractAddresses } from "./constants/contractAddresses";
 
 export function DowgoDApp() {
   const [provider, setProvider] = React.useState<
@@ -24,6 +26,20 @@ export function DowgoDApp() {
   );
   const [price, setPrice] = React.useState<BigNumber>(BigNumber.from(0));
   const [displayModal, setDisplayModal] = React.useState<boolean>(false);
+
+  // Contract addresses
+  const [contractAddresses, setContractAddresses] = React.useState<
+    ContractAddresses | undefined
+  >(undefined);
+  async function getAddresses(chainId: ChainId | undefined) {
+    if (chainId) {
+      let addresses = await getContractAddresses(chainId);
+      setContractAddresses(addresses);
+    }
+  }
+  useEffect(() => {
+    getAddresses(chainId);
+  }, [chainId]);
 
   return (
     <div className="App">
@@ -48,7 +64,8 @@ export function DowgoDApp() {
           setDisplayModal,
           chainId,
           price,
-          setPrice
+          setPrice,
+          contractAddresses
         )}
         {ApproveUSDC(
           provider,
@@ -57,7 +74,8 @@ export function DowgoDApp() {
           allowance,
           setAllowance,
           displayModal,
-          setDisplayModal
+          setDisplayModal,
+          contractAddresses
         )}
       </header>
     </div>

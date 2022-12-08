@@ -1,11 +1,10 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
 import Alert from "react-bootstrap/Alert";
-import { ChainId, TxStatus } from "../../types/types";
+import { ChainId, EthAddress, TxStatus } from "../../types/types";
 import { ONE_USDC_UNIT } from "../../constants";
 import { DowgoERC20 } from "../../types/DowgoERC20";
 import { DowgoERC20ABI } from "../../constants/DowgoERC20ABI";
-import { getDowgoEthAddress } from "../../constants/contractAddresses";
 import { launchTxWithStatus } from "../../utils/txWithStatus";
 import { DisplayTxStatus } from "../displayComponents/DisplayTxStatus";
 
@@ -13,7 +12,8 @@ export const WithdrawComponent = (
   provider: providers.Web3Provider | undefined,
   chainId: ChainId | undefined,
   usdcBalanceOnContract: BigNumber,
-  updateContractInfo: (_chainId: ChainId) => void
+  updateContractInfo: (_chainId: ChainId) => void,
+  dowgoAddress: EthAddress | undefined
 ) => {
   const [withdrawInput, setWithdrawInput] = useState<BigNumber>(
     BigNumber.from(0)
@@ -22,12 +22,12 @@ export const WithdrawComponent = (
 
   async function withdrawUSDC() {
     //TODO catch errors (like rejection)
-    let contract: DowgoERC20 = new ethers.Contract(
-      getDowgoEthAddress(chainId),
-      DowgoERC20ABI,
-      provider
-    ) as DowgoERC20;
-    if (provider && chainId) {
+    if (provider && chainId && dowgoAddress) {
+      let contract: DowgoERC20 = new ethers.Contract(
+        dowgoAddress,
+        DowgoERC20ABI,
+        provider
+      ) as DowgoERC20;
       launchTxWithStatus(
         setTxStatus,
         async () =>
