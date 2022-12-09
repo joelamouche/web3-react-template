@@ -1,7 +1,6 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
-import Card from "react-bootstrap/Card";
-import Alert from "react-bootstrap/Alert";
+import { Card, Alert } from 'antd';
 import { ChainId, TxStatus } from "../../types/types";
 import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../constants";
 import { DowgoERC20 } from "../../types/DowgoERC20";
@@ -39,13 +38,9 @@ export const SellComponent = (
     }
   }
   return (
-    <Card>
-      <Card.Header>SELL</Card.Header>
-      <Card.Body>
+    <Card title="SELL">
         {sellInput.mul(ONE_DOWGO_UNIT).gt(dowgoBalance) && (
-          <Alert key={"warning"} variant={"warning"}>
-            You don't have enough Dowgo tokens to sell.
-          </Alert>
+          <Alert key={"warning"} type={"warning"} message="You don't have enough Dowgo tokens to sell." />
         )}
         <input
           type="number"
@@ -77,7 +72,6 @@ export const SellComponent = (
         <div>{`Value : ${
           (Number(sellInput) * Number(price)) / Number(ONE_USDC_UNIT)
         } USDC`}</div>
-      </Card.Body>
     </Card>
   );
 };

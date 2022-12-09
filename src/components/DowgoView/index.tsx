@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+import {Card, Col, Row} from "antd";
 import { BigNumber, ethers, providers } from "ethers";
 import { EthAddress, ChainId, SetStateFunction } from "../../types/types";
 import { DowgoERC20 } from "../../types/DowgoERC20";
@@ -109,80 +106,76 @@ function DowgoContract(
     }
   }, [provider, userEthAddress, chainId]);
   return (
-    <Card style={{ width: "80vw", marginLeft: "10vw", marginTop: "2vh" }}>
-      <Card.Header>
-        <div>{`Dowgo Alpha Contract`}</div>
-      </Card.Header>
-      <Card.Body>
-        <Container>
-          <Row>
-            {" "}
-            <Col>
-              <div style={{ margin }}>{`Price: ${
-                Number(price) / Number(ONE_USDC_UNIT)
-              } USDC/Dowgo`}</div>
-              <div style={{ margin }}>{`Contract Address : ${getDowgoEthAddress(
-                chainId
-              )}`}</div>
-              <div style={{ margin }}>
-                {`Dowgo Total Supply : 
-                ${Number(totalSupply) / Number(ONE_DOWGO_UNIT)} DWG = ${(
-                  (Number(totalSupply) * Number(price)) /
-                  Number(ONE_DOWGO_UNIT) /
-                  Number(ONE_USDC_UNIT)
-                ).toFixed(2)} USD`}
-              </div>
-              <div style={{ margin }}>
-                {`Max Buy/Sell Amount : Total Supply * Target Ratio (${
-                  Number(targetRatio) / 10 ** 2
-                }%) * Collateral Range (${Number(collRange) / 10 ** 2}%) = ${
-                  Number(
-                    totalSupply
-                      .mul(targetRatio)
-                      .mul(collRange)
-                      .div(10 ** 8)
-                  ) / Number(ONE_DOWGO_UNIT)
-                } DWG`}
-              </div>
-              <div style={{ margin }}>
-                {`User USDC Balance on the Contract : ${(
-                  Number(usdcBalanceOnContract) / Number(ONE_USDC_UNIT)
-                ).toFixed(2)} USDC`}
-              </div>
-              <div style={{ margin }}>
-                {WithdrawComponent(
-                  provider,
-                  chainId,
-                  usdcBalanceOnContract,
-                  updateContractInfo
-                )}
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            {" "}
-            <Col>
-              {BuyComponent(
-                provider,
-                chainId,
-                price,
-                allowance,
-                setDisplayModal,
-                updateContractInfo
-              )}
-            </Col>
-            <Col>
-              {SellComponent(
-                provider,
-                chainId,
-                price,
-                dowgoBalance,
-                updateContractInfo
-              )}
-            </Col>
-          </Row>
-        </Container>
-      </Card.Body>
+    <Card 
+      style={{ width: "80vw", marginLeft: "10vw", marginTop: "2vh" }} 
+      title={`Dowgo Alpha Contract`}
+    >
+      <Row>
+        {" "}
+        <Col>
+          <div style={{ margin }}>{`Price: ${
+            Number(price) / Number(ONE_USDC_UNIT)
+          } USDC/Dowgo`}</div>
+          <div style={{ margin }}>{`Contract Address : ${getDowgoEthAddress(
+            chainId
+          )}`}</div>
+          <div style={{ margin }}>
+            {`Dowgo Total Supply : 
+            ${Number(totalSupply) / Number(ONE_DOWGO_UNIT)} DWG = ${(
+              (Number(totalSupply) * Number(price)) /
+              Number(ONE_DOWGO_UNIT) /
+              Number(ONE_USDC_UNIT)
+            ).toFixed(2)} USD`}
+          </div>
+          <div style={{ margin }}>
+            {`Max Buy/Sell Amount : Total Supply * Target Ratio (${
+              Number(targetRatio) / 10 ** 2
+            }%) * Collateral Range (${Number(collRange) / 10 ** 2}%) = ${
+              Number(
+                totalSupply
+                  .mul(targetRatio)
+                  .mul(collRange)
+                  .div(10 ** 8)
+              ) / Number(ONE_DOWGO_UNIT)
+            } DWG`}
+          </div>
+          <div style={{ margin }}>
+            {`User USDC Balance on the Contract : ${(
+              Number(usdcBalanceOnContract) / Number(ONE_USDC_UNIT)
+            ).toFixed(2)} USDC`}
+          </div>
+          <div style={{ margin }}>
+            {WithdrawComponent(
+              provider,
+              chainId,
+              usdcBalanceOnContract,
+              updateContractInfo
+            )}
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        {" "}
+        <Col>
+          {BuyComponent(
+            provider,
+            chainId,
+            price,
+            allowance,
+            setDisplayModal,
+            updateContractInfo
+          )}
+        </Col>
+        <Col>
+          {SellComponent(
+            provider,
+            chainId,
+            price,
+            dowgoBalance,
+            updateContractInfo
+          )}
+        </Col>
+      </Row>
     </Card>
   );
 }

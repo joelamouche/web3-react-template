@@ -1,7 +1,7 @@
+ //@ts-ignore
 import { BigNumber, ethers, providers } from "ethers";
 import { useEffect, useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import Alert from "react-bootstrap/Alert";
+import { Modal, Alert } from 'antd';
 import {
   EthAddress,
   ChainId,
@@ -77,31 +77,23 @@ function ApproveUSDC(
   }, [provider, userEthAddress, chainId, setAllowance]);
   const handleClose = () => setDisplayModal(false);
   return (
-    <Modal show={displayModal} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Approve USDC Spendings</Modal.Title>
-      </Modal.Header>
-
-      <Modal.Body>
-        <div>
-          {allowance.toHexString() === INFINITE_ALLOWANCE
-            ? `Allowance to Dowgo Contract : Infinite`
-            : `Allowance to Dowgo Contract : ${
-                Number(allowance) / 10 ** 18
-              } USDC`}
-        </div>
-        <div>Dowgo Contract EthAddress : {getDowgoEthAddress(chainId)}</div>
-        <Alert key={"warning"} variant={"warning"}>
-          You need to Approve USDC Spendings to the Dowgo Contract before you
-          can buy Dowgo token.
-        </Alert>
+    <Modal 
+      open={displayModal} 
+      closable={true}
+      title="Approve USDC Spendings"
+    >
+      <div>
+        {allowance.toHexString() === INFINITE_ALLOWANCE
+          ? `Allowance to Dowgo Contract : Infinite`
+          : `Allowance to Dowgo Contract : ${
+              Number(allowance) / 10 ** 18
+            } USDC`}
+      </div>
+      <div>Dowgo Contract EthAddress : {getDowgoEthAddress(chainId)}</div>
+        <Alert type="warning" key={"warning"} message="You need to Approve USDC Spendings to the Dowgo Contract before you can buy Dowgo token." />
         {txStatus && chainId && DisplayTxStatus(txStatus, chainId)}
-      </Modal.Body>
-
-      <Modal.Footer>
         {DButton(handleClose, `Close`)}
         {DButton(approveUSDCToDowgo, `Approve USDC transfer to Dowgo Contract`)}
-      </Modal.Footer>
     </Modal>
   );
 }

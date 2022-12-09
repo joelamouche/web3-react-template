@@ -1,0 +1,99 @@
+@import '~antd/dist/antd.css';
+
+/* HEADER MENU  */
+.menu-container {
+  justify-content: flex-end;
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  vertical-align: middle;
+  height: 100px;
+}
+
+
+.ant-menu.ant-menu-dark {
+  background-color: transparent;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background-color: transparent;
+}
+
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
+  background-color: transparent;
+}
+
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
+  background-color: transparent;
+}
+
+.ant-menu-item {
+  margin: 0;
+  margin-top: 0px;
+  padding: 0 20px;
+  white-space: nowrap;
+  transition: none;
+}
+
+.ant-menu-overflow-item ant-menu-item ant-menu-item-only-child {
+  height: 30px;
+  display: inline;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.ant-menu.ant-menu-dark {
+  background: none;
+}
+
+.ant-layout-header  {
+  background: transparent;
+}
+
+.profile-menu-icon {
+  height: 40px;
+  fill: white;
+  width: auto;
+  margin-top: 5px;
+}
+
+.ant-menu-horizontal > .ant-menu-submenu > .ant-menu-submenu-title {
+  display: flex;
+}
+
+.ant-menu-title-content {
+  color: rgba(255, 255, 255, 1);
+  font-size: 14px;
+  position: relative;
+  letter-spacing: 0.6px;
+  text-decoration: none;
+  width: auto;
+  padding-bottom: 5px;
+  height: 20px;
+  font-family: 'Inter', sans-serif;
+
+}
+
+.ant-menu-title-content:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(35, 248, 246);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.ant-menu-title-content:hover {
+  color: rgb(35, 248, 246);
+}
+
+.ant-menu-title-content:hover:after {
+  color: rgb(35, 248, 246);
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+

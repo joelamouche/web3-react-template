@@ -1,6 +1,6 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
-import Card from "react-bootstrap/Card";
+import { Card } from 'antd';
 import {
   INFINITE_ALLOWANCE,
   ONE_DOWGO_UNIT,
@@ -46,9 +46,7 @@ export const BuyComponent = (
   }
   //TODO: check after comma values
   return (
-    <Card>
-      <Card.Header>BUY</Card.Header>
-      <Card.Body>
+    <Card title="BUY">
         <input
           type="number"
           id="quantity"
@@ -81,7 +79,6 @@ export const BuyComponent = (
             ? "Infinite"
             : (Number(allowance) / Number(ONE_USDC_UNIT)).toFixed(2)
         }`}</div>
-      </Card.Body>
     </Card>
   );
 };
