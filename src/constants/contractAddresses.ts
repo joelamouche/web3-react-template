@@ -44,19 +44,3 @@ export const getContractAddresses = async (
       };
   }
 };
-
-// export const getUSDCEthAddress = async(
-//   chainId: ChainId | undefined
-// ): Promise<EthAddress> => {
-//   switch (chainId) {
-//     case 1: //Mainnet
-//       return MAINNET_USDC_ADDRESS;
-//     case 5: //Goerli
-//       return latestGoerliAddress || DEFAULT_GOERLI_USDC_ADDRESS;
-//     default:
-//       console.log(
-//         `UNKOWN Network (getUSDCEthAddress), defaulting to localhost:8545`
-//       );
-//       return LOCAL_USDC_ADDRESS;
-//   }
-// };
