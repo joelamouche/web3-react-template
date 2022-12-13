@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import "./App.css";
 import ConnectMetaMask from "./components/ConnectMetaMask";
 import { EthAddress, ChainId, ContractAddresses } from "./types/types";

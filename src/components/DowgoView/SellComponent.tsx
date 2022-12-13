@@ -2,7 +2,7 @@ import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Alert from "react-bootstrap/Alert";
-import { ChainId, EthAddress, TxStatus } from "../../types/types";
+import { ChainId, ContractAddresses, TxStatus } from "../../types/types";
 import {
   ALLOWED_NETWORKS,
   ONE_DOWGO_UNIT,
@@ -18,17 +18,20 @@ export const SellComponent = (
   chainId: ChainId | undefined,
   price: BigNumber,
   dowgoBalance: BigNumber,
-  updateContractInfo: (_chainId: ChainId) => void,
-  dowgoAddress: EthAddress | undefined
+  updateContractInfo: (
+    _chainId: ChainId,
+    _contractAddresses: ContractAddresses | undefined
+  ) => void,
+  contractAddresses: ContractAddresses | undefined
 ) => {
   const [sellInput, setSellInput] = useState<BigNumber>(BigNumber.from(0));
   const [txStatus, setTxStatus] = useState<TxStatus | undefined>(undefined);
 
   async function sellDowgo() {
     //TODO catch errors (like rejection)
-    if (provider && chainId && dowgoAddress) {
+    if (provider && chainId && contractAddresses?.dowgoAddress) {
       let contract: DowgoERC20 = new ethers.Contract(
-        dowgoAddress,
+        contractAddresses.dowgoAddress,
         DowgoERC20ABI,
         provider
       ) as DowgoERC20;
@@ -38,7 +41,7 @@ export const SellComponent = (
           await contract
             .connect(provider.getSigner())
             .sell_dowgo(sellInput.mul(ONE_DOWGO_UNIT)),
-        () => updateContractInfo(chainId)
+        () => updateContractInfo(chainId, contractAddresses)
       );
     }
   }

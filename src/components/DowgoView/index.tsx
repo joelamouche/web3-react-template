@@ -90,10 +90,13 @@ function DowgoContract(
       );
   }
 
-  function updateContractInfo(_chainId: ChainId) {
-    if (contractAddresses) {
+  function updateContractInfo(
+    _chainId: ChainId,
+    _contractAddresses: ContractAddresses | undefined
+  ) {
+    if (_contractAddresses) {
       let contract: DowgoERC20 = new ethers.Contract(
-        contractAddresses.dowgoAddress,
+        _contractAddresses.dowgoAddress,
         DowgoERC20ABI,
         provider
       ) as DowgoERC20;
@@ -109,9 +112,9 @@ function DowgoContract(
 
   useEffect(() => {
     if (provider && userEthAddress !== "0x" && chainId) {
-      updateContractInfo(chainId);
+      updateContractInfo(chainId, contractAddresses);
     }
-  }, [provider, userEthAddress, chainId]);
+  }, [provider, userEthAddress, chainId, contractAddresses]);
   return (
     <Card style={{ width: "80vw", marginLeft: "10vw", marginTop: "2vh" }}>
       <Card.Header>
@@ -159,7 +162,7 @@ function DowgoContract(
                   chainId,
                   usdcBalanceOnContract,
                   updateContractInfo,
-                  contractAddresses?.dowgoAddress
+                  contractAddresses
                 )}
               </div>
             </Col>
@@ -174,7 +177,7 @@ function DowgoContract(
                 allowance,
                 setDisplayModal,
                 updateContractInfo,
-                contractAddresses?.dowgoAddress
+                contractAddresses
               )}
             </Col>
             <Col>
@@ -184,7 +187,7 @@ function DowgoContract(
                 price,
                 dowgoBalance,
                 updateContractInfo,
-                contractAddresses?.dowgoAddress
+                contractAddresses
               )}
             </Col>
           </Row>
