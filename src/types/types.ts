@@ -29,4 +29,9 @@ export type TxStatus = {
   message?: string;
 };
 
+export interface ContractAddresses {
+  mockUSDCAddress: EthAddress;
+  dowgoAddress: EthAddress;
+}
+
 export type SetStateFunction<T> = Dispatch<React.SetStateAction<T>>;

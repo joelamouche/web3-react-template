@@ -1,11 +1,11 @@
-import { Badge } from 'antd';
+import { Badge } from "antd";
 const dataFund = [
   {
-    key: '1',
-    fundName: 'Dowgo Alpha Fund',
+    key: "1",
+    fundName: "Dowgo Alpha Fund",
     performance: "24%",
-    volume: '110k',
-    fundStatus:(
+    volume: "110k",
+    fundStatus: (
       <span>
         <Badge status="success" />
         Active
@@ -13,11 +13,11 @@ const dataFund = [
     ),
   },
   {
-    key: '2',
-    fundName: 'Dowgo Beta Fund',
+    key: "2",
+    fundName: "Dowgo Beta Fund",
     performance: "31%",
-    volume: '220k',
-    fundStatus:(
+    volume: "220k",
+    fundStatus: (
       <span>
         <Badge status="processing" />
         Inactive

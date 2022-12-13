@@ -1,7 +1,7 @@
-import React from "react";
-import { Layout, Button } from 'antd';
+import React, { useEffect } from "react";
+import { Layout, Button } from "antd";
 import ConnectMetaMask from "./components/ConnectMetaMask/ConnectMetaMask";
-import { EthAddress, ChainId } from "./types/types";
+import { EthAddress, ChainId, ContractAddresses } from "./types/types";
 import { BigNumber, providers } from "ethers";
 import DowgoContract from "./components/DowgoView";
 import ApproveUSDC from "./components/ApproveUSDC";
@@ -10,14 +10,15 @@ import HomeMetrics from "./components/home-metrics/home-metrics.component";
 import HomeFund from "./components/home-fund/home-fund.component";
 
 //@ts-ignore
-import VideoBanner from './assets/video-banner/video-banner.mp4';
-import DowgoLogo from './assets/header/dowgo-logo.png';
+import VideoBanner from "./assets/video-banner/video-banner.mp4";
+import DowgoLogo from "./assets/header/dowgo-logo.png";
 
 import "./App.css";
+import { getContractAddresses } from "./constants/contractAddresses";
 
 export function DowgoDApp() {
   const { Header, Footer, Content } = Layout;
-  
+
   const [provider, setProvider] = React.useState<
     providers.Web3Provider | undefined
   >(undefined);
@@ -35,6 +36,19 @@ export function DowgoDApp() {
   const [price, setPrice] = React.useState<BigNumber>(BigNumber.from(0));
   const [displayModal, setDisplayModal] = React.useState<boolean>(false);
 
+  // Contract addresses
+  const [contractAddresses, setContractAddresses] = React.useState<
+    ContractAddresses | undefined
+  >(undefined);
+  async function getAddresses(chainId: ChainId | undefined) {
+    if (chainId) {
+      let addresses = await getContractAddresses(chainId);
+      setContractAddresses(addresses);
+    }
+  }
+  useEffect(() => {
+    getAddresses(chainId);
+  }, [chainId]);
 
   return (
     <div className="app-container">
@@ -49,7 +63,7 @@ export function DowgoDApp() {
             setChainId
           )}
           <div className="dowgo-logo-container">
-            <img src={DowgoLogo} alt="dowgo-logo" className="dowgo-logo-menu"/>
+            <img src={DowgoLogo} alt="dowgo-logo" className="dowgo-logo-menu" />
           </div>
         </Header>
         <video
@@ -76,12 +90,8 @@ export function DowgoDApp() {
           </div>
           <div className="app-fund-right-container">
             <div className="buy-sell-container-alpha">
-              <Button  className="buy-button-alpha">
-                BUY
-              </Button>
-              <Button   className="sell-button-alpha">
-                SELL
-              </Button>
+              <Button className="buy-button-alpha">BUY</Button>
+              <Button className="sell-button-alpha">SELL</Button>
             </div>
           </div>
         </Content>
@@ -89,7 +99,6 @@ export function DowgoDApp() {
           <div className="app-balance-container">
             {BalancePanel(dowgoBalance, usdcBalance, price)}
           </div>
-
         </Content>
         <Content className="">
           {DowgoContract(
@@ -103,7 +112,8 @@ export function DowgoDApp() {
             setDisplayModal,
             chainId,
             price,
-            setPrice
+            setPrice,
+            contractAddresses
           )}
         </Content>
         <br />
@@ -115,7 +125,8 @@ export function DowgoDApp() {
             allowance,
             setAllowance,
             displayModal,
-            setDisplayModal
+            setDisplayModal,
+            contractAddresses
           )}
         </Content>
         <Footer className=""></Footer>

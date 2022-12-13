@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
-import {Card, Col, Row} from "antd";
+import { Card, Col, Row } from "antd";
 import { BigNumber, ethers, providers } from "ethers";
-import { EthAddress, ChainId, SetStateFunction } from "../../types/types";
+import {
+  EthAddress,
+  ChainId,
+  SetStateFunction,
+  ContractAddresses,
+} from "../../types/types";
 import { DowgoERC20 } from "../../types/DowgoERC20";
 import { DowgoERC20ABI } from "../../constants/DowgoERC20ABI";
 import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../constants";
@@ -9,10 +14,6 @@ import { ERC20 } from "../../types/ERC20";
 import { ERC20_ABI } from "../../constants/ERC20ABI";
 import { BuyComponent } from "./BuyComponent";
 import { SellComponent } from "./SellComponent";
-import {
-  getDowgoEthAddress,
-  getUSDCEthAddress,
-} from "../../constants/contractAddresses";
 import { WithdrawComponent } from "./WithdrawComponent";
 
 const margin = "0.5em";
@@ -28,7 +29,8 @@ function DowgoContract(
   setDisplayModal: SetStateFunction<boolean>,
   chainId: ChainId | undefined,
   price: BigNumber,
-  setPrice: SetStateFunction<BigNumber>
+  setPrice: SetStateFunction<BigNumber>,
+  contractAddresses: ContractAddresses | undefined
 ) {
   const [targetRatio, setTargetRatio] = React.useState<BigNumber>(
     BigNumber.from(0)
@@ -65,15 +67,15 @@ function DowgoContract(
     _userEthAddress: EthAddress,
     _chainId: ChainId
   ) {
-    // USDC EthAddress
-    let contract: ERC20 = new ethers.Contract(
-      getUSDCEthAddress(_chainId),
-      ERC20_ABI,
-      provider
-    ) as ERC20;
-    chainId &&
-      _userEthAddress !== "0x" &&
+    if (chainId && contractAddresses && _userEthAddress !== "0x") {
+      // USDC EthAddress
+      let contract: ERC20 = new ethers.Contract(
+        contractAddresses?.mockUSDCAddress,
+        ERC20_ABI,
+        provider
+      ) as ERC20;
       setUSDCBalance(await contract.balanceOf(_userEthAddress));
+    }
   }
   async function updateUSDCBalanceOnContract(
     contract: DowgoERC20,
@@ -85,29 +87,34 @@ function DowgoContract(
       );
   }
 
-  function updateContractInfo(_chainId: ChainId) {
-    let contract: DowgoERC20 = new ethers.Contract(
-      getDowgoEthAddress(_chainId),
-      DowgoERC20ABI,
-      provider
-    ) as DowgoERC20;
-    updateUSDCBalance(userEthAddress, _chainId);
-    updateDowgoBalance(contract, userEthAddress);
-    updateUSDCBalanceOnContract(contract, userEthAddress);
-    updatePrice(contract);
-    updateTargetRatio(contract);
-    updateCollRange(contract);
-    updateTotalSupply(contract);
+  function updateContractInfo(
+    _chainId: ChainId,
+    _contractAddresses: ContractAddresses | undefined
+  ) {
+    if (_contractAddresses) {
+      let contract: DowgoERC20 = new ethers.Contract(
+        _contractAddresses.dowgoAddress,
+        DowgoERC20ABI,
+        provider
+      ) as DowgoERC20;
+      updateUSDCBalance(userEthAddress, _chainId);
+      updateDowgoBalance(contract, userEthAddress);
+      updateUSDCBalanceOnContract(contract, userEthAddress);
+      updatePrice(contract);
+      updateTargetRatio(contract);
+      updateCollRange(contract);
+      updateTotalSupply(contract);
+    }
   }
 
   useEffect(() => {
     if (provider && userEthAddress !== "0x" && chainId) {
-      updateContractInfo(chainId);
+      updateContractInfo(chainId, contractAddresses);
     }
-  }, [provider, userEthAddress, chainId]);
+  }, [provider, userEthAddress, chainId, contractAddresses]);
   return (
-    <Card 
-      style={{ width: "80vw", marginLeft: "10vw", marginTop: "2vh" }} 
+    <Card
+      style={{ width: "80vw", marginLeft: "10vw", marginTop: "2vh" }}
       title={`Dowgo Alpha Contract`}
     >
       <Row>
@@ -116,9 +123,9 @@ function DowgoContract(
           <div style={{ margin }}>{`Price: ${
             Number(price) / Number(ONE_USDC_UNIT)
           } USDC/Dowgo`}</div>
-          <div style={{ margin }}>{`Contract Address : ${getDowgoEthAddress(
-            chainId
-          )}`}</div>
+          <div style={{ margin }}>
+            {contractAddresses ? contractAddresses.dowgoAddress : "Loading"}
+          </div>
           <div style={{ margin }}>
             {`Dowgo Total Supply : 
             ${Number(totalSupply) / Number(ONE_DOWGO_UNIT)} DWG = ${(
@@ -149,7 +156,8 @@ function DowgoContract(
               provider,
               chainId,
               usdcBalanceOnContract,
-              updateContractInfo
+              updateContractInfo,
+              contractAddresses
             )}
           </div>
         </Col>
@@ -163,7 +171,8 @@ function DowgoContract(
             price,
             allowance,
             setDisplayModal,
-            updateContractInfo
+            updateContractInfo,
+            contractAddresses
           )}
         </Col>
         <Col>
@@ -172,7 +181,8 @@ function DowgoContract(
             chainId,
             price,
             dowgoBalance,
-            updateContractInfo
+            updateContractInfo,
+            contractAddresses
           )}
         </Col>
       </Row>

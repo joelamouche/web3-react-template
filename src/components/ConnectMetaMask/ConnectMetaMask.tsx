@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { Menu } from 'antd';
-
+import { Menu } from "antd";
 
 import detectEthereumProvider from "@metamask/detect-provider";
 import { MetaMaskInpageProvider } from "@metamask/providers";
@@ -14,12 +13,12 @@ import { ethers, providers } from "ethers";
 import { DButton } from "../displayComponents/Button";
 import { ALLOWED_NETWORKS } from "../../constants";
 
-//icons import 
-import {ReactComponent as ProfileIcon} from '../../assets/header/profile-icon.svg';
+//icons import
+import { ReactComponent as ProfileIcon } from "../../assets/header/profile-icon.svg";
 
-import './header-animation';
+import "./header-animation";
 
-import './ConnectMetaMask.styles.css'
+import "./ConnectMetaMask.styles.css";
 
 function ConnectMetaMask(
   provider: providers.Web3Provider | undefined,
@@ -167,14 +166,16 @@ function ConnectMetaMask(
   return (
     <div>
       <Menu theme="dark" mode="horizontal" className="menu-container">
-        
         <Menu.Item key="dowgo-funds" className="">
           FUNDS
         </Menu.Item>
         <Menu.Item key="governance" className="">
           GOVERNANCE
         </Menu.Item>
-        <Menu.SubMenu key="profile-container" icon={<ProfileIcon className="profile-menu-icon"/>}>
+        <Menu.SubMenu
+          key="profile-container"
+          icon={<ProfileIcon className="profile-menu-icon" />}
+        >
           <Menu.Item key="zero" className="">
             <div className="status-menu-item">
               Status :{" "}
@@ -196,10 +197,10 @@ function ConnectMetaMask(
             <div className="account-menu-item">
               Account:{" "}
               {currentAccount !== "0x"
-                ? `${currentAccount.substring(0, 4)}...${currentAccount.substring(
-                    38,
-                    42
-                  )}`
+                ? `${currentAccount.substring(
+                    0,
+                    4
+                  )}...${currentAccount.substring(38, 42)}`
                 : "Not Connected"}
             </div>
           </Menu.Item>

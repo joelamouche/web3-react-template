@@ -1,4 +1,4 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
 /* HEADER MENU  */
 .menu-container {
@@ -10,12 +10,12 @@
   height: 100px;
 }
 
-
 .ant-menu.ant-menu-dark {
   background-color: transparent;
 }
 
-.ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+.ant-menu.ant-menu-dark .ant-menu-item-selected,
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
   background-color: transparent;
 }
 
@@ -46,7 +46,7 @@
   background: none;
 }
 
-.ant-layout-header  {
+.ant-layout-header {
   background: transparent;
 }
 
@@ -70,12 +70,11 @@
   width: auto;
   padding-bottom: 5px;
   height: 20px;
-  font-family: 'Inter', sans-serif;
-
+  font-family: "Inter", sans-serif;
 }
 
 .ant-menu-title-content:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -96,4 +95,3 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-

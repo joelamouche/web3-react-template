@@ -8,7 +8,7 @@
   border-bottom: 0px;
   padding: 0px 10px 0 10px;
   min-height: 30px;
-} 
+}
 
 .ant-card-head-title {
   text-align: left;
@@ -17,15 +17,15 @@
   color: #0ff4e9;
   padding-bottom: 5px;
   letter-spacing: 1px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 300;
 }
 
 .metrics-card {
   border-radius: 7px;
-  box-shadow: 0 0 5px #0ff4e9,inset 0 0 5px #0ff4e9;
+  box-shadow: 0 0 5px #0ff4e9, inset 0 0 5px #0ff4e9;
   border: 2px solid #0ff4e9;
-  background: black
+  background: black;
 }
 
 .ant-card-body {
@@ -53,7 +53,7 @@
   align-items: center;
   margin-left: 10px;
   letter-spacing: 1px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   margin-top: 5px;
 }

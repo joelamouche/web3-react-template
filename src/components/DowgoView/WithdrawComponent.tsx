@@ -1,11 +1,10 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
-import { Alert } from 'antd';
-import { ChainId, TxStatus } from "../../types/types";
+import { Alert } from "antd";
+import { ChainId, ContractAddresses, TxStatus } from "../../types/types";
 import { ONE_USDC_UNIT } from "../../constants";
 import { DowgoERC20 } from "../../types/DowgoERC20";
 import { DowgoERC20ABI } from "../../constants/DowgoERC20ABI";
-import { getDowgoEthAddress } from "../../constants/contractAddresses";
 import { launchTxWithStatus } from "../../utils/txWithStatus";
 import { DisplayTxStatus } from "../displayComponents/DisplayTxStatus";
 
@@ -13,7 +12,11 @@ export const WithdrawComponent = (
   provider: providers.Web3Provider | undefined,
   chainId: ChainId | undefined,
   usdcBalanceOnContract: BigNumber,
-  updateContractInfo: (_chainId: ChainId) => void
+  updateContractInfo: (
+    _chainId: ChainId,
+    _contractAddresses: ContractAddresses | undefined
+  ) => void,
+  contractAddresses: ContractAddresses | undefined
 ) => {
   const [withdrawInput, setWithdrawInput] = useState<BigNumber>(
     BigNumber.from(0)
@@ -22,26 +25,30 @@ export const WithdrawComponent = (
 
   async function withdrawUSDC() {
     //TODO catch errors (like rejection)
-    let contract: DowgoERC20 = new ethers.Contract(
-      getDowgoEthAddress(chainId),
-      DowgoERC20ABI,
-      provider
-    ) as DowgoERC20;
-    if (provider && chainId) {
+    if (provider && chainId && contractAddresses?.dowgoAddress) {
+      let contract: DowgoERC20 = new ethers.Contract(
+        contractAddresses.dowgoAddress,
+        DowgoERC20ABI,
+        provider
+      ) as DowgoERC20;
       launchTxWithStatus(
         setTxStatus,
         async () =>
           await contract
             .connect(provider.getSigner())
             .withdraw_usdc(withdrawInput.mul(ONE_USDC_UNIT)),
-        () => updateContractInfo(chainId)
+        () => updateContractInfo(chainId, contractAddresses)
       );
     }
   }
   return (
     <div>
       {withdrawInput.mul(ONE_USDC_UNIT).gt(usdcBalanceOnContract) && (
-        <Alert key={"warning"} type={"warning"} message="You don't have enough USDC tokens to withdraw." />
+        <Alert
+          key={"warning"}
+          type={"warning"}
+          message="You don't have enough USDC tokens to withdraw."
+        />
       )}
       <input
         type="number"
