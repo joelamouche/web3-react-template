@@ -11,7 +11,7 @@ import { DowgoERC20ABI } from "../../constants/DowgoERC20ABI";
 import { DowgoERC20 } from "../../types/DowgoERC20";
 import {
   ChainId,
-  EthAddress,
+  ContractAddresses,
   SetStateFunction,
   TxStatus,
 } from "../../types/types";
@@ -24,17 +24,20 @@ export const BuyComponent = (
   price: BigNumber,
   allowance: BigNumber,
   setDisplayModal: SetStateFunction<boolean>,
-  updateContractInfo: (_chainId: ChainId) => void,
-  dowgoAddress: EthAddress | undefined
+  updateContractInfo: (
+    _chainId: ChainId,
+    _contractAddresses: ContractAddresses | undefined
+  ) => void,
+  contractAddresses: ContractAddresses | undefined
 ) => {
   const [buyInput, setBuyInput] = useState<BigNumber>(BigNumber.from(0));
   const [txStatus, setTxStatus] = useState<TxStatus | undefined>(undefined);
 
   async function buyDowgo() {
     //TODO catch errors (like rejection)
-    if (provider && chainId && dowgoAddress) {
+    if (provider && chainId && contractAddresses?.dowgoAddress) {
       let contract: DowgoERC20 = new ethers.Contract(
-        dowgoAddress,
+        contractAddresses.dowgoAddress,
         DowgoERC20ABI,
         provider
       ) as DowgoERC20;
@@ -45,7 +48,7 @@ export const BuyComponent = (
             .connect(provider.getSigner())
             .buy_dowgo(buyInput.mul(ONE_DOWGO_UNIT)),
         () => {
-          updateContractInfo(chainId);
+          updateContractInfo(chainId, contractAddresses);
         }
       );
     }

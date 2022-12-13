@@ -1,7 +1,7 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
 import Alert from "react-bootstrap/Alert";
-import { ChainId, EthAddress, TxStatus } from "../../types/types";
+import { ChainId, ContractAddresses, TxStatus } from "../../types/types";
 import { ONE_USDC_UNIT } from "../../constants";
 import { DowgoERC20 } from "../../types/DowgoERC20";
 import { DowgoERC20ABI } from "../../constants/DowgoERC20ABI";
@@ -12,8 +12,11 @@ export const WithdrawComponent = (
   provider: providers.Web3Provider | undefined,
   chainId: ChainId | undefined,
   usdcBalanceOnContract: BigNumber,
-  updateContractInfo: (_chainId: ChainId) => void,
-  dowgoAddress: EthAddress | undefined
+  updateContractInfo: (
+    _chainId: ChainId,
+    _contractAddresses: ContractAddresses | undefined
+  ) => void,
+  contractAddresses: ContractAddresses | undefined
 ) => {
   const [withdrawInput, setWithdrawInput] = useState<BigNumber>(
     BigNumber.from(0)
@@ -22,9 +25,9 @@ export const WithdrawComponent = (
 
   async function withdrawUSDC() {
     //TODO catch errors (like rejection)
-    if (provider && chainId && dowgoAddress) {
+    if (provider && chainId && contractAddresses?.dowgoAddress) {
       let contract: DowgoERC20 = new ethers.Contract(
-        dowgoAddress,
+        contractAddresses.dowgoAddress,
         DowgoERC20ABI,
         provider
       ) as DowgoERC20;
@@ -34,7 +37,7 @@ export const WithdrawComponent = (
           await contract
             .connect(provider.getSigner())
             .withdraw_usdc(withdrawInput.mul(ONE_USDC_UNIT)),
-        () => updateContractInfo(chainId)
+        () => updateContractInfo(chainId, contractAddresses)
       );
     }
   }
