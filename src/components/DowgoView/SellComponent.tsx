@@ -2,7 +2,7 @@ import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Alert from "react-bootstrap/Alert";
-import { ChainId, TxStatus } from "../../types/types";
+import { ChainId, EthAddress, TxStatus } from "../../types/types";
 import {
   ALLOWED_NETWORKS,
   ONE_DOWGO_UNIT,
@@ -10,7 +10,6 @@ import {
 } from "../../constants";
 import { DowgoERC20 } from "../../types/DowgoERC20";
 import { DowgoERC20ABI } from "../../constants/DowgoERC20ABI";
-import { getDowgoEthAddress } from "../../constants/contractAddresses";
 import { launchTxWithStatus } from "../../utils/txWithStatus";
 import { DisplayTxStatus } from "../displayComponents/DisplayTxStatus";
 
@@ -19,19 +18,20 @@ export const SellComponent = (
   chainId: ChainId | undefined,
   price: BigNumber,
   dowgoBalance: BigNumber,
-  updateContractInfo: (_chainId: ChainId) => void
+  updateContractInfo: (_chainId: ChainId) => void,
+  dowgoAddress: EthAddress | undefined
 ) => {
   const [sellInput, setSellInput] = useState<BigNumber>(BigNumber.from(0));
   const [txStatus, setTxStatus] = useState<TxStatus | undefined>(undefined);
 
   async function sellDowgo() {
     //TODO catch errors (like rejection)
-    let contract: DowgoERC20 = new ethers.Contract(
-      getDowgoEthAddress(chainId),
-      DowgoERC20ABI,
-      provider
-    ) as DowgoERC20;
-    if (provider && chainId) {
+    if (provider && chainId && dowgoAddress) {
+      let contract: DowgoERC20 = new ethers.Contract(
+        dowgoAddress,
+        DowgoERC20ABI,
+        provider
+      ) as DowgoERC20;
       launchTxWithStatus(
         setTxStatus,
         async () =>
