@@ -1,5 +1,7 @@
+//@ts-ignore
 import React, { useEffect } from "react";
 import { Menu } from "antd";
+import { Link } from 'react-router-dom';
 
 import detectEthereumProvider from "@metamask/detect-provider";
 import { MetaMaskInpageProvider } from "@metamask/providers";
@@ -166,15 +168,19 @@ function ConnectMetaMask(
   return (
     <div>
       <Menu theme="dark" mode="horizontal" className="menu-container">
+        
         <Menu.Item key="dowgo-funds" className="">
-          FUNDS
+          <Link to="dowgo-funds" className="funds-menu-item">
+            FUNDS
+          </Link>
         </Menu.Item>
+        
         <Menu.Item key="governance" className="">
           GOVERNANCE
         </Menu.Item>
         <Menu.SubMenu
           key="profile-container"
-          icon={<ProfileIcon className="profile-menu-icon" />}
+          icon={<Link to="/profile" className="profile-icon-link"><ProfileIcon className="profile-menu-icon" /></Link>}
         >
           <Menu.Item key="zero" className="">
             <div className="status-menu-item">

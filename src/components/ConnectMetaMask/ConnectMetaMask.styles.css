@@ -27,6 +27,10 @@
   background-color: transparent;
 }
 
+.ant-menu-dark .ant-menu-item, .ant-menu-dark .ant-menu-item-group-title, .ant-menu-dark .ant-menu-item > a, .ant-menu-dark .ant-menu-item > span > a {
+  color: white;
+}
+
 .ant-menu-item {
   margin: 0;
   margin-top: 0px;
@@ -48,6 +52,10 @@
 
 .ant-layout-header {
   background: transparent;
+}
+
+.profile-icon-link {
+  display: flex;
 }
 
 .profile-menu-icon {
@@ -91,6 +99,16 @@
 }
 
 .ant-menu-title-content:hover:after {
+  color: rgb(35, 248, 246);
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.funds-menu-item:hover {
+  color: rgb(35, 248, 246);
+}
+
+.funds-menu-item:hover:after {
   color: rgb(35, 248, 246);
   transform: scaleX(1);
   transform-origin: bottom left;

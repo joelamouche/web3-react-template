@@ -3,6 +3,8 @@ import { Card } from "antd";
 import DowgoBalance from "./DowgoBalance";
 import USDCBalance from "./USDCBalance";
 
+import './index-balance.styles.scss';
+
 export const BalancePanel = (
   dowgoBalance: BigNumber,
   usdcBalance: BigNumber,
@@ -88,7 +90,6 @@ export const BalancePanel = (
               color: "white",
             }}
           >
-            {USDCBalance(usdcBalance)}
           </div>
         </Card>
       </div>

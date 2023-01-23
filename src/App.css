@@ -24,103 +24,12 @@
   width: auto;
 }
 
-.app-video-banner {
-  margin-top: -50px;
-}
 
-.app-banner-container {
-  width: 100%;
-}
-
-.app-banner-text {
-  position: absolute;
-  top: 20%;
-  color: #0ff4e9;
-  text-align: center;
-  width: 100%;
-  font-size: 40px;
-  font-family: "Inter", sans-serif;
-  font-weight: 900;
-  letter-spacing: 5px;
-  animation: fadeIn 10s;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.app-metrics-container {
-  margin: 0 50px 100px 50px;
-  background-color: black;
-}
-
-.app-fund-container {
-  width: auto;
-  background-color: rgb(89, 150, 191, 0.2);
-  margin: 0 50px;
-  padding: 30px 30px;
-  border-radius: 15px;
-  height: auto;
-  display: flex;
-}
-
-.app-fund-left-container {
-  width: 90%;
-}
-
-.app-fund-right-container {
-  width: 10%;
-}
-
-.buy-sell-container-alpha {
-  display: flex;
-  justify-content: space-between;
-  padding: 125px 5px 0px 0px;
-  margin-left: 10px;
-}
-
-.buy-button-alpha {
-  width: 50px;
-  padding: 0;
-  font-family: "Inter", sans-serif;
-  font-weight: 300;
-  background-color: #0ff4e9;
-  border: 2px solid #0ff4e9;
-}
-
-.sell-button-alpha {
-  width: 50px;
-  padding: 0;
-  font-family: "Inter", sans-serif;
-  font-weight: 300;
-  background-color: red;
-  border: 2px solid red;
-  color: white;
-}
-
-.app-balance-container {
-  width: auto;
-  background-color: rgb(89, 150, 191, 0.2);
-  margin: 0 50px;
-  padding: 30px 30px;
-  border-radius: 15px;
-  height: auto;
-  display: flex;
-  margin-top: 50px;
-}
 
 .App-link {
   color: #61dafb;
 }
 
-.balance-panel {
-  margin-top: 100px;
-}
 
 .ant-layout {
   background: black !important;

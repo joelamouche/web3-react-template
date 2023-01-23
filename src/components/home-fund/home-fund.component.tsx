@@ -2,9 +2,6 @@
 import React from "react";
 import { Table } from "antd";
 
-//fund icons assets
-// import { ReactComponent as AlphaIcon } from "../../assets/dowgo-funds/alpha.svg";
-
 //funds table objects
 import columnsFund from "../../objects/dowgo-funds/fund-columns";
 import dataFund from "../../objects/dowgo-funds/fund-data";
