@@ -54,7 +54,7 @@ function App () {
             setChainId
           )}
           <div className="dowgo-logo-container">
-            <a href="https://www.dowgo.io/" target="_blank" rel="noopener noreferrer">
+            <a href="https://dowgo.io/" target="_blank" rel="noopener noreferrer">
               <img 
                 src={DowgoLogo} 
                 alt="dowgo-logo" 
