@@ -1,0 +1,69 @@
+.home-fund-container {
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+
+.home-fund-title {
+  font-family: "Inter", sans-serif;
+  font-size: 30px;
+  color: #0ff4e9;
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.collapse-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.home-fund-collapse {
+  width: 100%;
+}
+
+.ant-collapse {
+  border-radius: 5px;
+}
+
+.home-fund-alpha-icon {
+  height: 30px;
+  width: auto;
+  position: relative;
+}
+
+.ant-table-thead > tr:nth-of-type(1) > th {
+  background-color: rgb(0, 0, 0, 0.9);
+  color: #0ff4e9;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+}
+
+.ant-table-expanded-row {
+  .ant-table {
+    width: 80%;
+  }
+
+  .ant-table-thead > tr > th {
+    background: rgb(0, 0, 0, 0.6);
+    font-size: 13px;
+    font-weight: 300;
+    font-family: "Inter", sans-serif;
+    color: white;
+  }
+
+  .ant-table-tbody > tr > td {
+    background: #fff;
+  }
+}
+
+.ant-badge {
+  margin-right: 10px;
+
+  .ant-badge-status-dot {
+    width: 9px;
+    height: 9px;
+  }
+}

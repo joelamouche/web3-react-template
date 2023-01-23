@@ -1,6 +1,6 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
-import Card from "react-bootstrap/Card";
+import { Card } from "antd";
 import {
   ALLOWED_NETWORKS,
   INFINITE_ALLOWANCE,
@@ -55,52 +55,47 @@ export const BuyComponent = (
   }
   //TODO: check after comma values
   return (
-    <Card>
-      <Card.Header>BUY</Card.Header>
-      <Card.Body>
-        {chainId && ALLOWED_NETWORKS.includes(ChainId[chainId]) ? (
-          <div>
-            <input
-              type="number"
-              id="quantity"
-              name="quantity"
-              onChange={(e) => {
-                Number(e.target.value) >= 0 &&
-                  setBuyInput(
-                    BigNumber.from(Math.floor(Number(e.target.value)))
-                  );
-              }}
-              value={Number(buyInput)}
-            />
-            <button
-              type="button"
-              onMouseUp={() => {
-                if (buyInput.mul(price).gt(allowance)) {
-                  setDisplayModal(true);
-                } else {
-                  buyDowgo();
-                }
-              }}
-            >
-              Buy Dowgo
-            </button>
-            {txStatus && chainId && DisplayTxStatus(txStatus, chainId)}
-            <div>{`Cost : ${(
-              (Number(buyInput) * Number(price)) /
-              Number(ONE_USDC_UNIT)
-            ).toFixed(2)}`}</div>
-            <div>{`USDC Allowance to Dowgo : ${
-              allowance.toHexString() === INFINITE_ALLOWANCE
-                ? "Infinite"
-                : (Number(allowance) / Number(ONE_USDC_UNIT)).toFixed(2)
-            }`}</div>
-          </div>
-        ) : (
-          <div>
-            <span style={{ color: "red" }}> Unsupported Network</span>
-          </div>
-        )}
-      </Card.Body>
+    <Card title="BUY">
+      {chainId && ALLOWED_NETWORKS.includes(ChainId[chainId]) ? (
+        <div>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            onChange={(e) => {
+              Number(e.target.value) >= 0 &&
+                setBuyInput(BigNumber.from(Math.floor(Number(e.target.value))));
+            }}
+            value={Number(buyInput)}
+          />
+          <button
+            type="button"
+            onMouseUp={() => {
+              if (buyInput.mul(price).gt(allowance)) {
+                setDisplayModal(true);
+              } else {
+                buyDowgo();
+              }
+            }}
+          >
+            Buy Dowgo
+          </button>
+          {txStatus && chainId && DisplayTxStatus(txStatus, chainId)}
+          <div>{`Cost : ${(
+            (Number(buyInput) * Number(price)) /
+            Number(ONE_USDC_UNIT)
+          ).toFixed(2)}`}</div>
+          <div>{`USDC Allowance to Dowgo : ${
+            allowance.toHexString() === INFINITE_ALLOWANCE
+              ? "Infinite"
+              : (Number(allowance) / Number(ONE_USDC_UNIT)).toFixed(2)
+          }`}</div>
+        </div>
+      ) : (
+        <div>
+          <span style={{ color: "red" }}> Unsupported Network</span>
+        </div>
+      )}
     </Card>
   );
 };

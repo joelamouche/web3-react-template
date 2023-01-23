@@ -1,0 +1,38 @@
+.app-container {
+  text-align: center;
+}
+
+.app-video-container {
+  width: 100%;
+  display: flex;
+}
+
+.app-video-banner {
+  margin-top: -50px;
+  z-index: 1;
+  position: absolute;
+}
+
+.app-banner-container {
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  top: 20%;
+}
+
+/* .app-fund-container {
+  width: auto;
+  background-color: rgb(89, 150, 191, 0.2);
+  margin: 0 50px;
+  padding: 30px 30px;
+  border-radius: 15px;
+  height: auto;
+  display: flex;
+  position: absolute;
+  z-index: 3;
+} */
+
+
+.App-link {
+  color: #61dafb;
+}

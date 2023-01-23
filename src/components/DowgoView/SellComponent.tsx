@@ -1,7 +1,6 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
-import Card from "react-bootstrap/Card";
-import Alert from "react-bootstrap/Alert";
+import { Card, Alert } from "antd";
 import { ChainId, ContractAddresses, TxStatus } from "../../types/types";
 import {
   ALLOWED_NETWORKS,
@@ -46,55 +45,54 @@ export const SellComponent = (
     }
   }
   return (
-    <Card>
-      <Card.Header>SELL</Card.Header>
-      <Card.Body>
-        {chainId && ALLOWED_NETWORKS.includes(ChainId[chainId]) ? (
-          <div>
-            {sellInput.mul(ONE_DOWGO_UNIT).gt(dowgoBalance) && (
-              <Alert key={"warning"} variant={"warning"}>
-                You don't have enough Dowgo tokens to sell.
-              </Alert>
-            )}
-            <input
-              type="number"
-              id="quantity"
-              name="quantity"
-              onChange={(e) => {
-                Number(e.target.value) >= 0 &&
-                  setSellInput(
-                    BigNumber.from(Math.floor(Number(e.target.value)))
-                  );
-              }}
-              value={Number(sellInput)}
+    <Card title="SELL">
+      {chainId && ALLOWED_NETWORKS.includes(ChainId[chainId]) ? (
+        <div>
+          {sellInput.mul(ONE_DOWGO_UNIT).gt(dowgoBalance) && (
+            <Alert
+              key={"warning"}
+              type={"warning"}
+              message="You don't have enough Dowgo tokens to sell."
             />
-            <button
-              type="button"
-              onMouseUp={() => {
-                if (sellInput.mul(ONE_DOWGO_UNIT).gt(dowgoBalance)) {
-                  console.log("Not enough Dowgo tokens");
-                  setTxStatus({
-                    status: "Error",
-                    message: "Not enough Dowgo tokens",
-                  });
-                } else {
-                  sellDowgo();
-                }
-              }}
-            >
-              Sell Dowgo
-            </button>
-            {txStatus && chainId && DisplayTxStatus(txStatus, chainId)}
-            <div>{`Value : ${
-              (Number(sellInput) * Number(price)) / Number(ONE_USDC_UNIT)
-            } USDC`}</div>
-          </div>
-        ) : (
-          <div>
-            <span style={{ color: "red" }}> Unsupported Network</span>
-          </div>
-        )}
-      </Card.Body>
+          )}
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            onChange={(e) => {
+              Number(e.target.value) >= 0 &&
+                setSellInput(
+                  BigNumber.from(Math.floor(Number(e.target.value)))
+                );
+            }}
+            value={Number(sellInput)}
+          />
+          <button
+            type="button"
+            onMouseUp={() => {
+              if (sellInput.mul(ONE_DOWGO_UNIT).gt(dowgoBalance)) {
+                console.log("Not enough Dowgo tokens");
+                setTxStatus({
+                  status: "Error",
+                  message: "Not enough Dowgo tokens",
+                });
+              } else {
+                sellDowgo();
+              }
+            }}
+          >
+            Sell Dowgo
+          </button>
+          {txStatus && chainId && DisplayTxStatus(txStatus, chainId)}
+          <div>{`Value : ${
+            (Number(sellInput) * Number(price)) / Number(ONE_USDC_UNIT)
+          } USDC`}</div>
+        </div>
+      ) : (
+        <div>
+          <span style={{ color: "red" }}> Unsupported Network</span>
+        </div>
+      )}
     </Card>
   );
 };

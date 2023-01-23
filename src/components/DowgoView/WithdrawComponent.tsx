@@ -1,6 +1,6 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
-import Alert from "react-bootstrap/Alert";
+import { Alert } from "antd";
 import { ChainId, ContractAddresses, TxStatus } from "../../types/types";
 import { ONE_USDC_UNIT } from "../../constants";
 import { DowgoERC20 } from "../../types/DowgoERC20";
@@ -44,9 +44,11 @@ export const WithdrawComponent = (
   return (
     <div>
       {withdrawInput.mul(ONE_USDC_UNIT).gt(usdcBalanceOnContract) && (
-        <Alert key={"warning"} variant={"warning"}>
-          You don't have enough USDC tokens to withdraw.
-        </Alert>
+        <Alert
+          key={"warning"}
+          type={"warning"}
+          message="You don't have enough USDC tokens to withdraw."
+        />
       )}
       <input
         type="number"
