@@ -1,0 +1,16 @@
+.dowgo-contract-card {
+  width: 100%;
+  background-color: black;
+  box-shadow: 0 0 5px #0ff4e9, inset 0 0 5px #0ff4e9;
+  border: 2px solid #0ff4e9;
+  background: black;  
+  color: white;
+
+  .ant-card-head-title {
+    color: white; 
+  }
+
+  .withdraw-formula {
+    display: block;
+  }
+}
