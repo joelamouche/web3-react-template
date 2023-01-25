@@ -95,21 +95,21 @@
 }
 
 .ant-menu-title-content:hover {
-  color: rgb(35, 248, 246);
+  color: rgb(35, 248, 246) !important;
 }
 
 .ant-menu-title-content:hover:after {
-  color: rgb(35, 248, 246);
-  transform: scaleX(1);
+  color: rgb(35, 248, 246) !important;
+  transform: scaleX(1) !important;
   transform-origin: bottom left;
 }
 
 .funds-menu-item:hover {
-  color: rgb(35, 248, 246);
+  color: rgb(35, 248, 246) !important;
 }
 
 .funds-menu-item:hover:after {
-  color: rgb(35, 248, 246);
-  transform: scaleX(1);
+  color: rgb(35, 248, 246) !important;
+  transform: scaleX(1) !important;
   transform-origin: bottom left;
 }

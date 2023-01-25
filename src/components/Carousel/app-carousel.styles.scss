@@ -1,6 +1,8 @@
 .app-carousel-container {
   height: 100%;
   width: 100%;
+  margin-top: -30px;
+
 
   .ant-carousel {
     height: 400px;
@@ -10,34 +12,13 @@
       height: 100%;
       width: auto;
       display: block;
-
-      .carousel-banner-title {
-        color: #0ff4e9;
-        text-align: center;
-        width: 100%;
-        font-size: 50px;
-        font-family: "Inter", sans-serif;
-        font-weight: 900;
-        letter-spacing: 5px;
-        animation: fadeIn 5s;
-      }
-      
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
     
       .carousel-dowgo-logo-container {
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-top: 60px;
         .carousel-dowgo-logo {
-          height: 200px;
+          height: 250px;
           width: auto;
         }
       }
@@ -45,7 +26,7 @@
       .carousel-button-invest {
         width: 200px;
         height: 60px;
-        margin-top: 70px;
+        margin-top: 150px;
         border-radius: 50px;
         color: white;
         font-weight: 600;

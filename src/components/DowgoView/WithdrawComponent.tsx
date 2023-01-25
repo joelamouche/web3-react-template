@@ -1,12 +1,14 @@
 import { BigNumber, ethers, providers } from "ethers";
 import { useState } from "react";
-import { Alert } from "antd";
+import { Alert, Input, Button } from "antd";
 import { ChainId, ContractAddresses, TxStatus } from "../../types/types";
 import { ONE_USDC_UNIT } from "../../constants";
 import { DowgoERC20 } from "../../types/DowgoERC20";
 import { DowgoERC20ABI } from "../../constants/DowgoERC20ABI";
 import { launchTxWithStatus } from "../../utils/txWithStatus";
 import { DisplayTxStatus } from "../displayComponents/DisplayTxStatus";
+
+import './withdraw-component.styles.scss';
 
 export const WithdrawComponent = (
   provider: providers.Web3Provider | undefined,
@@ -50,7 +52,8 @@ export const WithdrawComponent = (
           message="You don't have enough USDC tokens to withdraw."
         />
       )}
-      <input
+      <Input 
+        className="withdraw-input-profile"
         type="number"
         id="quantity"
         name="quantity"
@@ -62,8 +65,8 @@ export const WithdrawComponent = (
         }}
         value={Number(withdrawInput)}
       />
-      <button
-        type="button"
+      <Button
+        className="withdraw-button-profile"
         onMouseUp={() => {
           if (withdrawInput.mul(ONE_USDC_UNIT).gt(usdcBalanceOnContract)) {
             console.log("Not enough USDC on contract tokens");
@@ -76,8 +79,8 @@ export const WithdrawComponent = (
           }
         }}
       >
-        Withdraw USDC From Contract
-      </button>
+        Withdraw
+      </Button>
       {txStatus && chainId && DisplayTxStatus(txStatus, chainId)}
     </div>
   );

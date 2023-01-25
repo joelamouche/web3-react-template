@@ -25,7 +25,6 @@ const AppCarousel = () => {
         dots={false}
       >
         <div key="0" className="carousel-one-container">
-          <h1 className="carousel-banner-title"> ACT FOR THE PLANET </h1>
           <div className="carousel-dowgo-logo-container">
             <img 
               src={DowgoLogo} 
