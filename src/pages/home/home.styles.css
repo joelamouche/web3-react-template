@@ -1,18 +1,25 @@
+
 .app-container {
   text-align: center;
   min-height: 100vh;
   background-color: #000;
   position: relative;
+  display: flex;
+  padding-top: 10%;
 }
 
 .app-video-container {
   width: 100%;
-  display: flex;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 0;
+  min-width: 800px; 
 }
 
 /*
-  Small vertical gradient at the bottom
+  Small vertical gradient at the bottom & top
   of the video container to make the transition
   between the video and body smoother.
 */
@@ -41,8 +48,7 @@
 .app-banner-container {
   width: 100%;
   z-index: 2;
-  position: absolute;
-  top: 20%;
+  position: relative;
 }
 
 /* .app-fund-container {
