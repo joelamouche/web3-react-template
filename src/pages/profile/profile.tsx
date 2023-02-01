@@ -1,4 +1,4 @@
-import React, { useEffect  } from "react";
+import React, { useEffect } from "react";
 import { EthAddress, ChainId, ContractAddresses } from "../../types/types";
 import { BigNumber, providers } from "ethers";
 import DowgoContract from "../../components/DowgoView";
@@ -7,15 +7,13 @@ import { BalancePanel } from "../../components/BalanceView";
 
 import { getContractAddresses } from "../../constants/contractAddresses";
 
-import './profile.styles.scss';
+import "./profile.styles.scss";
 
-function Profile() {
-
-  const [provider, setProvider] = React.useState<
-    providers.Web3Provider | undefined
-  >(undefined);
-  const [chainId, setChainId] = React.useState<ChainId | undefined>(undefined);
-  const [currentAccount, setCurrentAccount] = React.useState<EthAddress>("0x");
+function Profile(
+  provider: providers.Web3Provider | undefined,
+  chainId: ChainId | undefined,
+  currentAccount: EthAddress
+) {
   const [allowance, setAllowance] = React.useState<BigNumber>(
     BigNumber.from(0)
   );
@@ -62,7 +60,7 @@ function Profile() {
           setPrice,
           contractAddresses
         )}
-      <br />
+        <br />
         {ApproveUSDC(
           provider,
           chainId,
