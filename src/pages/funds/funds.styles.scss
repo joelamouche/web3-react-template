@@ -5,28 +5,28 @@
   .funds-container {
     width: auto;
     background-color: rgb(89, 150, 191, 0.2);
-    margin: 120px 50px 0 50px;;
+    margin: 120px 50px 0 50px;
     padding: 30px 30px;
     border-radius: 15px;
     height: auto;
     display: flex;
     z-index: 3;
-  
+
     .app-fund-left-container {
       width: 90%;
     }
-    
+
     .app-fund-right-container {
       width: 10%;
     }
-    
+
     .buy-sell-container-alpha {
       display: flex;
       justify-content: space-between;
       padding: 125px 5px 0px 0px;
       margin-left: 10px;
     }
-    
+
     .buy-button-alpha {
       width: 50px;
       padding: 0;
@@ -35,7 +35,7 @@
       background-color: #0ff4e9;
       border: 2px solid #0ff4e9;
     }
-    
+
     .sell-button-alpha {
       width: 50px;
       padding: 0;
@@ -47,6 +47,3 @@
     }
   }
 }
-
-
-
