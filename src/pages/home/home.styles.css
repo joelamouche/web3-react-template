@@ -5,6 +5,9 @@
   background-color: #000;
   position: relative;
   padding-top: 160px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
 }
 
 .app-video-container {
@@ -14,7 +17,7 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   z-index: 0;
-  min-width: 800px; 
+  min-width: 900px; 
 }
 
 /*
@@ -30,6 +33,7 @@
   bottom: 0px;
   left: 0px;
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  
 }
 .app-video-container::before {
   content: "";
