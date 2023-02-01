@@ -16,7 +16,7 @@ import { BuyComponent } from "./BuyComponent";
 import { SellComponent } from "./SellComponent";
 import { WithdrawComponent } from "./WithdrawComponent";
 
-import './index-contract.styles.scss';
+import "./index-contract.styles.scss";
 
 const margin = "0.5em";
 

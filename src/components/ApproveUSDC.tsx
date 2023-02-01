@@ -80,7 +80,7 @@ function ApproveUSDC(
         contractAddresses?.dowgoAddress
       );
     }
-  }, [provider, userEthAddress, chainId, setAllowance,contractAddresses]);
+  }, [provider, userEthAddress, chainId, setAllowance, contractAddresses]);
   const handleClose = () => setDisplayModal(false);
   return (
     <Modal open={displayModal} closable={true} title="Approve USDC Spendings">
