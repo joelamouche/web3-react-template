@@ -1,14 +1,13 @@
-import React from 'react'; 
-import {Button} from 'antd';
-import HomeFund from '../../components/home-fund/home-fund.component';
+import React from "react";
+import { Button } from "antd";
+import HomeFund from "../../components/home-fund/home-fund.component";
 
-import './funds.styles.scss';
+import "./funds.styles.scss";
 
 const Funds = () => {
-
   return (
-    <div className='funds-page-container'>
-      <div className='funds-container'>
+    <div className="funds-page-container">
+      <div className="funds-container">
         <div className="app-fund-left-container">
           <HomeFund />
         </div>
@@ -20,7 +19,7 @@ const Funds = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Funds;
