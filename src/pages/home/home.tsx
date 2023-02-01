@@ -15,12 +15,13 @@ function DowgoDApp() {
           height="auto"
           autoPlay
           loop
+          muted
+          playsInline
           className="app-video-banner"
         >
           <source src={VideoBanner} type="video/mp4" />
         </video>
       </div>
-
       <div className="app-banner-container">
         <AppCarousel />
       </div>
