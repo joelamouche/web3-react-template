@@ -4,8 +4,7 @@
   min-height: 100vh;
   background-color: #000;
   position: relative;
-  display: flex;
-  padding-top: 10%;
+  padding-top: 160px;
 }
 
 .app-video-container {

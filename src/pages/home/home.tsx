@@ -22,7 +22,7 @@ function DowgoDApp() {
           <source src={VideoBanner} type="video/mp4" />
         </video>
       </div>
-        
+
       <div className="app-banner-container">
         <AppCarousel />   
       </div>   
