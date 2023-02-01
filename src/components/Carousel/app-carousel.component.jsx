@@ -55,15 +55,14 @@ const AppCarousel = () => {
             height="200px"
             autoPlay
             loop
+            muted
             className="carousel-invest-dowgo-one"
           >
             <source src={VideoDowgoOne} type="video/mp4" />
           </video>
-          
           <div className="carousel-invest-metrics">
             <HomeMetrics />
           </div>
-          
         </div>
       </Carousel>
 
