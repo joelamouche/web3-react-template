@@ -22,7 +22,7 @@ const AppCarousel = () => {
         effect="fade"
         dots={false}
       >
-        <div key="0" className="carousel-one-container" style={{display: block}}>
+        <div key="0" className="carousel-one-container">
           <h1 className="carousel-banner-title"> Building a better world, </h1>
           <h1> one token at a time</h1>
           <Button
