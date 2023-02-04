@@ -23,7 +23,7 @@ const AppCarousel = () => {
         dots={false}
       >
         <div key="0" className="carousel-one-container">
-          <h1 className="carousel-banner-title"> Building a better world, one token at a time</h1>
+          <h1 className="carousel-banner-title"> Act for the Planet</h1>
           <Button
             className="carousel-button-invest"
             onClick={() => {
@@ -36,7 +36,7 @@ const AppCarousel = () => {
 
         <div key="1" className="carousel-two-container">
           <h1 className="carousel-invest-title">
-            Make your tokens count
+             Buy DOWGO ONE
           </h1>
           <div className="carousel-invest-metrics">
             <HomeMetrics />
