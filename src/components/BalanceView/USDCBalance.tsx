@@ -8,6 +8,7 @@ function USDCBalance(usdcBalance: BigNumber) {
       style={{
         display: "flex",
         alignItems: "center",
+        fontFamily: "var(--font-branded)"
       }}
     >
       <UsdcIcon

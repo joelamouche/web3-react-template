@@ -5,7 +5,7 @@
 }
 
 .home-fund-title {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-branded);
   font-size: 30px;
   color: #0ff4e9;
   margin-bottom: 20px;
@@ -38,7 +38,7 @@
   color: #0ff4e9;
   font-size: 15px;
   font-weight: 600;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-branded);
 }
 
 .ant-table-expanded-row {
@@ -50,7 +50,7 @@
     background: rgb(0, 0, 0, 0.6);
     font-size: 13px;
     font-weight: 300;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-branded);
     color: white;
   }
 
