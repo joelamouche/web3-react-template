@@ -115,14 +115,15 @@ function DowgoContract(
     }
   }, [provider, userEthAddress, chainId, contractAddresses]);
   return (
+    <div>
     <Card
       style={{ width: "80vw", marginTop: "2vh" }}
       title={`Dowgo Alpha Contract`}
       className="dowgo-contract-card"
     >
-      <Row>
+      <Row gutter={24}>
         {" "}
-        <Col>
+        <Col span={16}>
           <div className="withdraw-formula">
             <div style={{ margin }}>{`Price: ${
               Number(price) / Number(ONE_USDC_UNIT)
@@ -156,6 +157,11 @@ function DowgoContract(
               ).toFixed(2)} USDC`}
             </div>
           </div>
+          </Col>
+          <Col span={8}>
+            <h2 className="withdraw-title">
+              Withdraw USDC from Contract
+            </h2>
           <div style={{ margin }}>
             {WithdrawComponent(
               provider,
@@ -167,9 +173,11 @@ function DowgoContract(
           </div>
         </Col>
       </Row>
-      <Row>
+      </Card>
+      <br />
+      <Row gutter={24}>
         {" "}
-        <Col>
+        <Col span={12}>
           {BuyComponent(
             provider,
             chainId,
@@ -180,7 +188,7 @@ function DowgoContract(
             contractAddresses
           )}
         </Col>
-        <Col>
+        <Col span={12}>
           {SellComponent(
             provider,
             chainId,
@@ -191,7 +199,7 @@ function DowgoContract(
           )}
         </Col>
       </Row>
-    </Card>
+    </div>
   );
 }
 

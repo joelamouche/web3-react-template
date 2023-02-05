@@ -1,7 +1,17 @@
 .ant-card-head-title {
   color: white;
+  font-family: var(--font-branded);
 }
 
 .ant-card-head {
   border-bottom: 0px;
+}
+
+.balance-title-profile {
+    font-family: var(--font-branded);
+    font-size: 30px;
+    color: #0ff4e9;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: left;
 }

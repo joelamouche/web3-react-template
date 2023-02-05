@@ -8,6 +8,7 @@ function DowgoBalance(dowgoBalance: BigNumber, price: BigNumber) {
       style={{
         display: "flex",
         alignItems: "center",
+        fontFamily: "var(--font-branded)"
       }}
     >
       <DowgoTokenIcon

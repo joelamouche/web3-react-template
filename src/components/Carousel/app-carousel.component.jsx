@@ -5,9 +5,6 @@ import { Carousel, Button } from "antd";
 //components import
 import HomeMetrics from "../home-metrics/home-metrics.component";
 
-//assets import
-import DowgoLogo from "../../assets/header/dowgo-logo.png";
-
 import "./app-carousel.styles.scss";
 
 const AppCarousel = () => {

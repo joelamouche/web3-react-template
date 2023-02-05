@@ -18,15 +18,7 @@ export const BalancePanel = (
       }}
     >
       <h1
-        style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "30px",
-          color: "#0ff4e9",
-          marginBottom: "20px",
-          fontWeight: 600,
-          letterSpacing: "3px",
-          textAlign: "left",
-        }}
+        className="balance-title-profile"
       >
         INVEST IN DOWGO FUNDS{" "}
       </h1>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Link } from "react-router-dom";
 
 import DowgoDApp from "./pages/home/home";
 import Funds from "./pages/funds/funds";
@@ -36,17 +36,13 @@ function App() {
             setChainId
           )}
           <div className="dowgo-logo-container">
-            <a
-              href="https://dowgo.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link to="/">
               <img
                 src={DowgoLogo}
                 alt="dowgo-logo"
                 className="dowgo-logo-menu"
               />
-            </a>
+            </Link>
           </div>
         </Header>
 
