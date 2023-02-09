@@ -20,7 +20,7 @@ const AppCarousel = () => {
         dots={false}
       >
         <div key="0" className="carousel-one-container">
-          <h1 className="carousel-banner-title"> Act for the Planet</h1>
+        <h1 className="carousel-banner-title"></h1>
           <Button
             className="carousel-button-invest"
             onClick={() => {
