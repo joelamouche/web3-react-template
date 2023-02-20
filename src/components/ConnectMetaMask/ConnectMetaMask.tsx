@@ -1,5 +1,5 @@
 //@ts-ignore
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
 
@@ -21,42 +21,44 @@ import { ReactComponent as ProfileIcon } from "../../assets/header/profile-icon.
 import "./header-animation";
 
 import "./ConnectMetaMask.styles.css";
+import AppContext from "../../context/appContext";
 
-function ConnectMetaMask(
-  provider: providers.Web3Provider | undefined,
-  setProvider: SetStateFunction<providers.Web3Provider | undefined>,
-  currentAccount: EthAddress,
-  setCurrentAccount: SetStateFunction<EthAddress>,
+function ConnectMetaMask() {
+// state.provider: state.providers.Web3Provider | undefined,
+// setProvider: SetStateFunction<state.providers.Web3Provider | undefined>,
+// state.currentAccount: EthAddress,
+// setCurrentAccount: SetStateFunction<EthAddress>,
 
-  chainId: ChainId | undefined,
-  setChainId: SetStateFunction<ChainId | undefined>
-) {
+// chainId: ChainId | undefined,
+// setChainId: SetStateFunction<ChainId | undefined>
+  const { state, dispatch } = useContext(AppContext);
   const [status, setStatus] = React.useState<ConnectMMStatus>("Disconnected");
 
   // CONNECT TO METAMASK
 
   async function detectProvider() {
-    // this returns the provider, or null if it wasn't detected
-    const provider = await detectEthereumProvider();
+    // this returns the state.provider, or null if it wasn't detected
+    const _provider = await detectEthereumProvider();
 
-    if (provider) {
-      startApp(provider as MetaMaskInpageProvider); // Initialize your app
+    if (_provider) {
+      startApp(_provider as MetaMaskInpageProvider); // Initialize your app
     } else {
       console.log("Please install MetaMask!");
       setStatus("Please install MetaMask");
+      // TODO: add modal to signal user to install metamask
     }
   }
 
-  function startApp(_provider: MetaMaskInpageProvider) {
+  function startApp(_prov: MetaMaskInpageProvider) {
     // If the provider returned by detectEthereumProvider is not the same as
     // window.ethereum, something is overwriting it, perhaps another wallet.
-    if (_provider !== window.ethereum) {
+    if (_prov !== window.ethereum) {
       console.error("Do you have multiple wallets installed?");
     }
     // Access the decentralized web!
     //@ts-ignore
-    const provider = new ethers.providers.Web3Provider(_provider);
-    setProvider(provider);
+    const provider = new ethers.providers.Web3Provider(_prov);
+    dispatch({ type: "setProvider", value: provider }); //setProvider(provider);
     setStatus("Connected");
   }
 
@@ -77,10 +79,13 @@ function ConnectMetaMask(
 
     function handleChainChanged(_chainId: unknown) {
       // Set chain id the first time
-      if (_chainId && chainId === undefined) {
-        setChainId(parseInt(_chainId as string, 16));
+      if (_chainId && state.chainId === undefined) {
+        dispatch({
+          type: "setChainId",
+          value: parseInt(_chainId as string, 16),
+        }); //setChainId(parseInt(_chainId as string, 16));
         // If Chain id changed,we recommend reloading the page, unless you must do otherwise
-      } else if (_chainId && _chainId !== chainId) {
+      } else if (_chainId && _chainId !== state.chainId) {
         window.location.reload();
       }
     }
@@ -88,10 +93,10 @@ function ConnectMetaMask(
 
   // detect chain id
   useEffect(() => {
-    if (provider) {
+    if (state.provider) {
       detectChainId(window.ethereum as MetaMaskInpageProvider);
     }
-  }, [provider]);
+  }, [state.provider]);
 
   /***********************************************************/
   /* Handle user accounts and accountsChanged (per EIP-1193) */
@@ -123,17 +128,17 @@ function ConnectMetaMask(
       // MetaMask is locked or the user has not connected any accounts
       console.log("Please connect to MetaMask.");
       setStatus("Please connect to MetaMask");
-    } else if (accountList[0] !== currentAccount) {
-      setCurrentAccount(accountList[0]);
+    } else if (accountList[0] !== state.currentAccount) {
+      dispatch({ type: "setCurrentAccount", value: accountList[0] }); //setCurrentAccount(accountList[0]);
       setStatus("Connected");
     }
   }
 
   useEffect(() => {
-    if (provider) {
+    if (state.provider) {
       checkAccounts(window.ethereum as MetaMaskInpageProvider);
     }
-  }, [provider]);
+  }, [state.provider]);
 
   /*********************************************/
   /* Access the user's accounts (per EIP-1102) */
@@ -164,7 +169,7 @@ function ConnectMetaMask(
       });
   }
   const supportedNetwork =
-    chainId && ALLOWED_NETWORKS.includes(ChainId[chainId]);
+    state.chainId && ALLOWED_NETWORKS.includes(ChainId[state.chainId]);
   return (
     <div>
       <Menu theme="dark" mode="horizontal" className="menu-container">
@@ -205,17 +210,17 @@ function ConnectMetaMask(
           <Menu.Item key="un" className="">
             <div className="account-menu-item">
               Account:{" "}
-              {currentAccount !== "0x"
-                ? `${currentAccount.substring(
+              {state.currentAccount !== "0x"
+                ? `${state.currentAccount.substring(
                     0,
                     4
-                  )}...${currentAccount.substring(38, 42)}`
+                  )}...${state.currentAccount.substring(38, 42)}`
                 : "Not Connected"}
             </div>
           </Menu.Item>
           <Menu.Item key="deux" className="">
             <div className="chain-menu-item">
-              Chain: {chainId ? ChainId[chainId] : "Unkown Chain"}
+              Chain: {state.chainId ? ChainId[state.chainId] : "Unkown Chain"}
               {supportedNetwork ? null : (
                 <span style={{ color: "red" }}> Unsupported Network</span>
               )}
@@ -223,7 +228,7 @@ function ConnectMetaMask(
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.Item key="trois" className="">
-          {provider &&
+          {state.provider &&
             DButton(() => {
               connect(window.ethereum as MetaMaskInpageProvider);
             }, `Connect to MetaMask`)}

@@ -1,3 +1,4 @@
+import { BigNumber, providers } from "ethers";
 import { Dispatch } from "react";
 
 export enum ChainId {
@@ -35,3 +36,16 @@ export interface ContractAddresses {
 }
 
 export type SetStateFunction<T> = Dispatch<React.SetStateAction<T>>;
+
+// State Management
+
+export interface AppAction {
+  type: string;
+  value: EthAddress | providers.Web3Provider | ChainId;
+}
+
+export interface AppState {
+  currentAccount: EthAddress;
+  provider: providers.Web3Provider | undefined;
+  chainId: ChainId | undefined;
+}
