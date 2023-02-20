@@ -17,11 +17,7 @@ export const BalancePanel = (
         width: "100%",
       }}
     >
-      <h1
-        className="balance-title-profile"
-      >
-        INVEST IN DOWGO FUNDS{" "}
-      </h1>
+      <h1 className="balance-title-profile">INVEST IN DOWGO FUNDS </h1>
       <div
         style={{
           display: "flex",

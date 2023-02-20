@@ -20,7 +20,7 @@ const AppCarousel = () => {
         dots={false}
       >
         <div key="0" className="carousel-one-container">
-        <h1 className="carousel-banner-title"></h1>
+          <h1 className="carousel-banner-title"></h1>
           <Button
             className="carousel-button-invest"
             onClick={() => {
@@ -32,9 +32,7 @@ const AppCarousel = () => {
         </div>
 
         <div key="1" className="carousel-two-container">
-          <h1 className="carousel-invest-title">
-             Buy DOWGO ONE
-          </h1>
+          <h1 className="carousel-invest-title">Buy DOWGO ONE</h1>
           <div className="carousel-invest-metrics">
             <HomeMetrics />
           </div>

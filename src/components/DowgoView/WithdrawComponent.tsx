@@ -8,7 +8,7 @@ import { DowgoERC20ABI } from "../../constants/DowgoERC20ABI";
 import { launchTxWithStatus } from "../../utils/txWithStatus";
 import { DisplayTxStatus } from "../displayComponents/DisplayTxStatus";
 
-import './withdraw-component.styles.scss';
+import "./withdraw-component.styles.scss";
 
 export const WithdrawComponent = (
   provider: providers.Web3Provider | undefined,

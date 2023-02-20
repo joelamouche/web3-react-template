@@ -116,63 +116,61 @@ function DowgoContract(
   }, [provider, userEthAddress, chainId, contractAddresses]);
   return (
     <div>
-    <Card
-      style={{ width: "80vw", marginTop: "2vh" }}
-      title={`Dowgo Alpha Contract`}
-      className="dowgo-contract-card"
-    >
-      <Row gutter={24}>
-        {" "}
-        <Col span={16}>
-          <div className="withdraw-formula">
-            <div style={{ margin }}>{`Price: ${
-              Number(price) / Number(ONE_USDC_UNIT)
-            } USDC/Dowgo`}</div>
-            <div style={{ margin }}>
-              {contractAddresses ? contractAddresses.dowgoAddress : "Loading"}
-            </div>
-            <div style={{ margin }}>
-              {`Dowgo Total Supply : 
+      <Card
+        style={{ width: "80vw", marginTop: "2vh" }}
+        title={`Dowgo Alpha Contract`}
+        className="dowgo-contract-card"
+      >
+        <Row gutter={24}>
+          {" "}
+          <Col span={16}>
+            <div className="withdraw-formula">
+              <div style={{ margin }}>{`Price: ${
+                Number(price) / Number(ONE_USDC_UNIT)
+              } USDC/Dowgo`}</div>
+              <div style={{ margin }}>
+                {contractAddresses ? contractAddresses.dowgoAddress : "Loading"}
+              </div>
+              <div style={{ margin }}>
+                {`Dowgo Total Supply : 
               ${Number(totalSupply) / Number(ONE_DOWGO_UNIT)} DWG = ${(
-                (Number(totalSupply) * Number(price)) /
-                Number(ONE_DOWGO_UNIT) /
-                Number(ONE_USDC_UNIT)
-              ).toFixed(2)} USD`}
+                  (Number(totalSupply) * Number(price)) /
+                  Number(ONE_DOWGO_UNIT) /
+                  Number(ONE_USDC_UNIT)
+                ).toFixed(2)} USD`}
+              </div>
+              <div style={{ margin }}>
+                {`Max Buy/Sell Amount : Total Supply * Target Ratio (${
+                  Number(targetRatio) / 10 ** 2
+                }%) * Collateral Range (${Number(collRange) / 10 ** 2}%) = ${
+                  Number(
+                    totalSupply
+                      .mul(targetRatio)
+                      .mul(collRange)
+                      .div(10 ** 8)
+                  ) / Number(ONE_DOWGO_UNIT)
+                } DWG`}
+              </div>
+              <div style={{ margin }}>
+                {`User USDC Balance on the Contract : ${(
+                  Number(usdcBalanceOnContract) / Number(ONE_USDC_UNIT)
+                ).toFixed(2)} USDC`}
+              </div>
             </div>
-            <div style={{ margin }}>
-              {`Max Buy/Sell Amount : Total Supply * Target Ratio (${
-                Number(targetRatio) / 10 ** 2
-              }%) * Collateral Range (${Number(collRange) / 10 ** 2}%) = ${
-                Number(
-                  totalSupply
-                    .mul(targetRatio)
-                    .mul(collRange)
-                    .div(10 ** 8)
-                ) / Number(ONE_DOWGO_UNIT)
-              } DWG`}
-            </div>
-            <div style={{ margin }}>
-              {`User USDC Balance on the Contract : ${(
-                Number(usdcBalanceOnContract) / Number(ONE_USDC_UNIT)
-              ).toFixed(2)} USDC`}
-            </div>
-          </div>
           </Col>
           <Col span={8}>
-            <h2 className="withdraw-title">
-              Withdraw USDC from Contract
-            </h2>
-          <div style={{ margin }}>
-            {WithdrawComponent(
-              provider,
-              chainId,
-              usdcBalanceOnContract,
-              updateContractInfo,
-              contractAddresses
-            )}
-          </div>
-        </Col>
-      </Row>
+            <h2 className="withdraw-title">Withdraw USDC from Contract</h2>
+            <div style={{ margin }}>
+              {WithdrawComponent(
+                provider,
+                chainId,
+                usdcBalanceOnContract,
+                updateContractInfo,
+                contractAddresses
+              )}
+            </div>
+          </Col>
+        </Row>
       </Card>
       <br />
       <Row gutter={24}>
