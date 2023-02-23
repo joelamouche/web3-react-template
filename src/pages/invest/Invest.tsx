@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { EthAddress, ChainId, ContractAddresses } from "../../types/types";
 import { BigNumber, providers } from "ethers";
 import DowgoContract from "../../components/DowgoView";
@@ -7,13 +7,14 @@ import { BalancePanel } from "../../components/BalanceView";
 
 import { getContractAddresses } from "../../constants/contractAddresses";
 
-import "./profile.styles.scss";
+import "./invest.styles.scss";
+import AppContext from "../../context/AppContext";
 
-function Profile(
-  provider: providers.Web3Provider | undefined,
-  chainId: ChainId | undefined,
-  currentAccount: EthAddress
-) {
+function Invest() {
+  const {
+    state: { provider, chainId, currentAccount },
+    dispatch,
+  } = useContext(AppContext);
   const [allowance, setAllowance] = React.useState<BigNumber>(
     BigNumber.from(0)
   );
@@ -41,11 +42,11 @@ function Profile(
   }, [chainId]);
 
   return (
-    <div className="profile-page-container">
-      <div className="profile-balance-container">
+    <div className="invest-page-container">
+      <div className="invest-balance-container">
         {BalancePanel(dowgoBalance, usdcBalance, price)}
       </div>
-      <div className="profile-contract-container">
+      <div className="invest-contract-container">
         {DowgoContract(
           provider,
           currentAccount,
@@ -76,4 +77,4 @@ function Profile(
   );
 }
 
-export default Profile;
+export default Invest;

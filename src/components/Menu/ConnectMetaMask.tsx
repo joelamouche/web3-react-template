@@ -1,36 +1,26 @@
 //@ts-ignore
 import React, { useContext, useEffect } from "react";
-import { Menu } from "antd";
-import { Link } from "react-router-dom";
 
 import detectEthereumProvider from "@metamask/detect-provider";
 import { MetaMaskInpageProvider } from "@metamask/providers";
-import {
-  EthAddress,
-  ChainId,
-  ConnectMMStatus,
-  SetStateFunction,
-} from "../../types/types";
-import { ethers, providers } from "ethers";
-import { DButton } from "../displayComponents/Button";
-import { ALLOWED_NETWORKS } from "../../constants";
-
-//icons import
-import { ReactComponent as ProfileIcon } from "../../assets/header/profile-icon.svg";
+import { Dropdown, MenuProps } from "antd";
+import { ethers } from "ethers";
 
 import "./header-animation";
 
-import "./ConnectMetaMask.styles.css";
-import AppContext from "../../context/appContext";
+import AppContext from "../../context/AppContext";
+import { RoundButton } from "../displayComponents/RoundButton";
+
+//icons
+import { ReactComponent as InfoIcon } from "../../assets/icons/info-icon.svg";
+import { ReactComponent as MetamaskIcon } from "../../assets/icons/metamask-icon.svg";
+import { ReactComponent as ArrowRightIcon } from "../../assets/icons/arrow-right-icon.svg";
+
+import { smallIconStyle } from "../../styles/iconStyle";
+import { lightGrey, primaryColor } from "../../styles/colors";
+import { EthAddress, ConnectMMStatus } from "../../types/types";
 
 function ConnectMetaMask() {
-// state.provider: state.providers.Web3Provider | undefined,
-// setProvider: SetStateFunction<state.providers.Web3Provider | undefined>,
-// state.currentAccount: EthAddress,
-// setCurrentAccount: SetStateFunction<EthAddress>,
-
-// chainId: ChainId | undefined,
-// setChainId: SetStateFunction<ChainId | undefined>
   const { state, dispatch } = useContext(AppContext);
   const [status, setStatus] = React.useState<ConnectMMStatus>("Disconnected");
 
@@ -120,6 +110,7 @@ function ConnectMetaMask() {
 
   // For now, 'eth_accounts' will continue to always return an array
   function handleAccountsChanged(accounts: unknown) {
+    console.log("handleAccountsChanged", accounts[0]);
     let accountList: EthAddress[] = [];
     if (accounts && (accounts as string[]).length) {
       accountList = accounts as EthAddress[];
@@ -129,6 +120,7 @@ function ConnectMetaMask() {
       console.log("Please connect to MetaMask.");
       setStatus("Please connect to MetaMask");
     } else if (accountList[0] !== state.currentAccount) {
+      console.log("check", accountList[0]);
       dispatch({ type: "setCurrentAccount", value: accountList[0] }); //setCurrentAccount(accountList[0]);
       setStatus("Connected");
     }
@@ -155,6 +147,7 @@ function ConnectMetaMask() {
   // MetaMask will reject any additional requests while the first is still
   // pending.
   function connect(ethereum: MetaMaskInpageProvider) {
+    console.log("co");
     ethereum
       .request({ method: "eth_requestAccounts" })
       .then(handleAccountsChanged)
@@ -168,74 +161,44 @@ function ConnectMetaMask() {
         }
       });
   }
-  const supportedNetwork =
-    state.chainId && ALLOWED_NETWORKS.includes(ChainId[state.chainId]);
-  return (
-    <div>
-      <Menu theme="dark" mode="horizontal" className="menu-container">
-        <Menu.Item key="dowgo-funds" className="">
-          <Link to="dowgo-funds" className="funds-menu-item">
-            FUNDS
-          </Link>
-        </Menu.Item>
+  const items: MenuProps["items"] = [
+    {
+      label: (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <span style={{ fontStyle: "italic", color: lightGrey }}>
+            We can’t find metamask extension
+          </span>
+          <InfoIcon
+            style={{ ...smallIconStyle, color: lightGrey, marginLeft: "10px" }}
+          />
+        </div>
+      ),
+      key: "0",
+    },
+    {
+      label: (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <MetamaskIcon style={smallIconStyle} />
+          <a style={{ margin: "0 16px" }} href="https://metamask.io/download/">
+            Install Metamask
+          </a>
+          <ArrowRightIcon style={{ ...smallIconStyle, color: primaryColor }} />
+        </div>
+      ),
+      key: "1",
+    },
+  ];
 
-        <Menu.Item key="governance" className="">
-          GOVERNANCE
-        </Menu.Item>
-        <Menu.SubMenu
-          key="profile-container"
-          icon={
-            <Link to="/profile" className="profile-icon-link">
-              <ProfileIcon className="profile-menu-icon" />
-            </Link>
-          }
-        >
-          <Menu.Item key="zero" className="">
-            <div className="status-menu-item">
-              Status :{" "}
-              <span
-                style={{
-                  color:
-                    status === "Connected"
-                      ? "green"
-                      : status === "Disconnected"
-                      ? "red"
-                      : "orange",
-                }}
-              >
-                {status}
-              </span>
-            </div>
-          </Menu.Item>
-          <Menu.Item key="un" className="">
-            <div className="account-menu-item">
-              Account:{" "}
-              {state.currentAccount !== "0x"
-                ? `${state.currentAccount.substring(
-                    0,
-                    4
-                  )}...${state.currentAccount.substring(38, 42)}`
-                : "Not Connected"}
-            </div>
-          </Menu.Item>
-          <Menu.Item key="deux" className="">
-            <div className="chain-menu-item">
-              Chain: {state.chainId ? ChainId[state.chainId] : "Unkown Chain"}
-              {supportedNetwork ? null : (
-                <span style={{ color: "red" }}> Unsupported Network</span>
-              )}
-            </div>
-          </Menu.Item>
-        </Menu.SubMenu>
-        <Menu.Item key="trois" className="">
-          {state.provider &&
-            DButton(() => {
-              connect(window.ethereum as MetaMaskInpageProvider);
-            }, `Connect to MetaMask`)}
-        </Menu.Item>
-      </Menu>
-    </div>
-  );
+  return {
+    key: "Connect",
+    icon: (
+      <Dropdown menu={{ items }}>
+        {RoundButton(() => {
+          connect(window.ethereum as MetaMaskInpageProvider);
+        }, "Connect")}
+      </Dropdown>
+    ),
+  };
 }
 
 export default ConnectMetaMask;

@@ -1,6 +1,6 @@
 import { Button } from "antd";
 
-import { ReactComponent as MetamaskIcon } from "../../assets/header/metamask.svg";
+//import { ReactComponent as MetamaskIcon } from "../../assets/header/metamask.svg";
 
 export const DButton = (action: () => any, text: string) => {
   return (
@@ -22,13 +22,13 @@ export const DButton = (action: () => any, text: string) => {
       }}
     >
       {text}
-      <MetamaskIcon
+      {/* <MetamaskIcon
         style={{
           height: 20,
           width: "auto",
           marginLeft: 10,
         }}
-      />
+      /> */}
     </Button>
   );
 };

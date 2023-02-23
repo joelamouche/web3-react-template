@@ -35,9 +35,6 @@
 }
 
 .ant-menu-item {
-  margin: 0;
-  margin-top: 0px;
-  padding: 0 20px;
   white-space: nowrap;
   transition: none;
 }
@@ -61,11 +58,9 @@
   display: flex;
 }
 
-.profile-menu-icon {
-  height: 40px;
-  fill: white;
-  width: auto;
-  margin-top: 5px;
+.dowgo-menu-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .ant-menu-horizontal > .ant-menu-submenu > .ant-menu-submenu-title {
@@ -116,3 +111,16 @@
   transform: scaleX(1) !important;
   transform-origin: bottom left;
 }
+
+.ant-dropdown-menu-root {
+  background: #111116;
+  border: 1px solid #303030;
+  border-radius: 4px;
+}
+
+.ant-menu-submenu.ant-menu-dark.ant-menu-submenu-popup.ant-menu {
+  background: #111116;
+  border: 1px solid #303030;
+  border-radius: 4px;
+}
+/* ant-menu-submenu ant-menu-submenu-popup ant-menu ant-menu-dark   ant-menu-submenu-hidden */

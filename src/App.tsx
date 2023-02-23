@@ -1,10 +1,10 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 
 import DowgoDApp from "./pages/home/home";
 import Funds from "./pages/funds/funds";
-import ConnectMetaMask from "./components/ConnectMetaMask/ConnectMetaMask";
-import Profile from "./pages/profile/profile";
+import ConnectMetaMask from "./components/Menu/ConnectMetaMask";
+import Invest from "./pages/invest/Invest";
 
 import { Layout } from "antd";
 import { EthAddress, ChainId } from "./types/types";
@@ -15,31 +15,20 @@ import DowgoLogo from "./assets/header/dowgo-logo.png";
 
 import "./App.css";
 import { appReducer } from "./reducers/appReducer";
-import AppContext, { initialAppState } from "./context/appContext";
+import AppContext, { initialAppState } from "./context/AppContext";
+import DowgoMenu from "./components/Menu/DowgoMenu";
 
 function App() {
   const { Header } = Layout;
-  // const [currentAccount, setCurrentAccount] = React.useState<EthAddress>("0x");
-  // const [provider, setProvider] = React.useState<
-  //   providers.Web3Provider | undefined
-  // >(undefined);
-  // const [chainId, setChainId] = React.useState<ChainId | undefined>(undefined);
 
   const [state, dispatch] = useReducer(appReducer, initialAppState);
 
   return (
     <div>
       <Layout>
-        <AppContext.Provider value={{ state: state, dispatch }}>
+        <AppContext.Provider value={{ state, dispatch }}>
           <Header className="app-header">
-            {ConnectMetaMask()
-            // provider,
-            // setProvider,
-            // currentAccount,
-            // setCurrentAccount,
-            // chainId,
-            // setChainId
-            }
+            {<DowgoMenu />}
             <div className="dowgo-logo-container">
               <Link to="/">
                 <img
@@ -52,20 +41,16 @@ function App() {
           </Header>
 
           <Routes>
-            {state.currentAccount !== "0x" ? (
+            {/* {state.currentAccount !== "0x" ? (
               <Route path="/" element={<Navigate to="/profile" />} />
             ) : (
               <Route path="/" element={<DowgoDApp />} />
-            )}
-            <Route
-              path="/profile"
-              element={Profile(
-                state.provider,
-                state.chainId,
-                state.currentAccount
-              )}
-            />
+            )} */}
+            <Route path="/" element={<DowgoDApp />} />
+            <Route path="/invest" element={Invest()} />
             <Route path="/dowgo-funds" element={<Funds />} />
+            <Route path="/my-portfolio" element={<Funds />} />
+            <Route path="/withdraw" element={<Funds />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </AppContext.Provider>
