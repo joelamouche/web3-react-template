@@ -22,7 +22,8 @@ import { EthAddress, ConnectMMStatus } from "../../types/types";
 
 function ConnectMetaMask() {
   const { state, dispatch } = useContext(AppContext);
-  const [status, setStatus] = React.useState<ConnectMMStatus>("Disconnected");
+  const [needInstallMetaMask, setNeedInstallMetaMask] =
+    React.useState<boolean>(false);
 
   // CONNECT TO METAMASK
 
@@ -34,7 +35,7 @@ function ConnectMetaMask() {
       startApp(_provider as MetaMaskInpageProvider); // Initialize your app
     } else {
       console.log("Please install MetaMask!");
-      setStatus("Please install MetaMask");
+      setNeedInstallMetaMask(true);
       // TODO: add modal to signal user to install metamask
     }
   }
@@ -49,7 +50,6 @@ function ConnectMetaMask() {
     //@ts-ignore
     const provider = new ethers.providers.Web3Provider(_prov);
     dispatch({ type: "setProvider", value: provider }); //setProvider(provider);
-    setStatus("Connected");
   }
 
   // detect MM at the start of the Dapp
@@ -118,11 +118,10 @@ function ConnectMetaMask() {
     if (accountList.length === 0) {
       // MetaMask is locked or the user has not connected any accounts
       console.log("Please connect to MetaMask.");
-      setStatus("Please connect to MetaMask");
+      setNeedInstallMetaMask(true);
     } else if (accountList[0] !== state.currentAccount) {
       console.log("check", accountList[0]);
       dispatch({ type: "setCurrentAccount", value: accountList[0] }); //setCurrentAccount(accountList[0]);
-      setStatus("Connected");
     }
   }
 
@@ -192,7 +191,7 @@ function ConnectMetaMask() {
   return {
     key: "Connect",
     icon: (
-      <Dropdown menu={{ items }}>
+      <Dropdown menu={{ items }} open={needInstallMetaMask}>
         {RoundButton(() => {
           connect(window.ethereum as MetaMaskInpageProvider);
         }, "Connect")}

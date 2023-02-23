@@ -123,4 +123,12 @@
   border: 1px solid #303030;
   border-radius: 4px;
 }
+.ant-dropdown-menu-item.ant-dropdown-menu-item-only-child:hover {
+  background: #111116;
+}
+.ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-dark {
+  background: #111116;
+  border: 1px solid #303030;
+  border-radius: 4px;
+}
 /* ant-menu-submenu ant-menu-submenu-popup ant-menu ant-menu-dark   ant-menu-submenu-hidden */

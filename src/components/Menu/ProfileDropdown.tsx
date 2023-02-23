@@ -12,7 +12,6 @@ import { ReactComponent as LogOutIcon } from "../../assets/icons/log-out-icon.sv
 import { ReactComponent as SettingsIcon } from "../../assets/icons/settings-icon.svg";
 
 import { smallIconStyle } from "../../styles/iconStyle";
-import "./ProfileDropdown.styles.css";
 import { lightGrey, primaryColor } from "../../styles/colors";
 
 export const shortenedAddress = (address: EthAddress): string => {
