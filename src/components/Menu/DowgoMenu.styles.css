@@ -126,9 +126,11 @@
 .ant-dropdown-menu-item.ant-dropdown-menu-item-only-child:hover {
   background: #111116;
 }
-.ant-menu-submenu.ant-menu-submenu-popup.ant-menu.ant-menu-dark {
-  background: #111116;
+.ant-menu.ant-menu-vertical {
+  background-color: green;
+  /* background: #111116;
   border: 1px solid #303030;
-  border-radius: 4px;
+  border-radius: 4px; */
 }
+/* ant-menu ant-menu-sub ant-menu-vertical */
 /* ant-menu-submenu ant-menu-submenu-popup ant-menu ant-menu-dark   ant-menu-submenu-hidden */

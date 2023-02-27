@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { EthAddress, ChainId, ContractAddresses } from "../../types/types";
 import { BigNumber, providers } from "ethers";
-import DowgoContract from "../../components/DowgoView";
+import DowgoContract from "../../components/DowgoTradingView";
 import ApproveUSDC from "../../components/ApproveUSDC";
 import { BalancePanel } from "../../components/BalanceView";
 
@@ -10,7 +10,7 @@ import { getContractAddresses } from "../../constants/contractAddresses";
 import "./invest.styles.scss";
 import AppContext from "../../context/AppContext";
 
-function Invest() {
+function OldInvest() {
   const {
     state: { provider, chainId, currentAccount },
     dispatch,
@@ -77,4 +77,4 @@ function Invest() {
   );
 }
 
-export default Invest;
+export default OldInvest;

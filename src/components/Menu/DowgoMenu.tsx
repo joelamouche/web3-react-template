@@ -58,7 +58,6 @@ function DowgoMenu() {
         mode="horizontal"
         className="menu-container"
         items={menuItems}
-        inlineCollapsed={true}
       >
         {/* <Menu.Item key="dowgo-funds" className="">
           <Link to="dowgo-funds" className="funds-menu-item">

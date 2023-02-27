@@ -4,7 +4,7 @@ import { Routes, Route, Navigate, Link } from "react-router-dom";
 import DowgoDApp from "./pages/home/home";
 import Funds from "./pages/funds/funds";
 import ConnectMetaMask from "./components/Menu/ConnectMetaMask";
-import Invest from "./pages/invest/Invest";
+import OldInvest from "./pages/invest/Invest";
 
 import { Layout } from "antd";
 import { EthAddress, ChainId } from "./types/types";
@@ -17,6 +17,8 @@ import "./App.css";
 import { appReducer } from "./reducers/appReducer";
 import AppContext, { initialAppState } from "./context/AppContext";
 import DowgoMenu from "./components/Menu/DowgoMenu";
+import Invest from "./pages/home/homeWIP";
+import { Content, Footer } from "antd/lib/layout/layout";
 
 function App() {
   const { Header } = Layout;
@@ -39,20 +41,22 @@ function App() {
               </Link>
             </div>
           </Header>
-
-          <Routes>
-            {/* {state.currentAccount !== "0x" ? (
+          <Content>
+            <Routes>
+              {/* {state.currentAccount !== "0x" ? (
               <Route path="/" element={<Navigate to="/profile" />} />
             ) : (
               <Route path="/" element={<DowgoDApp />} />
             )} */}
-            <Route path="/" element={<DowgoDApp />} />
-            <Route path="/invest" element={Invest()} />
-            <Route path="/dowgo-funds" element={<Funds />} />
-            <Route path="/my-portfolio" element={<Funds />} />
-            <Route path="/withdraw" element={<Funds />} />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
+              <Route path="/" element={<Invest />} />
+              <Route path="/invest" element={OldInvest()} />
+              <Route path="/dowgo-funds" element={<Funds />} />
+              <Route path="/my-portfolio" element={<Funds />} />
+              <Route path="/withdraw" element={<Funds />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </Content>
+          <Footer>Help</Footer>
         </AppContext.Provider>
       </Layout>
     </div>

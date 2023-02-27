@@ -4,7 +4,6 @@ import AppContext from "../../context/AppContext";
 import { ChainId, EthAddress } from "../../types/types";
 import { ALLOWED_NETWORKS } from "../../constants";
 import { RoundButton } from "../displayComponents/RoundButton";
-import Identicon from "react-identicons";
 import CopyButton from "../displayComponents/CopyButton";
 
 // Icons
@@ -52,11 +51,14 @@ export const ProfileDropdown = () => {
                 //  borderRadius: '50%'
               }}
             >
-              <Identicon
+              {
+                //TODO: handle identicon
+                /* <Identicon
                 size={20}
                 string={state.currentAccount}
                 //style={{ borderRadius: '50%' }}
-              />
+              /> */
+              }
             </span>
 
             <span style={{ marginLeft: "10px", marginRight: "10px" }}>

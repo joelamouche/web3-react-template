@@ -1,0 +1,50 @@
+.trading-top-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.trading-prompt {
+  width: 100%;
+  height: 29px;
+  left: 0;
+  top: 57%;
+  position: absolute;
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+  z-index: 50;
+}
+
+.trading-container {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 600px;
+  //   height: 246px;
+  height: 220px;
+  //left: 25%;
+  top: 65%;
+
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.8);
+  /* Border & Separator */
+
+  border: 1px solid #303030;
+  backdrop-filter: blur(30px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 8px;
+
+  z-index: 20;
+
+  padding: 28px;
+}

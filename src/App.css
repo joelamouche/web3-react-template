@@ -8,7 +8,7 @@
   width: 100%;
   padding: 0;
   height: 100px;
-  margin-bottom: 200px;
+  /* margin-bottom: 200px; */
 }
 
 .dowgo-logo-container {
@@ -34,5 +34,9 @@
 
 .ant-layout-footer {
   background: black !important;
-  height: 50vh;
+  height: 100px;
+}
+
+.ant-layout-content {
+  height: 100vh;
 }
