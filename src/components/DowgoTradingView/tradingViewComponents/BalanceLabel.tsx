@@ -1,6 +1,4 @@
 import { lightGrey, primaryColor, white } from "../../../styles/colors";
-import { smallIconStyle } from "../../../styles/iconStyle";
-import { ReactComponent as InfoIcon } from "../../../assets/icons/info-icon.svg";
 
 interface BalanceLabelProps {
   balance: number;
