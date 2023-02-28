@@ -16,6 +16,7 @@ export const RoundButton = (action: () => any, text: string) => {
         fontWeight: 700,
         fontSize: "16px",
         lineHeight: "20px",
+        fontFamily: "Montserrat",
       }}
       onMouseUp={() => {
         action();

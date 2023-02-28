@@ -18,6 +18,7 @@ import AppContext, { initialAppState } from "./context/AppContext";
 import DowgoMenu from "./components/Menu/DowgoMenu";
 import Invest from "./pages/home/homeWIP";
 import { Content, Footer } from "antd/lib/layout/layout";
+import { DowgoFooter } from "./Footer";
 
 function App() {
   const { Header } = Layout;
@@ -40,7 +41,7 @@ function App() {
               </Link>
             </div>
           </Header>
-          <Content style={{ height: "110vh" }}>
+          <Content style={{ height: "115vh" }}>
             <Routes>
               {/* {state.currentAccount !== "0x" ? (
               <Route path="/" element={<Navigate to="/profile" />} />
@@ -55,7 +56,7 @@ function App() {
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </Content>
-          <Footer>Help</Footer>
+          <DowgoFooter />
         </AppContext.Provider>
       </Layout>
     </div>

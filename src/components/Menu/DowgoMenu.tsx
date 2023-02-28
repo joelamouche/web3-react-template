@@ -18,7 +18,7 @@ function DowgoMenu() {
     {
       key: "Invest",
       icon: (
-        <Link to="invest" className="funds-menu-item">
+        <Link to="invest" className="dowgo-menu-item">
           Invest
         </Link>
       ),
@@ -26,7 +26,7 @@ function DowgoMenu() {
     {
       key: "My Portfolio",
       icon: (
-        <Link to="my-portfolio" className="funds-menu-item">
+        <Link to="my-portfolio" className="dowgo-menu-item">
           My Portfolio
         </Link>
       ),
@@ -34,7 +34,7 @@ function DowgoMenu() {
     {
       key: "Funds",
       icon: (
-        <Link to="dowgo-funds" className="funds-menu-item">
+        <Link to="dowgo-funds" className="dowgo-menu-item">
           Funds
         </Link>
       ),
@@ -42,7 +42,7 @@ function DowgoMenu() {
     {
       key: "Withdraw",
       icon: (
-        <Link to="withdraw" className="funds-menu-item">
+        <Link to="withdraw" className="dowgo-menu-item">
           Withdraw
         </Link>
       ),
@@ -60,7 +60,7 @@ function DowgoMenu() {
         items={menuItems}
       >
         {/* <Menu.Item key="dowgo-funds" className="">
-          <Link to="dowgo-funds" className="funds-menu-item">
+          <Link to="dowgo-funds" className="dowgo-menu-item">
             FUNDS
           </Link>
         </Menu.Item>

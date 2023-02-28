@@ -32,6 +32,11 @@
 .ant-menu-dark .ant-menu-item > a,
 .ant-menu-dark .ant-menu-item > span > a {
   color: white;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .ant-menu-item {
@@ -101,12 +106,19 @@
   transform: scaleX(1) !important;
   transform-origin: bottom left;
 }
-
-.funds-menu-item:hover {
+/* .dowgo-menu-item{
+  color:white;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+} */
+.dowgo-menu-item:hover {
   color: rgb(35, 248, 246) !important;
 }
 
-.funds-menu-item:hover:after {
+.dowgo-menu-item:hover:after {
   color: rgb(35, 248, 246) !important;
   transform: scaleX(1) !important;
   transform-origin: bottom left;

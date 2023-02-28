@@ -21,6 +21,7 @@ export function BalanceLabel(props: BalanceLabelProps) {
           color: white,
           fontWeight: 400,
           fontSize: "14px",
+          fontFamily: "Montserrat",
         }}
       >
         {`Balance: ${props.balance}`}
@@ -29,6 +30,7 @@ export function BalanceLabel(props: BalanceLabelProps) {
         style={{
           color: primaryColor,
           marginLeft: "8px",
+          fontFamily: "Montserrat",
         }}
       >
         (Max)

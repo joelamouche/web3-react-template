@@ -1,6 +1,7 @@
 import { lightGrey, white } from "../../../styles/colors";
 import { smallIconStyle } from "../../../styles/iconStyle";
 import { ReactComponent as InfoIcon } from "../../../assets/icons/info-icon.svg";
+import { regularWhiteWord } from "../../../styles/textStyles";
 
 interface AmountProps {
   min: number;
@@ -15,9 +16,7 @@ export function AmountLabel(props: AmountProps) {
         width: "100%",
       }}
     >
-      <span style={{ color: white, fontWeight: 400, fontSize: "16px" }}>
-        Amount
-      </span>
+      <span style={regularWhiteWord}>Amount</span>
       <span
         style={{
           color: lightGrey,
@@ -25,6 +24,7 @@ export function AmountLabel(props: AmountProps) {
           fontSize: "14px",
           display: "flex",
           alignItems: "center",
+          fontFamily: "Montserrat",
         }}
       >
         {`(min: ${props.min}, max ${props.max})`}

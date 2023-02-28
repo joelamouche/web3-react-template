@@ -16,6 +16,7 @@ export const TradeButton = (action: () => any, text: string) => {
         marginTop: "18px",
 
         fontStyle: "normal",
+        fontFamily: "Montserrat",
         fontWeight: 700,
         fontSize: "16px",
         lineHeight: "20px",
