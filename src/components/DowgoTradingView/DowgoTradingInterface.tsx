@@ -16,12 +16,15 @@ import { BuyComponent } from "./BuyComponent";
 import { SellComponent } from "./SellComponent";
 import { WithdrawComponent } from "./WithdrawComponent";
 
+import DowgoLogo from "../../assets/icons/dowgo-logo.png";
+import USDTLogo from "../../assets/icons/usdt-logo.png";
+
 import "./DowgoTradingInterface.styles.scss";
 import { lightGrey, white } from "../../styles/colors";
 import { smallIconStyle } from "../../styles/iconStyle";
 import { AmountLabel } from "./tradingViewComponents/AmountLabel";
-import { ReactComponent as USDTIcon } from "../../assets/icons/usdt-icon.svg";
-import { ReactComponent as DowgoIcon } from "../../assets/icons/dowgo-icon.svg";
+// import { ReactComponent as USDTIcon } from "../../assets/icons/usdt-icon.svg";
+// import { ReactComponent as DowgoIcon } from "../../assets/icons/dowgo-icon.svg";
 import { TradingInput } from "./tradingViewComponents/TradingInput";
 import { BalanceLabel } from "./tradingViewComponents/BalanceLabel";
 import { TradeButton } from "../displayComponents/TradeButton";
@@ -51,7 +54,11 @@ function DowgoTradingInterface() {
                       <span style={{ marginRight: "8px", fontWeight: 600 }}>
                         USDT
                       </span>
-                      <USDTIcon style={smallIconStyle} />
+                      <img
+                        src={USDTLogo}
+                        alt="usdt-logo"
+                        style={smallIconStyle}
+                      />
                     </div>
                   }
                 />
@@ -77,7 +84,11 @@ function DowgoTradingInterface() {
                       <span style={{ marginRight: "8px", fontWeight: 600 }}>
                         DOWGO1
                       </span>
-                      <DowgoIcon style={smallIconStyle} />
+                      <img
+                        src={DowgoLogo}
+                        alt="dowgo-logo"
+                        style={smallIconStyle}
+                      />
                     </div>
                   }
                 />

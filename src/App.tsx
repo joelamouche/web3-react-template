@@ -10,8 +10,7 @@ import { Layout } from "antd";
 import { EthAddress, ChainId } from "./types/types";
 import { providers } from "ethers";
 
-//@ts-ignore
-import DowgoLogo from "./assets/header/dowgo-logo.png";
+import DowgoLogo from "./assets/icons/dowgo-logo.png";
 
 import "./App.css";
 import { appReducer } from "./reducers/appReducer";
