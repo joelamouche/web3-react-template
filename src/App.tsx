@@ -40,7 +40,7 @@ function App() {
               </Link>
             </div>
           </Header>
-          <Content>
+          <Content style={{ height: "110vh" }}>
             <Routes>
               {/* {state.currentAccount !== "0x" ? (
               <Route path="/" element={<Navigate to="/profile" />} />
