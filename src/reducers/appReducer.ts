@@ -1,5 +1,11 @@
 import { providers } from "ethers";
-import { AppAction, AppState, ChainId, EthAddress } from "../types/types";
+import {
+  AppAction,
+  AppState,
+  ChainId,
+  ContractAddresses,
+  EthAddress,
+} from "../types/types";
 
 export const appReducer = (state: AppState, action: AppAction): AppState => {
   console.log("action", action);
@@ -12,6 +18,8 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
     case "setChainId":
       const _chainId = action.value as ChainId;
       return { ...state, chainId: _chainId };
+    case "setContractAddresses":
+      return { ...state, contractAddresses: action.value as ContractAddresses };
     default:
       throw new Error(`Unsupported action type: ${action.type}`);
   }

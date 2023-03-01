@@ -41,11 +41,23 @@ export type SetStateFunction<T> = Dispatch<React.SetStateAction<T>>;
 
 export interface AppAction {
   type: string;
-  value: EthAddress | providers.Web3Provider | ChainId;
+  value:
+    | EthAddress
+    | providers.Web3Provider
+    | ChainId
+    | BigNumber
+    | ContractAddresses
+    | undefined;
 }
 
 export interface AppState {
   currentAccount: EthAddress;
   provider: providers.Web3Provider | undefined;
   chainId: ChainId | undefined;
+
+  allowance: BigNumber;
+  usdcBalance: BigNumber;
+  dowgoBalance: BigNumber;
+  price: BigNumber;
+  contractAddresses: ContractAddresses | undefined;
 }

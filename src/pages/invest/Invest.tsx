@@ -5,10 +5,9 @@ import DowgoContract from "../../components/DowgoTradingView";
 import ApproveUSDC from "../../components/ApproveUSDC";
 import { BalancePanel } from "../../components/BalanceView";
 
-import { getContractAddresses } from "../../constants/contractAddresses";
-
 import "./invest.styles.scss";
 import AppContext from "../../context/AppContext";
+import { fetchContractAddresses } from "../../calls/api/fetchContractAddresses";
 
 function OldInvest() {
   const {
@@ -31,15 +30,17 @@ function OldInvest() {
   const [contractAddresses, setContractAddresses] = React.useState<
     ContractAddresses | undefined
   >(undefined);
-  async function getAddresses(chainId: ChainId | undefined) {
-    if (chainId) {
-      let addresses = await getContractAddresses(chainId);
-      setContractAddresses(addresses);
-    }
-  }
-  useEffect(() => {
-    getAddresses(chainId);
-  }, [chainId]);
+
+  // async function getAddresses(chainId: ChainId | undefined) {
+  //   if (chainId) {
+  //     let addresses = await fetchContractAddresses(chainId);
+  //     setContractAddresses(addresses);
+  //   }
+  // }
+  // useEffect(() => {
+  //  // getAddresses(chainId);
+  //  fetchContractAddresses(chainId)
+  // }, [chainId]);
 
   return (
     <div className="invest-page-container">

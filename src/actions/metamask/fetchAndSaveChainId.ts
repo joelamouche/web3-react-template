@@ -1,6 +1,6 @@
 import { MetaMaskInpageProvider } from "@metamask/providers";
-import { fetchChainId } from "../calls/metamask/fetchChainId";
-import { AppAction, ChainId } from "../types/types";
+import { fetchChainId } from "../../calls/metamask/fetchChainId";
+import { AppAction, ChainId } from "../../types/types";
 import { Dispatch } from "react";
 
 export async function fetchAndSaveChainId(

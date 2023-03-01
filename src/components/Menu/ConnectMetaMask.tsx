@@ -13,9 +13,11 @@ import { ReactComponent as ArrowRightIcon } from "../../assets/icons/arrow-right
 
 import { smallIconStyle } from "../../styles/iconStyle";
 import { lightGrey, primaryColor } from "../../styles/colors";
-import { fetchAndSaveChainId } from "../../actions/fetchAndSaveChainId";
-import { fetchAndSaveAccount } from "../../actions/fetchAndSaveAccount";
-import { fetchAndSaveProvider } from "../../actions/fetchAndSaveProvider";
+import { fetchAndSaveChainId } from "../../actions/metamask/fetchAndSaveChainId";
+import { fetchAndSaveAccount } from "../../actions/metamask/fetchAndSaveAccount";
+import { fetchAndSaveProvider } from "../../actions/metamask/fetchAndSaveProvider";
+import { fetchContractAddresses } from "../../calls/api/fetchContractAddresses";
+import { fetchAndSaveContractAddresses } from "../../actions/api/fetchAndSaveContractAddresses";
 
 function ConnectMetaMask() {
   const { state, dispatch } = useContext(AppContext);
@@ -36,6 +38,15 @@ function ConnectMetaMask() {
       fetchAndSaveAccount(dispatch, setNeedInstallMetaMask);
     }
   }, [state.provider]);
+
+  //After we have the chainId, get addresses
+  useEffect(() => {
+    console.log("state.chainId", state.chainId);
+    if (state.chainId) {
+      console.log("ok");
+      fetchAndSaveContractAddresses(dispatch, state);
+    }
+  }, [state.chainId]);
 
   const items: MenuProps["items"] = [
     {

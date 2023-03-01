@@ -1,6 +1,6 @@
 import { MetaMaskInpageProvider } from "@metamask/providers";
-import { fetchAccounts } from "../calls/metamask/fetchAccounts";
-import { AppAction, EthAddress } from "../types/types";
+import { fetchAccounts } from "../../calls/metamask/fetchAccounts";
+import { AppAction, EthAddress } from "../../types/types";
 import { Dispatch } from "react";
 
 export async function fetchAndSaveAccount(

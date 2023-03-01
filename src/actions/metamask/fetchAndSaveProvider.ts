@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
-import { fetchMMProvider } from "../calls/metamask/fetchMMProvider";
+import { fetchMMProvider } from "../../calls/metamask/fetchMMProvider";
 import { ethers } from "ethers";
-import { AppAction } from "../types/types";
+import { AppAction } from "../../types/types";
 
 export async function fetchAndSaveProvider(
   dispatch: Dispatch<AppAction>,
