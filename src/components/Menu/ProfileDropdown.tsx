@@ -42,7 +42,7 @@ export const ProfileDropdown = () => {
     children: [
       {
         key: "profileAccount",
-        popupClassName: "dowgo-submenu",
+        popupclassname: "dowgo-submenu",
         icon: (
           <div style={{ display: "flex", alignItems: "center" }}>
             <span
@@ -77,7 +77,7 @@ export const ProfileDropdown = () => {
       },
       {
         key: "profileSettings",
-        popupClassName: "dowgo-submenu",
+        popupclassname: "dowgo-submenu",
         icon: (
           <div style={{ display: "flex", alignItems: "center" }}>
             <SettingsIcon style={{ ...smallIconStyle, color: lightGrey }} />

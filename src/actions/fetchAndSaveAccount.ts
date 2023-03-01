@@ -1,0 +1,29 @@
+import { MetaMaskInpageProvider } from "@metamask/providers";
+import { fetchAccounts } from "../calls/metamask/fetchAccounts";
+import { AppAction, EthAddress } from "../types/types";
+import { Dispatch } from "react";
+
+export async function fetchAndSaveAccount(
+  dispatch: Dispatch<AppAction>,
+  setNeedInstallMetaMask
+) {
+  const ethereum = window.ethereum as MetaMaskInpageProvider;
+  const accounts = await fetchAccounts();
+  handleAccountsChanged(accounts);
+
+  ethereum.on("accountsChanged", handleAccountsChanged);
+
+  function handleAccountsChanged(accounts: unknown) {
+    let accountList: EthAddress[] = [];
+    if (accounts && (accounts as string[]).length) {
+      accountList = accounts as EthAddress[];
+    }
+    if (accountList.length === 0) {
+      // MetaMask is locked or the user has not connected any accounts
+      console.log("Please connect to MetaMask.");
+      setNeedInstallMetaMask(true);
+    } else {
+      dispatch({ type: "setCurrentAccount", value: accountList[0] }); //setCurrentAccount(accountList[0]);
+    }
+  }
+}

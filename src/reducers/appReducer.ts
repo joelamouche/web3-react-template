@@ -7,10 +7,11 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
     case "setProvider":
       return { ...state, provider: action.value as providers.Web3Provider };
     case "setCurrentAccount":
-      console.log("setCurrentAccount", action.value);
-      return { ...state, currentAccount: action.value as EthAddress };
+      const newAccount = action.value as EthAddress;
+      return { ...state, currentAccount: newAccount };
     case "setChainId":
-      return { ...state, chainId: action.value as ChainId };
+      const _chainId = action.value as ChainId;
+      return { ...state, chainId: _chainId };
     default:
       throw new Error(`Unsupported action type: ${action.type}`);
   }
