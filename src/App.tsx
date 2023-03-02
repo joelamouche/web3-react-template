@@ -19,11 +19,47 @@ import DowgoMenu from "./components/Menu/DowgoMenu";
 import Invest from "./pages/home/homeWIP";
 import { Content, Footer } from "antd/lib/layout/layout";
 import { DowgoFooter } from "./Footer";
+import { fetchAndSaveProvider } from "./actions/metamask/fetchAndSaveProvider";
+import { fetchAndSaveAccountAndChainId } from "./actions/metamask/fetchAndSaveAccountAndChainId";
+import { fetchAndSaveContractAddresses } from "./actions/api/fetchAndSaveContractAddresses";
+import { fetchAndSaveContractInformations } from "./actions/contracts/fetchAndSaveContractInformations";
 
 function App() {
   const { Header } = Layout;
 
   const [state, dispatch] = useReducer(appReducer, initialAppState);
+
+  // CONNECT TO METAMASK
+
+  // detect MM at the start of the Dapp
+  useEffect(() => {
+    console.log("start");
+    fetchAndSaveProvider(dispatch);
+  }, []);
+
+  // detect chain id and account
+  useEffect(() => {
+    console.log("change provider");
+    if (state.provider) {
+      fetchAndSaveAccountAndChainId(dispatch, state);
+    }
+  }, [state.provider]);
+
+  //After we have the chainId, get addresses
+  useEffect(() => {
+    console.log("change chainId");
+    if (state.chainId) {
+      fetchAndSaveContractAddresses(dispatch, state);
+    }
+  }, [state.chainId]);
+
+  //After we have the addresses, get contract info
+  useEffect(() => {
+    console.log("change contractAddresses");
+    if (state.contractAddresses) {
+      fetchAndSaveContractInformations(dispatch, state);
+    }
+  }, [state.contractAddresses]);
 
   return (
     <div>

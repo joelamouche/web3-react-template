@@ -19,42 +19,10 @@ import { fetchAndSaveProvider } from "../../actions/metamask/fetchAndSaveProvide
 import { fetchContractAddresses } from "../../calls/api/fetchContractAddresses";
 import { fetchAndSaveContractAddresses } from "../../actions/api/fetchAndSaveContractAddresses";
 import { fetchAndSaveContractInformations } from "../../actions/contracts/fetchAndSaveContractInformations";
+import { fetchAndSaveAccountAndChainId } from "../../actions/metamask/fetchAndSaveAccountAndChainId";
 
 function ConnectMetaMask() {
   const { state, dispatch } = useContext(AppContext);
-  const [needInstallMetaMask, setNeedInstallMetaMask] =
-    React.useState<boolean>(false);
-
-  //TODO: move this to App level?
-
-  // CONNECT TO METAMASK
-
-  // detect MM at the start of the Dapp
-  useEffect(() => {
-    fetchAndSaveProvider(dispatch, setNeedInstallMetaMask);
-  }, []);
-
-  // detect chain id and account
-  useEffect(() => {
-    if (state.provider) {
-      fetchAndSaveChainId(dispatch, state.chainId);
-      fetchAndSaveAccount(dispatch, setNeedInstallMetaMask);
-    }
-  }, [state.provider]);
-
-  //After we have the chainId, get addresses
-  useEffect(() => {
-    if (state.chainId) {
-      fetchAndSaveContractAddresses(dispatch, state);
-    }
-  }, [state.chainId]);
-
-  //After we have the addresses, get contract info
-  useEffect(() => {
-    if (state.chainId) {
-      fetchAndSaveContractInformations(dispatch, state);
-    }
-  }, [state.chainId]);
 
   const items: MenuProps["items"] = [
     {
@@ -87,9 +55,9 @@ function ConnectMetaMask() {
   return {
     key: "Connect",
     icon: (
-      <Dropdown menu={{ items }} open={needInstallMetaMask}>
+      <Dropdown menu={{ items }} open={state.needMMUnlock}>
         {RoundButton(() => {
-          fetchAndSaveAccount(dispatch, setNeedInstallMetaMask);
+          fetchAndSaveAccount(dispatch);
         }, "Connect")}
       </Dropdown>
     ),

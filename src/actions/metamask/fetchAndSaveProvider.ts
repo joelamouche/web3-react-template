@@ -3,10 +3,7 @@ import { fetchMMProvider } from "../../calls/metamask/fetchMMProvider";
 import { ethers } from "ethers";
 import { AppAction } from "../../types/types";
 
-export async function fetchAndSaveProvider(
-  dispatch: Dispatch<AppAction>,
-  setNeedInstallMetaMask
-) {
+export async function fetchAndSaveProvider(dispatch: Dispatch<AppAction>) {
   // this returns the provider, or null if it wasn't detected
   const _provider = await fetchMMProvider();
 
@@ -21,6 +18,6 @@ export async function fetchAndSaveProvider(
     dispatch({ type: "setProvider", value: provider });
   } else {
     console.log("Please install MetaMask!");
-    setNeedInstallMetaMask(true);
+    dispatch({ type: "setNeedInstallMetaMask", value: true });
   }
 }

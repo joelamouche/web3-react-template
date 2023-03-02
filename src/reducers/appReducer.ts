@@ -8,6 +8,7 @@ import {
 } from "../types/types";
 
 export const appReducer = (state: AppState, action: AppAction): AppState => {
+  console.log("state from reducer", state);
   console.log("action", action);
   switch (action.type) {
     // MM
@@ -19,6 +20,8 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
     case "setChainId":
       const _chainId = action.value as ChainId;
       return { ...state, chainId: _chainId };
+    case "setNeedInstallMetaMask":
+      return { ...state, needMMUnlock: true };
     // API
     case "setContractAddresses":
       return { ...state, contractAddresses: action.value as ContractAddresses };

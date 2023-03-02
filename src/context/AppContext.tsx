@@ -7,6 +7,7 @@ export const initialAppState = {
   currentAccount: "0x" as EthAddress,
   provider: undefined,
   chainId: undefined,
+  needMMUnlock: false,
 
   // USDT
   allowance: BigNumber.from(0),

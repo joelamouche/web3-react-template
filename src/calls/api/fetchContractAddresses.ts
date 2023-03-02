@@ -31,16 +31,17 @@ const getContractAddresses = async (
         dowgoAddress: MAINNET_DOWGO_ADDRESS,
       };
     case 5: //Goerli
-      return (
-        (
-          await axios.get(
-            "https://211thuucd8.execute-api.eu-west-3.amazonaws.com/latestDeployment"
-          )
-        ).data || {
-          usdAddress: DEFAULT_GOERLI_USDC_ADDRESS,
-          dowgoAddress: DEFAULT_GOERLI_DOWGO_ADDRESS,
-        }
-      );
+      const resp = (
+        await axios.get(
+          "https://211thuucd8.execute-api.eu-west-3.amazonaws.com/latestDeployment"
+        )
+      ).data;
+      return resp
+        ? { usdAddress: resp.mockUSDCAddress, dowgoAddress: resp.dowgoAddress }
+        : {
+            usdAddress: DEFAULT_GOERLI_USDC_ADDRESS,
+            dowgoAddress: DEFAULT_GOERLI_DOWGO_ADDRESS,
+          };
     default:
       console.log(
         `UNKOWN Network (getDowgoEthAddress), defaulting to localhost:8545`

@@ -47,6 +47,7 @@ export interface AppAction {
     | ChainId
     | BigNumber
     | ContractAddresses
+    | boolean
     | undefined;
 }
 
@@ -55,6 +56,7 @@ export interface AppState {
   currentAccount: EthAddress;
   provider: providers.Web3Provider | undefined;
   chainId: ChainId | undefined;
+  needMMUnlock: boolean;
 
   // USDT
   allowance: BigNumber;
