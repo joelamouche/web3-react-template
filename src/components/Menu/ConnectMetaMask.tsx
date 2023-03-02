@@ -13,13 +13,7 @@ import { ReactComponent as ArrowRightIcon } from "../../assets/icons/arrow-right
 
 import { smallIconStyle } from "../../styles/iconStyle";
 import { lightGrey, primaryColor } from "../../styles/colors";
-import { fetchAndSaveChainId } from "../../actions/metamask/fetchAndSaveChainId";
 import { fetchAndSaveAccount } from "../../actions/metamask/fetchAndSaveAccount";
-import { fetchAndSaveProvider } from "../../actions/metamask/fetchAndSaveProvider";
-import { fetchContractAddresses } from "../../calls/api/fetchContractAddresses";
-import { fetchAndSaveContractAddresses } from "../../actions/api/fetchAndSaveContractAddresses";
-import { fetchAndSaveContractInformations } from "../../actions/contracts/fetchAndSaveContractInformations";
-import { fetchAndSaveAccountAndChainId } from "../../actions/metamask/fetchAndSaveAccountAndChainId";
 
 function ConnectMetaMask() {
   const { state, dispatch } = useContext(AppContext);

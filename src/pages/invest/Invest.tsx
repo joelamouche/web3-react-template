@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { EthAddress, ChainId, ContractAddresses } from "../../types/types";
 import { BigNumber, providers } from "ethers";
-import DowgoContract from "../../components/DowgoTradingView";
-import ApproveUSDC from "../../components/ApproveUSDC";
+import DowgoContract from "../../components/DowgoTradingView/OldComponents/old-index";
+import ApproveUSDC from "../../components/DowgoTradingView/OldComponents/ApproveUSDC";
 import { BalancePanel } from "../../components/BalanceView";
 
 import "./invest.styles.scss";

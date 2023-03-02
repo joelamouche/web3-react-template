@@ -23,6 +23,7 @@ import { fetchAndSaveProvider } from "./actions/metamask/fetchAndSaveProvider";
 import { fetchAndSaveAccountAndChainId } from "./actions/metamask/fetchAndSaveAccountAndChainId";
 import { fetchAndSaveContractAddresses } from "./actions/api/fetchAndSaveContractAddresses";
 import { fetchAndSaveContractInformations } from "./actions/contracts/fetchAndSaveContractInformations";
+import WithdrawPage from "./pages/withdraw/WithdrawPage";
 
 function App() {
   const { Header } = Layout;
@@ -88,7 +89,7 @@ function App() {
               <Route path="/invest" element={OldInvest()} />
               <Route path="/dowgo-funds" element={<Funds />} />
               <Route path="/my-portfolio" element={<Funds />} />
-              <Route path="/withdraw" element={<Funds />} />
+              <Route path="/withdraw" element={<WithdrawPage />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </Content>

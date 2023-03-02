@@ -5,7 +5,7 @@ import AppCarousel from "../../components/Carousel/app-carousel.component";
 import VideoBanner from "../../assets/video-banner/video-banner.mp4";
 
 import "./home.styles.css";
-import DowgoTradingInterface from "../../components/DowgoTradingView/DowgoTradingInterface";
+import DowgoTradingInterface from "../../components/DowgoTradingView";
 
 function Invest() {
   return (
@@ -25,9 +25,6 @@ function Invest() {
             <source src={VideoBanner} type="video/mp4" />
           </video>
         </div>
-        {/* <div className="app-banner-container">
-        <DowgoTradingInterface/>
-      </div> */}
       </div>
       <DowgoTradingInterface />
     </div>

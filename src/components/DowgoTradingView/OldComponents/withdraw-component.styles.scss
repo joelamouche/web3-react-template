@@ -1,0 +1,21 @@
+.withdraw-input-profile {
+  margin-bottom: 20px;
+  border: 2px solid #0ff4e9;
+  border-radius: 50px;
+  height: 40px;
+}
+
+.withdraw-button-profile {
+  width: 100%;
+  height: 40px;
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: var(--font-branded);
+  color: #0ff4e9;
+  border: 2px solid #0ff4e9;
+  box-shadow: 0 0 5px #0ff4e9, inset 0 0 5px #0ff4e9;
+  background-color: black;
+  cursor: pointer;
+}

@@ -10,7 +10,7 @@ export const TradeButton = (action: () => any, text: string) => {
         borderRadius: "4px",
         backgroundColor: "transparent",
         color: "#0FF4E9",
-        width: "100vw",
+        width: "100%",
         height: "42px",
         padding: "8px",
         marginTop: "18px",
