@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import { ONE_USDC_UNIT } from "../../constants";
 import { ReactComponent as UsdcIcon } from "../../assets/balance/usdc.svg";
 
-function USDCBalance(usdcBalance: BigNumber) {
+function USDCBalance(usdBalance: BigNumber) {
   return (
     <div
       style={{
@@ -18,7 +18,7 @@ function USDCBalance(usdcBalance: BigNumber) {
           marginRight: 10,
         }}
       />
-      {`${(Number(usdcBalance) / Number(ONE_USDC_UNIT)).toFixed(2)} USDC`}
+      {`${(Number(usdBalance) / Number(ONE_USDC_UNIT)).toFixed(2)} USDC`}
     </div>
   );
 }

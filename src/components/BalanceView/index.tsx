@@ -7,7 +7,7 @@ import "./index-balance.styles.scss";
 
 export const BalancePanel = (
   dowgoBalance: BigNumber,
-  usdcBalance: BigNumber,
+  usdBalance: BigNumber,
   price: BigNumber
 ) => {
   return (
@@ -59,7 +59,7 @@ export const BalancePanel = (
               color: "white",
             }}
           >
-            {USDCBalance(usdcBalance)}
+            {USDCBalance(usdBalance)}
           </div>
         </Card>
 

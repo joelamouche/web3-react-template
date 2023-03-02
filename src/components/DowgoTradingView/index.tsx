@@ -24,7 +24,7 @@ function DowgoContract(
   provider: providers.Web3Provider | undefined,
   userEthAddress: EthAddress,
   allowance: BigNumber,
-  usdcBalance: BigNumber,
+  usdBalance: BigNumber,
   setUSDCBalance: SetStateFunction<BigNumber>,
   dowgoBalance: BigNumber,
   setDowgoBalance: SetStateFunction<BigNumber>,
@@ -43,7 +43,7 @@ function DowgoContract(
   const [totalSupply, setTotalSupply] = React.useState<BigNumber>(
     BigNumber.from(0)
   );
-  const [usdcBalanceOnContract, setUsdcBalanceOnContract] =
+  const [usdBalanceOnContract, setUsdcBalanceOnContract] =
     React.useState<BigNumber>(BigNumber.from(0));
 
   async function updatePrice(contract: DowgoERC20) {
@@ -72,7 +72,7 @@ function DowgoContract(
     if (chainId && contractAddresses && _userEthAddress !== "0x") {
       // USDC EthAddress
       let contract: ERC20 = new ethers.Contract(
-        contractAddresses?.mockUSDCAddress,
+        contractAddresses?.usdAddress,
         ERC20_ABI,
         provider
       ) as ERC20;
@@ -153,7 +153,7 @@ function DowgoContract(
               </div>
               <div style={{ margin }}>
                 {`User USDC Balance on the Contract : ${(
-                  Number(usdcBalanceOnContract) / Number(ONE_USDC_UNIT)
+                  Number(usdBalanceOnContract) / Number(ONE_USDC_UNIT)
                 ).toFixed(2)} USDC`}
               </div>
             </div>
@@ -164,7 +164,7 @@ function DowgoContract(
               {WithdrawComponent(
                 provider,
                 chainId,
-                usdcBalanceOnContract,
+                usdBalanceOnContract,
                 updateContractInfo,
                 contractAddresses
               )}

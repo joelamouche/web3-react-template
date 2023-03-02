@@ -31,7 +31,7 @@ export type TxStatus = {
 };
 
 export interface ContractAddresses {
-  mockUSDCAddress: EthAddress;
+  usdAddress: EthAddress;
   dowgoAddress: EthAddress;
 }
 
@@ -51,13 +51,21 @@ export interface AppAction {
 }
 
 export interface AppState {
+  // Metamask
   currentAccount: EthAddress;
   provider: providers.Web3Provider | undefined;
   chainId: ChainId | undefined;
 
+  // USDT
   allowance: BigNumber;
-  usdcBalance: BigNumber;
+  usdBalance: BigNumber;
+
+  // Dowgo
   dowgoBalance: BigNumber;
+  usdBalanceOnDowgo: BigNumber;
   price: BigNumber;
+  totalSupply: BigNumber;
   contractAddresses: ContractAddresses | undefined;
+  targetRatio: BigNumber;
+  collRange: BigNumber;
 }

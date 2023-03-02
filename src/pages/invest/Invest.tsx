@@ -20,7 +20,7 @@ function OldInvest() {
   const [dowgoBalance, setDowgoBalance] = React.useState<BigNumber>(
     BigNumber.from(0)
   );
-  const [usdcBalance, setUSDCBalance] = React.useState<BigNumber>(
+  const [usdBalance, setUSDCBalance] = React.useState<BigNumber>(
     BigNumber.from(0)
   );
   const [price, setPrice] = React.useState<BigNumber>(BigNumber.from(0));
@@ -45,14 +45,14 @@ function OldInvest() {
   return (
     <div className="invest-page-container">
       <div className="invest-balance-container">
-        {BalancePanel(dowgoBalance, usdcBalance, price)}
+        {BalancePanel(dowgoBalance, usdBalance, price)}
       </div>
       <div className="invest-contract-container">
         {DowgoContract(
           provider,
           currentAccount,
           allowance,
-          usdcBalance,
+          usdBalance,
           setUSDCBalance,
           dowgoBalance,
           setDowgoBalance,

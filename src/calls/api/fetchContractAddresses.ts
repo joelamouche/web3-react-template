@@ -27,7 +27,7 @@ const getContractAddresses = async (
   switch (chainId) {
     case 1: //Mainnet
       return {
-        mockUSDCAddress: MAINNET_USDC_ADDRESS,
+        usdAddress: MAINNET_USDC_ADDRESS,
         dowgoAddress: MAINNET_DOWGO_ADDRESS,
       };
     case 5: //Goerli
@@ -37,7 +37,7 @@ const getContractAddresses = async (
             "https://211thuucd8.execute-api.eu-west-3.amazonaws.com/latestDeployment"
           )
         ).data || {
-          mockUSDCAddress: DEFAULT_GOERLI_USDC_ADDRESS,
+          usdAddress: DEFAULT_GOERLI_USDC_ADDRESS,
           dowgoAddress: DEFAULT_GOERLI_DOWGO_ADDRESS,
         }
       );
@@ -46,7 +46,7 @@ const getContractAddresses = async (
         `UNKOWN Network (getDowgoEthAddress), defaulting to localhost:8545`
       );
       return {
-        mockUSDCAddress: LOCAL_USDC_ADDRESS,
+        usdAddress: LOCAL_USDC_ADDRESS,
         dowgoAddress: LOCAL_DOWGO_ADDRESS,
       };
   }

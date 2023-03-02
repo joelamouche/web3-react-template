@@ -13,7 +13,7 @@ import "./withdraw-component.styles.scss";
 export const WithdrawComponent = (
   provider: providers.Web3Provider | undefined,
   chainId: ChainId | undefined,
-  usdcBalanceOnContract: BigNumber,
+  usdBalanceOnContract: BigNumber,
   updateContractInfo: (
     _chainId: ChainId,
     _contractAddresses: ContractAddresses | undefined
@@ -45,7 +45,7 @@ export const WithdrawComponent = (
   }
   return (
     <div>
-      {withdrawInput.mul(ONE_USDC_UNIT).gt(usdcBalanceOnContract) && (
+      {withdrawInput.mul(ONE_USDC_UNIT).gt(usdBalanceOnContract) && (
         <Alert
           key={"warning"}
           type={"warning"}
@@ -68,7 +68,7 @@ export const WithdrawComponent = (
       <Button
         className="withdraw-button-profile"
         onMouseUp={() => {
-          if (withdrawInput.mul(ONE_USDC_UNIT).gt(usdcBalanceOnContract)) {
+          if (withdrawInput.mul(ONE_USDC_UNIT).gt(usdBalanceOnContract)) {
             console.log("Not enough USDC on contract tokens");
             setTxStatus({
               status: "Error",

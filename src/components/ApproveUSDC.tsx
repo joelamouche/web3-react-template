@@ -42,7 +42,7 @@ function ApproveUSDC(
     //TODO catch errors (like rejection)
     if (provider && chainId && contractAddresses) {
       let contract: ERC20 = new ethers.Contract(
-        contractAddresses?.mockUSDCAddress,
+        contractAddresses?.usdAddress,
         ERC20_ABI,
         provider
       ) as ERC20;
@@ -69,7 +69,7 @@ function ApproveUSDC(
       // We connect to the Contract using a Provider, so we will only
       // have read-only access to the Contract
       let contract: ERC20 = new ethers.Contract(
-        contractAddresses?.mockUSDCAddress,
+        contractAddresses?.usdAddress,
         ERC20_ABI,
         provider
       ) as ERC20;

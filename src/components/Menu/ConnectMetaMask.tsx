@@ -18,11 +18,14 @@ import { fetchAndSaveAccount } from "../../actions/metamask/fetchAndSaveAccount"
 import { fetchAndSaveProvider } from "../../actions/metamask/fetchAndSaveProvider";
 import { fetchContractAddresses } from "../../calls/api/fetchContractAddresses";
 import { fetchAndSaveContractAddresses } from "../../actions/api/fetchAndSaveContractAddresses";
+import { fetchAndSaveContractInformations } from "../../actions/contracts/fetchAndSaveContractInformations";
 
 function ConnectMetaMask() {
   const { state, dispatch } = useContext(AppContext);
   const [needInstallMetaMask, setNeedInstallMetaMask] =
     React.useState<boolean>(false);
+
+  //TODO: move this to App level?
 
   // CONNECT TO METAMASK
 
@@ -41,10 +44,15 @@ function ConnectMetaMask() {
 
   //After we have the chainId, get addresses
   useEffect(() => {
-    console.log("state.chainId", state.chainId);
     if (state.chainId) {
-      console.log("ok");
       fetchAndSaveContractAddresses(dispatch, state);
+    }
+  }, [state.chainId]);
+
+  //After we have the addresses, get contract info
+  useEffect(() => {
+    if (state.chainId) {
+      fetchAndSaveContractInformations(dispatch, state);
     }
   }, [state.chainId]);
 
