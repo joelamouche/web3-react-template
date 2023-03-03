@@ -8,14 +8,14 @@ import AppContext from "../../context/AppContext";
 import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../constants";
 
 function FundsView() {
-  const { state, dispatch } = useContext(AppContext);
-  const tokenPrice=(Number(state.price)/Number(ONE_USDC_UNIT))
-  const tokenPriceFixedDecimals=tokenPrice.toFixed(2)
-  const aum=(
+  const { state } = useContext(AppContext);
+  const tokenPrice = Number(state.price) / Number(ONE_USDC_UNIT);
+  const tokenPriceFixedDecimals = tokenPrice.toFixed(2);
+  const aum = (
     (Number(state.totalSupply) * Number(state.price)) /
     Number(ONE_DOWGO_UNIT) /
     Number(ONE_USDC_UNIT)
-  ).toFixed(2)
+  ).toFixed(2);
   return (
     <div className="funds-container">
       <div className="funds-title">Dowgo Funds</div>

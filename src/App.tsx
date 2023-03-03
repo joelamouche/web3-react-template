@@ -25,6 +25,7 @@ import { fetchAndSaveContractInformations } from "./actions/contracts/fetchAndSa
 import WithdrawPage from "./pages/withdraw/WithdrawPage";
 import FundsView from "./components/FundsView";
 import FundsPage from "./pages/funds/FundsPage";
+import MyPortfolioPage from "./pages/funds/MyPortfolioPage";
 
 function App() {
   const { Header } = Layout;
@@ -85,7 +86,7 @@ function App() {
               <Route path="/" element={<Invest />} />
               <Route path="/invest" element={OldInvest()} />
               <Route path="/dowgo-funds" element={<FundsPage />} />
-              <Route path="/my-portfolio" element={<FundsPage />} />
+              <Route path="/my-portfolio" element={<MyPortfolioPage />} />
               <Route path="/withdraw" element={<WithdrawPage />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>

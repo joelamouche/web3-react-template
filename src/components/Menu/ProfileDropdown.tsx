@@ -1,8 +1,6 @@
-import { Menu } from "antd";
 import { useContext } from "react";
 import AppContext from "../../context/AppContext";
-import { ChainId, EthAddress } from "../../types/types";
-import { ALLOWED_NETWORKS } from "../../constants";
+import { EthAddress } from "../../types/types";
 import { RoundButton } from "../displayComponents/RoundButton";
 import CopyButton from "../displayComponents/CopyButton";
 

@@ -1,0 +1,209 @@
+.my-portfolio-container {
+  /* Rectangle 2719 */
+  box-sizing: border-box;
+
+  position: absolute;
+  left: 15%;
+  width: 70%;
+  top: 120px;
+  height: 550px;
+
+  /* Content Background */
+
+  background: #111116;
+  /* Border & Separator */
+
+  border: 1px solid #303030;
+  backdrop-filter: blur(30px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 8px;
+
+  padding: 32px;
+  z-index: 20;
+
+  .discover-funds-text {
+    /* Sub-Heading/Bold */
+
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+
+    /* Primary */
+
+    color: #0ff4e9;
+  }
+
+  .my-portfolio-overview-container {
+    width: 100%;
+    padding-bottom: 70px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #191922;
+
+    .my-portfolio-overview-title {
+      margin-bottom: 12px;
+      /* H5/Regular */
+
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 29px;
+      display: flex;
+      align-items: center;
+
+      color: #ffffff;
+    }
+    .portfolio-address {
+      margin-left: 12px;
+      /* Paragraph/Regular */
+
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+
+      /* Light Grey */
+
+      color: #969696;
+    }
+    .total-portfolio-amount {
+      margin-top: 18px;
+      /* H1/Bold */
+
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 56px;
+      line-height: 68px;
+      color: #ffffff;
+    }
+  }
+
+  .my-deposit-title {
+    /* H5/Bold */
+
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 41px;
+  }
+
+  .funds-row {
+    /* Content Highlight */
+
+    background: #191922;
+    border-radius: 8px;
+
+    padding: 24px 32px;
+    margin-bottom: 16px;
+
+    .fund-name {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+      /* identical to box height */
+
+      display: flex;
+      align-items: center;
+
+      color: #ffffff;
+    }
+
+    .fund-subtitle {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+
+      .fund-tag {
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        /* identical to box height */
+        color: #ffffff;
+      }
+
+      .fund-more-details {
+        margin-left: 9px;
+
+        /* Paragraph/Regular */
+
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        /* Primary */
+
+        color: #0ff4e9;
+      }
+    }
+
+    .fund-row-right {
+      display: flex;
+      justify-content: flex-end;
+
+      .fund-info-name {
+        /* Paragraph/Regular */
+
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+
+        color: #ffffff;
+      }
+      .fund-info-value {
+        margin-top: 8px;
+        /* H5/Regular */
+
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+
+        color: #ffffff;
+      }
+
+      .fund-info-box {
+        margin-left: 16px;
+        border-left: 1px solid #303030;
+        padding-left: 16px;
+      }
+    }
+
+    .other-funds-text {
+      margin-left: 18px;
+
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+
+      /* Light Grey */
+
+      color: #969696;
+    }
+  }
+}
