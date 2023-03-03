@@ -2,7 +2,6 @@ import React, { useEffect, useReducer } from "react";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 
 import DowgoDApp from "./pages/home/home";
-import Funds from "./pages/funds/funds";
 import ConnectMetaMask from "./components/Menu/ConnectMetaMask";
 import OldInvest from "./pages/invest/Invest";
 
@@ -16,7 +15,7 @@ import "./App.css";
 import { appReducer } from "./reducers/appReducer";
 import AppContext, { initialAppState } from "./context/AppContext";
 import DowgoMenu from "./components/Menu/DowgoMenu";
-import Invest from "./pages/home/homeWIP";
+import Invest from "./pages/home/HomeWIP";
 import { Content, Footer } from "antd/lib/layout/layout";
 import { DowgoFooter } from "./Footer";
 import { fetchAndSaveProvider } from "./actions/metamask/fetchAndSaveProvider";
@@ -24,6 +23,8 @@ import { fetchAndSaveAccountAndChainId } from "./actions/metamask/fetchAndSaveAc
 import { fetchAndSaveContractAddresses } from "./actions/api/fetchAndSaveContractAddresses";
 import { fetchAndSaveContractInformations } from "./actions/contracts/fetchAndSaveContractInformations";
 import WithdrawPage from "./pages/withdraw/WithdrawPage";
+import FundsView from "./components/FundsView";
+import FundsPage from "./pages/funds/FundsPage";
 
 function App() {
   const { Header } = Layout;
@@ -83,8 +84,8 @@ function App() {
             )} */}
               <Route path="/" element={<Invest />} />
               <Route path="/invest" element={OldInvest()} />
-              <Route path="/dowgo-funds" element={<Funds />} />
-              <Route path="/my-portfolio" element={<Funds />} />
+              <Route path="/dowgo-funds" element={<FundsPage />} />
+              <Route path="/my-portfolio" element={<FundsPage />} />
               <Route path="/withdraw" element={<WithdrawPage />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>

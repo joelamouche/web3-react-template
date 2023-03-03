@@ -30,9 +30,10 @@ export function AmountLabel(props: AmountProps) {
         {`(min: ${props.min}, max ${props.max})`}
         <InfoIcon
           style={{
-            ...smallIconStyle,
             color: lightGrey,
             marginLeft: "8px",
+            height: "13px",
+            width: "13px",
           }}
         />
       </span>

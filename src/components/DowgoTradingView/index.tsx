@@ -6,7 +6,7 @@ import { BigNumber, ethers, providers } from "ethers";
 import DowgoLogo from "../../assets/icons/dowgo-logo.png";
 import USDTLogo from "../../assets/icons/usdt-logo.png";
 
-import "./DowgoTradingInterface.styles.scss";
+import "./index.styles.scss";
 import { lightGrey, white } from "../../styles/colors";
 import { smallIconStyle } from "../../styles/iconStyle";
 import { AmountLabel } from "./tradingViewComponents/AmountLabel";

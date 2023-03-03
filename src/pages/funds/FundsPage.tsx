@@ -1,13 +1,10 @@
-import React from "react";
-import AppCarousel from "../../components/Carousel/app-carousel.component";
-
 //@ts-ignore
-import VideoBanner from "../../assets/video-banner/video-banner.mp4";
+import VideoBanner from "../../assets/video-banner/video-without-logo.mp4";
 
-import "./home.styles.css";
-import DowgoTradingInterface from "../../components/DowgoTradingView";
+import "../home/home.styles.css";
+import FundsView from "../../components/FundsView";
 
-function Invest() {
+function FundsPage() {
   return (
     <div>
       <div className="app-container">
@@ -25,9 +22,9 @@ function Invest() {
           </video>
         </div>
       </div>
-      <DowgoTradingInterface />
+      <FundsView />
     </div>
   );
 }
 
-export default Invest;
+export default FundsPage;

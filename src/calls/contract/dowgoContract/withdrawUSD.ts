@@ -16,10 +16,10 @@ export const withdrawUSD = async (
       DowgoERC20ABI,
       provider
     ) as DowgoERC20;
-    const tx=await contract
+    const tx = await contract
       .connect(provider.getSigner())
       .withdraw_usdc(BigNumber.from(withdrawAmount * Number(ONE_USDC_UNIT)));
-    await tx.wait(6)
+    await tx.wait(6);
   } catch (error) {
     console.error(error);
   }
