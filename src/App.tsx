@@ -34,13 +34,11 @@ function App() {
 
   // detect MM at the start of the Dapp
   useEffect(() => {
-    console.log("start");
     fetchAndSaveProvider(dispatch);
   }, []);
 
   // detect chain id and account
   useEffect(() => {
-    console.log("change provider");
     if (state.provider) {
       fetchAndSaveAccountAndChainId(dispatch, state);
     }
@@ -48,7 +46,6 @@ function App() {
 
   //After we have the chainId, get addresses
   useEffect(() => {
-    console.log("change chainId");
     if (state.chainId) {
       fetchAndSaveContractAddresses(dispatch, state);
     }
@@ -56,7 +53,6 @@ function App() {
 
   //After we have the addresses, get contract info
   useEffect(() => {
-    console.log("change contractAddresses");
     if (state.contractAddresses) {
       fetchAndSaveContractInformations(dispatch, state);
     }

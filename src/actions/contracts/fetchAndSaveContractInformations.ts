@@ -13,14 +13,11 @@ export async function fetchAndSaveContractInformations(
   dispatch: Dispatch<AppAction>,
   state: AppState
 ) {
-  console.log("ok");
   // Update these informations just once, when the website is loaded
   Number(state.collRange) === 0 &&
     (await fetchAndSaveCollRange(dispatch, state));
-  console.log("ok");
   Number(state.targetRatio) === 0 &&
     (await fetchAndSaveTargetRatio(dispatch, state));
-  console.log("ok");
   Number(state.price) === 0 && (await fetchAndSavePrice(dispatch, state));
 
   // These informations need to be updated on every transaction

@@ -8,8 +8,6 @@ import {
 } from "../types/types";
 
 export const appReducer = (state: AppState, action: AppAction): AppState => {
-  console.log("state from reducer", state);
-  console.log("action", action);
   switch (action.type) {
     // MM
     case "setProvider":
