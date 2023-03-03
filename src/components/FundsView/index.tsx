@@ -3,8 +3,19 @@ import "./index.styles.scss";
 
 import { ReactComponent as ClockIcon } from "../../assets/icons/clock-icon.svg";
 import { lightGrey } from "../../styles/colors";
+import { useContext } from "react";
+import AppContext from "../../context/AppContext";
+import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../constants";
 
 function FundsView() {
+  const { state, dispatch } = useContext(AppContext);
+  const tokenPrice=(Number(state.price)/Number(ONE_USDC_UNIT))
+  const tokenPriceFixedDecimals=tokenPrice.toFixed(2)
+  const aum=(
+    (Number(state.totalSupply) * Number(state.price)) /
+    Number(ONE_DOWGO_UNIT) /
+    Number(ONE_USDC_UNIT)
+  ).toFixed(2)
   return (
     <div className="funds-container">
       <div className="funds-title">Dowgo Funds</div>
@@ -45,11 +56,11 @@ function FundsView() {
             </div> */}
               <div className="fund-info-box">
                 <div className="fund-info-name">AUM</div>
-                <div className="fund-info-value">{`$${1324.43}`}</div>
+                <div className="fund-info-value">{`$${aum}`}</div>
               </div>
               <div className="fund-info-box">
                 <div className="fund-info-name">TokenPrice</div>
-                <div className="fund-info-value">{`$${0.33}`}</div>
+                <div className="fund-info-value">{`$${tokenPriceFixedDecimals}`}</div>
               </div>
             </div>
           </Col>
