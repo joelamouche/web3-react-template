@@ -1,23 +1,39 @@
 import React, { ReactNode, useState } from "react";
-import { Card, Col, InputNumber, Row } from "antd";
-import { BigNumber, ethers, providers } from "ethers";
-
-// Logos
-import DowgoLogo from "../../assets/icons/dowgo-logo.png";
-import USDTLogo from "../../assets/icons/usdt-logo.png";
+import { Card, Col, InputNumber, Row, Select } from "antd";
 
 import "./index.styles.scss";
-import { lightGrey, white } from "../../styles/colors";
-import { smallIconStyle } from "../../styles/iconStyle";
 import { AmountLabel } from "./tradingViewComponents/AmountLabel";
 import { TradingInput } from "./tradingViewComponents/TradingInput";
 import { BalanceLabel } from "../displayComponents/BalanceLabel";
 import { TradeButton } from "../displayComponents/TradeButton";
+import {
+  DOWGOOneComponent,
+  USDTComponent,
+} from "./tradingViewComponents/CurrencyComponents";
 
-const margin = "0.5em";
+const { Option } = Select;
+
+type Currency = "USDT" | "DWG1";
 
 function DowgoTradingInterface() {
-  const [buyInput, setBuyInput] = useState<BigNumber>(BigNumber.from(0));
+  const [inputCurrency, setInputCurrency] = useState<Currency>("USDT");
+  const [outputCurrency, setOutputCurrency] = useState<Currency>("DWG1");
+  function handleChangeCurrencyInput(value) {
+    setInputCurrency(value);
+    if (value === "USDT") {
+      setOutputCurrency("DWG1");
+    } else {
+      setOutputCurrency("USDT");
+    }
+  }
+  function handleChangeCurrencyOutput(value) {
+    setOutputCurrency(value);
+    if (value === "USDT") {
+      setInputCurrency("DWG1");
+    } else {
+      setInputCurrency("USDT");
+    }
+  }
   return (
     <div className="trading-top-container">
       <div className="trading-prompt">
@@ -36,16 +52,18 @@ function DowgoTradingInterface() {
                   max={10}
                   defaultValue={0}
                   addonAfter={
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <span style={{ marginRight: "8px", fontWeight: 600 }}>
-                        USDT
-                      </span>
-                      <img
-                        src={USDTLogo}
-                        alt="usdt-logo"
-                        style={smallIconStyle}
-                      />
-                    </div>
+                    <Select
+                      defaultValue="USDT"
+                      value={inputCurrency}
+                      onChange={handleChangeCurrencyInput}
+                    >
+                      <Option value="USDT">
+                        <USDTComponent />
+                      </Option>
+                      <Option value="DWG1">
+                        <DOWGOOneComponent />
+                      </Option>
+                    </Select>
                   }
                 />
               </div>
@@ -66,16 +84,18 @@ function DowgoTradingInterface() {
                   max={10}
                   defaultValue={0}
                   addonAfter={
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <span style={{ marginRight: "8px", fontWeight: 600 }}>
-                        DOWGO1
-                      </span>
-                      <img
-                        src={DowgoLogo}
-                        alt="dowgo-logo"
-                        style={smallIconStyle}
-                      />
-                    </div>
+                    <Select
+                      defaultValue="DWG1"
+                      value={outputCurrency}
+                      onChange={handleChangeCurrencyOutput}
+                    >
+                      <Option value="USDT">
+                        <USDTComponent />
+                      </Option>
+                      <Option value="DWG1">
+                        <DOWGOOneComponent />
+                      </Option>
+                    </Select>
                   }
                 />
               </div>

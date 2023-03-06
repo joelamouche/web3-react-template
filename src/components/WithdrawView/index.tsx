@@ -12,6 +12,7 @@ import { regularWhiteWord } from "../../styles/textStyles";
 import AppContext from "../../context/AppContext";
 import { ONE_USDC_UNIT } from "../../constants";
 import { withdrawUSDAndUpdate } from "../../actions/contracts/dowgoContract/withdrawUSDAndUpdate";
+import { USDTComponent } from "../DowgoTradingView/tradingViewComponents/CurrencyComponents";
 
 function WithdrawView() {
   const { state, dispatch } = useContext(AppContext);
@@ -48,14 +49,7 @@ function WithdrawView() {
               min={0}
               max={usdBalanceOnContract}
               defaultValue={0}
-              addonAfter={
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <span style={{ marginRight: "8px", fontWeight: 600 }}>
-                    USDT
-                  </span>
-                  <img src={USDTLogo} alt="usdt-logo" style={smallIconStyle} />
-                </div>
-              }
+              addonAfter={<USDTComponent />}
             />
           </div>
           <div style={{ width: "100%" }}>
