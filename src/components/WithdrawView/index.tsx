@@ -22,7 +22,6 @@ function WithdrawView() {
   const [withdrawInput, setWithdrawInput] = useState<number>(0);
 
   const onChange = (value: number) => {
-    console.log("changed", value);
     setWithdrawInput(value);
   };
 

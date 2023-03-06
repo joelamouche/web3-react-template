@@ -6,13 +6,17 @@ interface TradingInputProps {
   min: number;
   max: number;
   defaultValue: number;
+  value: number;
+  onChange: (number) => void;
 }
 export const TradingInput = (props: TradingInputProps) => {
   return (
     <InputNumber
       controls={false}
+      value={props.value}
+      onChange={props.onChange}
       min={props.min}
-      max={props.max}
+      max={props.max.toFixed(2)}
       defaultValue={props.defaultValue}
       addonAfter={props.addonAfter}
     />
