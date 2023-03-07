@@ -34,7 +34,6 @@ export interface ContractAddresses {
   usdAddress: EthAddress;
   dowgoAddress: EthAddress;
 }
-
 export type SetStateFunction<T> = Dispatch<React.SetStateAction<T>>;
 
 export type Currency = "USDT" | "DWG1";
