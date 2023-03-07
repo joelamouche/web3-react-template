@@ -13,10 +13,12 @@ import {
 } from "./tradingViewComponents/CurrencyComponents";
 import AppContext from "../../context/AppContext";
 import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../constants";
+import { approveUSDAndUpdate } from "../../actions/contracts/usdtContract/approveUSDAndUpdate";
+import { ApproveButton } from "./tradingViewComponents/ApproveButton";
+import { Currency } from "../../types/types";
+import { SwapButton } from "./tradingViewComponents/SwapButton";
 
 const { Option } = Select;
-
-type Currency = "USDT" | "DWG1";
 
 function DowgoTradingInterface() {
   const { state, dispatch } = useContext(AppContext);
@@ -31,11 +33,14 @@ function DowgoTradingInterface() {
   const usdBalance: number = Number(state.usdBalance) / Number(ONE_USDC_UNIT);
   const dowgoBalance: number =
     Number(state.dowgoBalance) / Number(ONE_DOWGO_UNIT);
+  const allowance = Number(state.allowance) / Number(ONE_USDC_UNIT);
   const price = Number(state.price) / Number(ONE_USDC_UNIT);
 
+  const isApprovalNeeded = inputCurrency === "USDT" && allowance < inputValue;
+
   // Maximum values
-  const inputBalance = inputCurrency === "USDT" ? dowgoBalance : usdBalance;
-  const outputBalance = inputCurrency === "USDT" ? usdBalance : dowgoBalance;
+  const inputBalance = inputCurrency === "USDT" ? usdBalance : dowgoBalance;
+  const outputBalance = inputCurrency === "USDT" ? dowgoBalance : usdBalance;
   const maxDowgoBuySell =
     Number(
       state.totalSupply
@@ -47,11 +52,11 @@ function DowgoTradingInterface() {
     inputCurrency === "DWG1"
       ? Math.min(maxDowgoBuySell, inputBalance)
       : Math.min(maxDowgoBuySell * price, inputBalance);
-
   const outputMax =
     inputCurrency === "DWG1"
-      ? Math.min(maxDowgoBuySell / price, usdBalance / price)
-      : Math.min(maxDowgoBuySell, dowgoBalance * price);
+      ? Math.min(maxDowgoBuySell / price, dowgoBalance * price)
+      : Math.min(maxDowgoBuySell, usdBalance / price);
+  console.log(maxDowgoBuySell, usdBalance / price);
 
   function handleChangeCurrencyInput(value) {
     setInputCurrency(value);
@@ -78,11 +83,11 @@ function DowgoTradingInterface() {
     }
   }
   function handleChangeOutputValue(value) {
-    setInputValue(value);
-    if (inputCurrency === "USDT") {
-      setOutputCurrency("DWG1");
+    setOutputValue(value);
+    if (outputCurrency === "USDT" && price !== 0) {
+      setInputValue(value / price);
     } else {
-      setOutputCurrency("USDT");
+      setInputValue(value * price);
     }
   }
   return (
@@ -160,7 +165,16 @@ function DowgoTradingInterface() {
             </Row>
           </Col>
         </Row>
-        <Row>{TradeButton(() => {}, "Approve USDT")}</Row>
+        <Row>
+          {isApprovalNeeded ? (
+            <ApproveButton />
+          ) : (
+            <SwapButton
+              inputCurrency={inputCurrency}
+              inputAmount={inputValue}
+            />
+          )}
+        </Row>
       </div>
     </div>
   );

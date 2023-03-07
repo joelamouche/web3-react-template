@@ -71,3 +71,5 @@ export interface AppState {
   targetRatio: BigNumber;
   collRange: BigNumber;
 }
+
+export type Currency = "USDT" | "DWG1";
