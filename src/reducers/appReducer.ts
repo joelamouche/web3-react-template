@@ -1,11 +1,6 @@
 import { BigNumber, providers } from "ethers";
-import {
-  AppAction,
-  AppState,
-  ChainId,
-  ContractAddresses,
-  EthAddress,
-} from "../types/types";
+import { ChainId, ContractAddresses, EthAddress } from "../types/types";
+import { AppAction, AppState } from "../context/AppContext";
 
 export const appReducer = (state: AppState, action: AppAction): AppState => {
   switch (action.type) {

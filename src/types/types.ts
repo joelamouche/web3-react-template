@@ -37,39 +37,4 @@ export interface ContractAddresses {
 
 export type SetStateFunction<T> = Dispatch<React.SetStateAction<T>>;
 
-// State Management
-
-export interface AppAction {
-  type: string;
-  value:
-    | EthAddress
-    | providers.Web3Provider
-    | ChainId
-    | BigNumber
-    | ContractAddresses
-    | boolean
-    | undefined;
-}
-
-export interface AppState {
-  // Metamask
-  currentAccount: EthAddress;
-  provider: providers.Web3Provider | undefined;
-  chainId: ChainId | undefined;
-  needMMUnlock: boolean;
-
-  // USDT
-  allowance: BigNumber;
-  usdBalance: BigNumber;
-
-  // Dowgo
-  dowgoBalance: BigNumber;
-  usdBalanceOnDowgo: BigNumber;
-  price: BigNumber;
-  totalSupply: BigNumber;
-  contractAddresses: ContractAddresses | undefined;
-  targetRatio: BigNumber;
-  collRange: BigNumber;
-}
-
 export type Currency = "USDT" | "DWG1";

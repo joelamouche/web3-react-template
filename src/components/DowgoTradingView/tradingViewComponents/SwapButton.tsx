@@ -10,14 +10,19 @@ export function SwapButton(props: {
   inputCurrency: Currency;
   inputAmount: number;
 }) {
-  const { state, dispatch } = useContext(AppContext);
+  const { state, dispatch, notificationApi } = useContext(AppContext);
   return TradeButton(() => {
     if (props.inputCurrency === "USDT") {
       const price = Number(state.price) / Number(ONE_USDC_UNIT);
       price !== 0 &&
-        buyDowgoAndUpdate(dispatch, state, props.inputAmount / price);
+        buyDowgoAndUpdate(
+          dispatch,
+          state,
+          props.inputAmount / price,
+          notificationApi
+        );
     } else {
-      sellDowgoAndUpdate(dispatch, state, props.inputAmount);
+      sellDowgoAndUpdate(dispatch, state, props.inputAmount, notificationApi);
     }
   }, "Swap");
 }

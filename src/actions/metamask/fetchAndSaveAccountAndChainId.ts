@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { AppAction, AppState } from "../../types/types";
+import { AppAction, AppState } from "../../context/AppContext";
 import { fetchAndSaveChainId } from "./fetchAndSaveChainId";
 import { fetchAndSaveAccount } from "./fetchAndSaveAccount";
 

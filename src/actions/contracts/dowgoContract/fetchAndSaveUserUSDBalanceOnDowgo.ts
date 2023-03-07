@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { AppAction, AppState } from "../../../types/types";
+import { AppAction, AppState } from "../../../context/AppContext";
 import { fetchUserUSDBalanceOnDowgo } from "../../../calls/contract/dowgoContract/fetchUserUSDBalanceOnDowgo";
 
 export async function fetchAndSaveUserUSDBalanceOnDowgo(

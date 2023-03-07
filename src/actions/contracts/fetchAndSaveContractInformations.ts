@@ -1,5 +1,4 @@
 import { Dispatch } from "react";
-import { AppAction, AppState } from "../../types/types";
 import { fetchAndSaveCollRange } from "./dowgoContract/fetchAndSaveCollRange";
 import { fetchAndSaveTargetRatio } from "./dowgoContract/fetchAndSaveTargetRatio";
 import { fetchAndSavePrice } from "./dowgoContract/fetchAndSavePrice";
@@ -8,6 +7,7 @@ import { fetchAndSaveUserDowgoBalance } from "./dowgoContract/fetchAndSaveUserDo
 import { fetchAndSaveUserUSDBalanceOnDowgo } from "./dowgoContract/fetchAndSaveUserUSDBalanceOnDowgo";
 import { fetchAndSaveUserUSDTBalance } from "./usdtContract/fetchAndSaveUserUSDTBalance";
 import { fetchAndSaveUserAllowance } from "./usdtContract/fetchAndSaveUserAllowance";
+import { AppAction, AppState } from "../../context/AppContext";
 
 export async function fetchAndSaveContractInformations(
   dispatch: Dispatch<AppAction>,

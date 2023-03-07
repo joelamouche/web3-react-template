@@ -1,13 +1,9 @@
 import React, { useEffect, useReducer } from "react";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 
-import DowgoDApp from "./pages/home/home";
-import ConnectMetaMask from "./components/Menu/ConnectMetaMask";
 import OldInvest from "./pages/invest/Invest";
 
-import { Layout } from "antd";
-import { EthAddress, ChainId } from "./types/types";
-import { providers } from "ethers";
+import { Layout, notification, Space } from "antd";
 
 import DowgoLogo from "./assets/icons/dowgo-logo.png";
 
@@ -16,21 +12,23 @@ import { appReducer } from "./reducers/appReducer";
 import AppContext, { initialAppState } from "./context/AppContext";
 import DowgoMenu from "./components/Menu/DowgoMenu";
 import Invest from "./pages/home/HomeWIP";
-import { Content, Footer } from "antd/lib/layout/layout";
+import { Content } from "antd/lib/layout/layout";
 import { DowgoFooter } from "./Footer";
 import { fetchAndSaveProvider } from "./actions/metamask/fetchAndSaveProvider";
 import { fetchAndSaveAccountAndChainId } from "./actions/metamask/fetchAndSaveAccountAndChainId";
 import { fetchAndSaveContractAddresses } from "./actions/api/fetchAndSaveContractAddresses";
 import { fetchAndSaveContractInformations } from "./actions/contracts/fetchAndSaveContractInformations";
 import WithdrawPage from "./pages/withdraw/WithdrawPage";
-import FundsView from "./components/FundsView";
 import FundsPage from "./pages/funds/FundsPage";
 import MyPortfolioPage from "./pages/funds/MyPortfolioPage";
+import { TxStatus } from "./types/types";
 
 function App() {
   const { Header } = Layout;
 
   const [state, dispatch] = useReducer(appReducer, initialAppState);
+
+  const [api, contextHolder] = notification.useNotification();
 
   // CONNECT TO METAMASK
 
@@ -63,7 +61,7 @@ function App() {
   return (
     <div>
       <Layout>
-        <AppContext.Provider value={{ state, dispatch }}>
+        <AppContext.Provider value={{ state, dispatch, notificationApi: api }}>
           <Header className="app-header">
             {<DowgoMenu />}
             <div className="dowgo-logo-container">
@@ -77,6 +75,8 @@ function App() {
             </div>
           </Header>
           <Content style={{ height: "115vh" }}>
+            {/* For tx toast notifications */}
+            {contextHolder}
             <Routes>
               {/* {state.currentAccount !== "0x" ? (
               <Route path="/" element={<Navigate to="/profile" />} />

@@ -1,6 +1,7 @@
 import { createContext } from "react";
-import { AppAction, AppState, EthAddress } from "../types/types";
-import { BigNumber } from "ethers";
+import { ChainId, ContractAddresses, EthAddress } from "../types/types";
+import { BigNumber, providers } from "ethers";
+import { NotificationInstance } from "antd/lib/notification";
 
 export const initialAppState = {
   // MM
@@ -26,9 +27,47 @@ export const initialAppState = {
 export const AppContext = createContext<{
   state: AppState;
   dispatch: React.Dispatch<AppAction>;
+  // Notification API
+  notificationApi: NotificationInstance | undefined;
 }>({
   state: initialAppState,
   dispatch: () => null,
+  notificationApi: undefined,
 });
+
+// State Management types
+
+export interface AppAction {
+  type: string;
+  value:
+    | EthAddress
+    | providers.Web3Provider
+    | ChainId
+    | BigNumber
+    | ContractAddresses
+    | boolean
+    | undefined;
+}
+
+export interface AppState {
+  // Metamask
+  currentAccount: EthAddress;
+  provider: providers.Web3Provider | undefined;
+  chainId: ChainId | undefined;
+  needMMUnlock: boolean;
+
+  // USDT
+  allowance: BigNumber;
+  usdBalance: BigNumber;
+
+  // Dowgo
+  dowgoBalance: BigNumber;
+  usdBalanceOnDowgo: BigNumber;
+  price: BigNumber;
+  totalSupply: BigNumber;
+  contractAddresses: ContractAddresses | undefined;
+  targetRatio: BigNumber;
+  collRange: BigNumber;
+}
 
 export default AppContext;

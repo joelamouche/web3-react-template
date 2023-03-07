@@ -40,3 +40,12 @@
 .ant-layout-content {
   height: 100vh;
 }
+
+/* Notifications */
+.ant-notification-notice-message {
+  background-color: #191922 !important;
+  color: #969696 !important;
+}
+.ant-notification-notice-close-x {
+  color: #969696;
+}

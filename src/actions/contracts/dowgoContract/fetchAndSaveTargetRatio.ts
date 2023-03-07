@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { AppAction, AppState } from "../../../types/types";
+import { AppAction, AppState } from "../../../context/AppContext";
 import { fetchTargetRatio } from "../../../calls/contract/dowgoContract/fetchTargetRatio";
 
 export async function fetchAndSaveTargetRatio(

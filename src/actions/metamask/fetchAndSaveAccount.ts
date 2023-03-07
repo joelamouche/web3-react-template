@@ -1,7 +1,8 @@
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import { fetchAccounts } from "../../calls/metamask/fetchAccounts";
-import { AppAction, EthAddress } from "../../types/types";
+import { EthAddress } from "../../types/types";
 import { Dispatch } from "react";
+import { AppAction } from "../../context/AppContext";
 
 export async function fetchAndSaveAccount(dispatch: Dispatch<AppAction>) {
   const ethereum = window.ethereum as MetaMaskInpageProvider;

@@ -1,14 +1,18 @@
-import { EthAddress } from "../../../types/types";
+import { EthAddress, TxStatus } from "../../../types/types";
 
 import { DowgoERC20 } from "../../../types/DowgoERC20";
 import { BigNumber, ethers } from "ethers";
 import { DowgoERC20ABI } from "../../../constants/DowgoERC20ABI";
 import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../../constants";
+import { notification } from "antd";
+import { NotificationInstance } from "antd/lib/notification";
+import { openErrorNotification, openNotification } from "../notificationUtils";
 
 export const buyDowgo = async (
   dowgoAddress: EthAddress,
   provider: ethers.providers.Web3Provider,
-  buyAmount: number
+  buyAmount: number,
+  notificationApi: NotificationInstance
 ): Promise<void> => {
   try {
     const contract: DowgoERC20 = new ethers.Contract(
@@ -16,7 +20,7 @@ export const buyDowgo = async (
       DowgoERC20ABI,
       provider
     ) as DowgoERC20;
-    console.log(Math.floor(buyAmount * Number(ONE_DOWGO_UNIT)));
+
     const tx = await contract
       .connect(provider.getSigner())
       .buy_dowgo(
@@ -24,8 +28,14 @@ export const buyDowgo = async (
           Math.floor(buyAmount * Number(ONE_DOWGO_UNIT)).toString()
         )
       );
+    openNotification(
+      { status: "Tx Sent, Waiting For confirmation..." },
+      notificationApi
+    );
     await tx.wait(6);
-  } catch (error) {
-    console.error(error);
+    openNotification({ status: "Success: Tx Confirmed" }, notificationApi);
+  } catch (e) {
+    console.error(e);
+    openErrorNotification(e, notificationApi);
   }
 };

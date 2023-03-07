@@ -56,7 +56,6 @@ function DowgoTradingInterface() {
     inputCurrency === "DWG1"
       ? Math.min(maxDowgoBuySell / price, dowgoBalance * price)
       : Math.min(maxDowgoBuySell, usdBalance / price);
-  console.log(maxDowgoBuySell, usdBalance / price);
 
   function handleChangeCurrencyInput(value) {
     setInputCurrency(value);

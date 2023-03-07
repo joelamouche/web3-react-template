@@ -5,7 +5,6 @@ import { InputNumber } from "antd";
 import USDTLogo from "../../assets/icons/usdt-logo.png";
 
 import "./index.styles.scss";
-import { smallIconStyle } from "../../styles/iconStyle";
 import { BalanceLabel } from "../displayComponents/BalanceLabel";
 import { TradeButton } from "../displayComponents/TradeButton";
 import { regularWhiteWord } from "../../styles/textStyles";
@@ -15,7 +14,7 @@ import { withdrawUSDAndUpdate } from "../../actions/contracts/dowgoContract/with
 import { USDTComponent } from "../DowgoTradingView/tradingViewComponents/CurrencyComponents";
 
 function WithdrawView() {
-  const { state, dispatch } = useContext(AppContext);
+  const { state, dispatch, notificationApi } = useContext(AppContext);
   const usdBalanceOnContract =
     Number(state.usdBalanceOnDowgo) / Number(ONE_USDC_UNIT);
 
@@ -59,7 +58,12 @@ function WithdrawView() {
           </div>
           <div style={{ width: "100%" }}>
             {TradeButton(() => {
-              withdrawUSDAndUpdate(dispatch, state, withdrawInput);
+              withdrawUSDAndUpdate(
+                dispatch,
+                state,
+                withdrawInput,
+                notificationApi
+              );
             }, "Withdraw")}
           </div>
         </div>

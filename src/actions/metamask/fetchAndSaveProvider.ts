@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { fetchMMProvider } from "../../calls/metamask/fetchMMProvider";
 import { ethers } from "ethers";
-import { AppAction } from "../../types/types";
+import { AppAction } from "../../context/AppContext";
 
 export async function fetchAndSaveProvider(dispatch: Dispatch<AppAction>) {
   // this returns the provider, or null if it wasn't detected

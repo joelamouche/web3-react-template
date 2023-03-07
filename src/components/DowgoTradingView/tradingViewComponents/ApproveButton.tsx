@@ -4,9 +4,9 @@ import { TradeButton } from "../../displayComponents/TradeButton";
 import { approveUSDAndUpdate } from "../../../actions/contracts/usdtContract/approveUSDAndUpdate";
 
 export function ApproveButton() {
-  const { state, dispatch } = useContext(AppContext);
+  const { state, dispatch, notificationApi } = useContext(AppContext);
 
   return TradeButton(() => {
-    approveUSDAndUpdate(dispatch, state);
+    approveUSDAndUpdate(dispatch, state, notificationApi);
   }, "Approve USDT");
 }
