@@ -21,6 +21,7 @@ import WithdrawPage from "./pages/withdraw/WithdrawPage";
 import FundsPage from "./pages/funds/FundsPage";
 import MyPortfolioPage from "./pages/funds/MyPortfolioPage";
 import Invest from "./pages/home/home";
+import { fetchAndSaveStockPortfolio } from "./actions/api/fetchAndSaveStockPortfolio";
 
 function App() {
   const { Header } = Layout;
@@ -56,6 +57,15 @@ function App() {
       fetchAndSaveContractInformations(dispatch, state);
     }
   }, [state.contractAddresses]);
+
+  // Finally, get stock portfolio info
+  useEffect(() => {
+    if (state.allowance&&state.stockPortfolio==undefined) {
+      fetchAndSaveStockPortfolio(dispatch);
+    }
+  }, [state.allowance]);
+
+  
 
   return (
     <div>

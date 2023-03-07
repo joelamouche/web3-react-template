@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { ChainId, ContractAddresses, EthAddress } from "../types/types";
 import { BigNumber, providers } from "ethers";
 import { NotificationInstance } from "antd/lib/notification";
+import { StockInformation } from "../types/stockTypes";
 
 export const initialAppState = {
   // MM
@@ -22,6 +23,9 @@ export const initialAppState = {
   targetRatio: BigNumber.from(0),
   collRange: BigNumber.from(0),
   totalSupply: BigNumber.from(0),
+
+  // Portfolio
+  stockPortfolio:undefined
 };
 
 export const AppContext = createContext<{
@@ -40,6 +44,7 @@ export const AppContext = createContext<{
 export interface AppAction {
   type: string;
   value:
+  StockInformation[]
     | EthAddress
     | providers.Web3Provider
     | ChainId
@@ -61,13 +66,16 @@ export interface AppState {
   usdBalance: BigNumber;
 
   // Dowgo
+  contractAddresses: ContractAddresses | undefined;
   dowgoBalance: BigNumber;
   usdBalanceOnDowgo: BigNumber;
   price: BigNumber;
   totalSupply: BigNumber;
-  contractAddresses: ContractAddresses | undefined;
   targetRatio: BigNumber;
   collRange: BigNumber;
+
+  // Portfolio
+  stockPortfolio:StockInformation[]|undefined
 }
 
 export default AppContext;

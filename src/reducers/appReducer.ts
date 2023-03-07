@@ -1,6 +1,7 @@
 import { BigNumber, providers } from "ethers";
 import { ChainId, ContractAddresses, EthAddress } from "../types/types";
 import { AppAction, AppState } from "../context/AppContext";
+import { StockInformation } from "../types/stockTypes";
 
 export const appReducer = (state: AppState, action: AppAction): AppState => {
   switch (action.type) {
@@ -18,6 +19,8 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
     // API
     case "setContractAddresses":
       return { ...state, contractAddresses: action.value as ContractAddresses };
+      case "setStockPortfolio":
+        return { ...state, stockPortfolio: action.value as StockInformation[] };
     // Dowgo
     case "setCollRange":
       return { ...state, collRange: action.value as BigNumber };
