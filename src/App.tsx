@@ -11,7 +11,7 @@ import "./App.css";
 import { appReducer } from "./reducers/appReducer";
 import AppContext, { initialAppState } from "./context/AppContext";
 import DowgoMenu from "./components/Menu/DowgoMenu";
-import Invest from "./pages/home/HomeWIP";
+import HomeWIP from "./pages/home/HomeWIP";
 import { Content } from "antd/lib/layout/layout";
 import { DowgoFooter } from "./Footer";
 import { fetchAndSaveProvider } from "./actions/metamask/fetchAndSaveProvider";
@@ -83,7 +83,7 @@ function App() {
             ) : (
               <Route path="/" element={<DowgoDApp />} />
             )} */}
-              <Route path="/" element={<Invest />} />
+              <Route path="/" element={<HomeWIP />} />
               <Route path="/invest" element={OldInvest()} />
               <Route path="/dowgo-funds" element={<FundsPage />} />
               <Route path="/my-portfolio" element={<MyPortfolioPage />} />

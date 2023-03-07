@@ -7,7 +7,7 @@ import VideoBanner from "../../assets/video-banner/video-banner.mp4";
 import "./home.styles.css";
 import DowgoTradingInterface from "../../components/DowgoTradingView";
 
-function Invest() {
+function HomeWIP() {
   return (
     <div>
       <div className="app-container">
@@ -30,4 +30,4 @@ function Invest() {
   );
 }
 
-export default Invest;
+export default HomeWIP;
