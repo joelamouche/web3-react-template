@@ -14,6 +14,7 @@ import { ReactComponent as ArrowRightIcon } from "../../assets/icons/arrow-right
 import { smallIconStyle } from "../../styles/iconStyle";
 import { lightGrey, primaryColor } from "../../styles/colors";
 import { fetchAndSaveAccount } from "../../actions/metamask/fetchAndSaveAccount";
+import { fetchAndSaveProvider } from "../../actions/metamask/fetchAndSaveProvider";
 
 function ConnectMetaMask() {
   const { state, dispatch } = useContext(AppContext);
@@ -51,7 +52,7 @@ function ConnectMetaMask() {
     icon: (
       <Dropdown menu={{ items }} open={state.needMMUnlock}>
         {RoundButton(() => {
-          fetchAndSaveAccount(dispatch);
+          fetchAndSaveProvider(dispatch);
         }, "Connect")}
       </Dropdown>
     ),

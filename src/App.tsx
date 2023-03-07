@@ -20,7 +20,7 @@ import { fetchAndSaveContractInformations } from "./actions/contracts/fetchAndSa
 import WithdrawPage from "./pages/withdraw/WithdrawPage";
 import FundsPage from "./pages/funds/FundsPage";
 import MyPortfolioPage from "./pages/funds/MyPortfolioPage";
-import Invest from "./pages/invest/Invest";
+import Invest from "./pages/home/home";
 
 function App() {
   const { Header } = Layout;
