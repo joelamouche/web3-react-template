@@ -19,8 +19,8 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
     // API
     case "setContractAddresses":
       return { ...state, contractAddresses: action.value as ContractAddresses };
-      case "setStockPortfolio":
-        return { ...state, stockPortfolio: action.value as StockInformation[] };
+    case "setStockPortfolio":
+      return { ...state, stockPortfolio: action.value as StockInformation[] };
     // Dowgo
     case "setCollRange":
       return { ...state, collRange: action.value as BigNumber };

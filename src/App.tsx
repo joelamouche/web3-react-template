@@ -60,12 +60,10 @@ function App() {
 
   // Finally, get stock portfolio info
   useEffect(() => {
-    if (state.allowance&&state.stockPortfolio==undefined) {
+    if (state.allowance && state.stockPortfolio == undefined) {
       fetchAndSaveStockPortfolio(dispatch);
     }
   }, [state.allowance]);
-
-  
 
   return (
     <div>

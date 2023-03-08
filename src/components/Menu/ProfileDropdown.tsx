@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import Jazzicon, { jsNumberForAddress } from "react-jazzicon";
+
 import AppContext from "../../context/AppContext";
 import { EthAddress } from "../../types/types";
 import { RoundButton } from "../displayComponents/RoundButton";
@@ -43,31 +45,26 @@ export const ProfileDropdown = () => {
         popupclassname: "dowgo-submenu",
         icon: (
           <div style={{ display: "flex", alignItems: "center" }}>
-            <span
+            <div
               style={{
                 ...smallIconStyle,
-                //  borderRadius: '50%'
               }}
             >
-              {
-                //TODO: handle identicon
-                /* <Identicon
-                size={20}
-                string={state.currentAccount}
-                //style={{ borderRadius: '50%' }}
-              /> */
-              }
-            </span>
+              <Jazzicon
+                diameter={24}
+                seed={jsNumberForAddress(state.currentAccount)}
+              />
+            </div>
 
-            <span style={{ marginLeft: "10px", marginRight: "10px" }}>
+            <div style={{ marginLeft: "15px", marginRight: "20px" }}>
               {shortenedAddress(state.currentAccount)}
-            </span>
+            </div>
             <CopyButton text={state.currentAccount} />
             <LogOutIcon
               onClick={() => {
                 handleLogout();
               }}
-              style={{ marginLeft: "117px", color: primaryColor }}
+              style={{ marginLeft: "80px", color: primaryColor }}
             />
             {/* TODO: add log out button */}
           </div>
@@ -80,7 +77,7 @@ export const ProfileDropdown = () => {
           <div style={{ display: "flex", alignItems: "center" }}>
             <SettingsIcon style={{ ...smallIconStyle, color: lightGrey }} />
 
-            <span style={{ marginLeft: "10px" }}>Account information</span>
+            <div style={{ marginLeft: "15px" }}>Account information</div>
           </div>
         ),
       },

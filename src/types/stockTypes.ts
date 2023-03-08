@@ -10,15 +10,14 @@ export type AllowedTickers =
   | "AWK"
   | "XYL";
 
-  export type StockSector =
+export type StockSector =
   | "Materials"
   | "Industrials"
   | "Technology"
   | "Utilities";
-export interface StockInformation{
-    ticker:AllowedTickers,
-    balance:number,
-    sector: StockSector;
-    description: string;
-  }
-  
+export interface StockInformation {
+  ticker: AllowedTickers;
+  balance: number;
+  sector: StockSector;
+  description: string;
+}

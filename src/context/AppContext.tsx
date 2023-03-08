@@ -25,7 +25,7 @@ export const initialAppState = {
   totalSupply: BigNumber.from(0),
 
   // Portfolio
-  stockPortfolio:undefined
+  stockPortfolio: undefined,
 };
 
 export const AppContext = createContext<{
@@ -44,7 +44,7 @@ export const AppContext = createContext<{
 export interface AppAction {
   type: string;
   value:
-  StockInformation[]
+    | StockInformation[]
     | EthAddress
     | providers.Web3Provider
     | ChainId
@@ -75,7 +75,7 @@ export interface AppState {
   collRange: BigNumber;
 
   // Portfolio
-  stockPortfolio:StockInformation[]|undefined
+  stockPortfolio: StockInformation[] | undefined;
 }
 
 export default AppContext;

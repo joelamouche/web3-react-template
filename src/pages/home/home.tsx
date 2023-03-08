@@ -1,4 +1,3 @@
-
 //@ts-ignore
 import VideoBanner from "../../assets/video-banner/video-banner.mp4";
 
