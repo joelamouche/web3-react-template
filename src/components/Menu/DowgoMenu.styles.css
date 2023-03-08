@@ -27,12 +27,7 @@
   background-color: transparent;
 }
 
-/* .ant-menu-dark.ant-menu-item{
-  background-color: purple;
-} */
-.ant-menu-submenu-popup > .ant-menu-dark.ant-menu-item {
-  background-color: pink;
-}
+
 .ant-menu.ant-menu-sub.ant-menu-vertical {
   padding: 4px;
   /* Content Background */
@@ -44,9 +39,7 @@
   border: 1px solid #303030;
   border-radius: 4px;
 }
-.ant-menu.ant-menu-sub.ant-menu-vertical > .ant-menu-dark.ant-menu-item {
-  background-color: pink;
-}
+.ant-menu.ant-menu-sub.ant-menu-vertical > .ant-menu-dark.ant-menu-item ,
 .ant-menu-dark .ant-menu-item-group-title,
 .ant-menu-dark .ant-menu-item > a,
 .ant-menu-dark .ant-menu-item > span > a {
@@ -134,6 +127,12 @@ font-weight: 400;
 font-size: 16px;
 line-height: 20px;
 } */
+/* .dowgo-menu-item{
+  color:orange!important
+} */
+.ant-menu-item-selected>.dowgo-menu-item{
+  font-weight: 700!important;
+}
 .dowgo-menu-item:hover {
   color: rgb(35, 248, 246) !important;
 }
