@@ -1,7 +1,5 @@
 import { Button } from "antd";
 
-import { ReactComponent as MetamaskIcon } from "../../assets/header/metamask.svg";
-
 export const RoundButton = (action: () => any, text: string) => {
   return (
     <Button

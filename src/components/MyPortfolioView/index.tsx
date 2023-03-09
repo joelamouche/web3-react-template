@@ -29,7 +29,7 @@ function MyPortfolioView() {
         <div className="total-portfolio-amount">{`$${investedUSD}`}</div>
       </div>
       <div className="my-deposit-title">Dowgo Funds</div>
-      <div className="funds-row">
+      <div className="fund-container">
         <Row>
           <Col span={6}>
             <div className="fund-name">DOWGO ONE</div>

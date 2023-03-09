@@ -19,9 +19,9 @@ import { fetchAndSaveContractAddresses } from "./actions/api/fetchAndSaveContrac
 import { fetchAndSaveContractInformations } from "./actions/contracts/fetchAndSaveContractInformations";
 import WithdrawPage from "./pages/withdraw/WithdrawPage";
 import FundsPage from "./pages/funds/FundsPage";
-import MyPortfolioPage from "./pages/funds/MyPortfolioPage";
 import Invest from "./pages/home/home";
 import { fetchAndSaveStockPortfolio } from "./actions/api/fetchAndSaveStockPortfolio";
+import MyPortfolioPage from "./pages/my-portfolio/MyPortfolioPage";
 
 function App() {
   const { Header } = Layout;
@@ -81,7 +81,7 @@ function App() {
               </Link>
             </div>
           </Header>
-          <Content style={{ height: "115vh" }}>
+          <Content style={{ minHeight: "115vh" }}>
             {/* For tx toast notifications */}
             {contextHolder}
             <Routes>

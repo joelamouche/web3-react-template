@@ -2,11 +2,17 @@
   /* Rectangle 2719 */
   box-sizing: border-box;
 
-  position: absolute;
-  left: 15%;
-  width: 70%;
-  top: 120px;
-  height: 550px;
+  // position: absolute;
+  // left: 15%;
+  // width: 70%;
+  // top: 120px;
+  // height: 550px;
+
+  margin-left: 15vw;
+  width: 70vw;
+  margin-top: -80vh;
+
+  min-height: 550px;
 
   /* Content Background */
 
@@ -103,7 +109,7 @@
     margin-bottom: 41px;
   }
 
-  .funds-row {
+  .fund-container {
     /* Content Highlight */
 
     background: #191922;
