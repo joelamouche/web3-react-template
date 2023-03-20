@@ -93,7 +93,7 @@ function App() {
               <Route path="/" element={<DowgoDApp />} />
             )} */}
               <Route path="/" element={<Invest />} />
-              <Route path="/invest" element={OldInvest()} />
+              <Route path="/invest" element={<Invest />} />
               <Route path="/dowgo-funds" element={<FundsPage />} />
               <Route path="/my-portfolio" element={<MyPortfolioPage />} />
               <Route path="/withdraw" element={<WithdrawPage />} />
