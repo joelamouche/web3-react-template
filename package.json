@@ -11,14 +11,14 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.38",
-    "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
-    "antd": "^4.24.1",
+    "antd": "^4.24.8",
     "axios": "^1.2.1",
     "ethers": "^5.6.8",
     "jquery": "^3.6.1",
-    "react": "^18.1.0",
+    "react": "^18.2.0",
     "react-dom": "^18.1.0",
+    "react-jazzicon": "^1.0.4",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "sass": "^1.56.0",
@@ -62,7 +62,7 @@
     "url": "https://github.com/joelamouche/web3-react-template/issues"
   },
   "devDependencies": {
-    "@types/react": "^18.0.25",
+    "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.8",
     "gh-pages": "^4.0.0"
   }

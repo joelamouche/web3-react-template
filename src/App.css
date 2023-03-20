@@ -8,7 +8,7 @@
   width: 100%;
   padding: 0;
   height: 100px;
-  margin-bottom: 200px;
+  /* margin-bottom: 200px; */
 }
 
 .dowgo-logo-container {
@@ -16,11 +16,11 @@
   position: absolute;
   z-index: 1000;
   margin-left: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .dowgo-logo-menu {
-  height: 80px;
+  height: 40px;
   width: auto;
 }
 
@@ -34,5 +34,18 @@
 
 .ant-layout-footer {
   background: black !important;
-  height: 50vh;
+  height: 100px;
+}
+
+.ant-layout-content {
+  min-height: 100vh;
+}
+
+/* Notifications */
+.ant-notification-notice-message {
+  background-color: #191922 !important;
+  color: #969696 !important;
+}
+.ant-notification-notice-close-x {
+  color: #969696;
 }

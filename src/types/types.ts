@@ -1,3 +1,4 @@
+import { BigNumber, providers } from "ethers";
 import { Dispatch } from "react";
 
 export enum ChainId {
@@ -12,6 +13,7 @@ export enum ChainId {
   HARMONY_TESTNET = 1666700000,
   MOONRIVER = 1285,
   LOCAL_TESTNET = 1337,
+  SEPOLIA = 11155111,
 }
 export type ConnectMMStatus =
   | "Connected"
@@ -30,8 +32,9 @@ export type TxStatus = {
 };
 
 export interface ContractAddresses {
-  mockUSDCAddress: EthAddress;
+  usdAddress: EthAddress;
   dowgoAddress: EthAddress;
 }
-
 export type SetStateFunction<T> = Dispatch<React.SetStateAction<T>>;
+
+export type Currency = "USDT" | "DWG1";

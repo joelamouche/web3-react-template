@@ -1,64 +1,107 @@
-import React from "react";
+import React, { useEffect, useReducer } from "react";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 
-import DowgoDApp from "./pages/home/home";
-import Funds from "./pages/funds/funds";
-import ConnectMetaMask from "./components/ConnectMetaMask/ConnectMetaMask";
-import Profile from "./pages/profile/profile";
+import OldInvest from "./pages/invest/Invest";
 
-import { Layout } from "antd";
-import { EthAddress, ChainId } from "./types/types";
-import { providers } from "ethers";
+import { Layout, notification, Space } from "antd";
 
-//@ts-ignore
-import DowgoLogo from "./assets/header/dowgo-logo.png";
+import DowgoLogo from "./assets/icons/dowgo-logo.png";
 
 import "./App.css";
+import { appReducer } from "./reducers/appReducer";
+import AppContext, { initialAppState } from "./context/AppContext";
+import DowgoMenu from "./components/Menu/DowgoMenu";
+import { Content } from "antd/lib/layout/layout";
+import { DowgoFooter } from "./Footer";
+import { fetchAndSaveProvider } from "./actions/metamask/fetchAndSaveProvider";
+import { fetchAndSaveAccountAndChainId } from "./actions/metamask/fetchAndSaveAccountAndChainId";
+import { fetchAndSaveContractAddresses } from "./actions/api/fetchAndSaveContractAddresses";
+import { fetchAndSaveContractInformations } from "./actions/contracts/fetchAndSaveContractInformations";
+import WithdrawPage from "./pages/withdraw/WithdrawPage";
+import FundsPage from "./pages/funds/FundsPage";
+import Invest from "./pages/home/home";
+import { fetchAndSaveStockPortfolio } from "./actions/api/fetchAndSaveStockPortfolio";
+import MyPortfolioPage from "./pages/my-portfolio/MyPortfolioPage";
+import { ALLOWED_NETWORKS } from "./constants";
+import { ChainId } from "./types/types";
 
 function App() {
   const { Header } = Layout;
-  const [currentAccount, setCurrentAccount] = React.useState<EthAddress>("0x");
-  const [provider, setProvider] = React.useState<
-    providers.Web3Provider | undefined
-  >(undefined);
-  const [chainId, setChainId] = React.useState<ChainId | undefined>(undefined);
+
+  const [state, dispatch] = useReducer(appReducer, initialAppState);
+
+  const [api, contextHolder] = notification.useNotification();
+
+  // CONNECT TO METAMASK
+
+  // detect MM at the start of the Dapp
+  useEffect(() => {
+    fetchAndSaveProvider(dispatch);
+  }, []);
+
+  // detect chain id and account
+  useEffect(() => {
+    if (state.provider) {
+      fetchAndSaveAccountAndChainId(dispatch, state);
+    }
+  }, [state.provider]);
+
+  //After we have the chainId, get addresses, only if we are on an authorized network
+  useEffect(() => {
+    if (state.chainId && ALLOWED_NETWORKS.includes(ChainId[state.chainId])) {
+      fetchAndSaveContractAddresses(dispatch, state);
+    }
+  }, [state.chainId]);
+
+  //After we have the addresses, get contract info
+  useEffect(() => {
+    if (state.contractAddresses) {
+      fetchAndSaveContractInformations(dispatch, state);
+    }
+  }, [state.contractAddresses]);
+
+  // Finally, get stock portfolio info
+  useEffect(() => {
+    if (state.allowance && state.stockPortfolio == undefined) {
+      fetchAndSaveStockPortfolio(dispatch);
+    }
+  }, [state.allowance]);
 
   return (
     <div>
       <Layout>
-        <Header className="app-header">
-          {ConnectMetaMask(
-            provider,
-            setProvider,
-            currentAccount,
-            setCurrentAccount,
-            chainId,
-            setChainId
-          )}
-          <div className="dowgo-logo-container">
-            <Link to="/">
-              <img
-                src={DowgoLogo}
-                alt="dowgo-logo"
-                className="dowgo-logo-menu"
-              />
-            </Link>
-          </div>
-        </Header>
-
-        <Routes>
-          {currentAccount !== "0x" ? (
-            <Route path="/" element={<Navigate to="/profile" />} />
-          ) : (
-            <Route path="/" element={<DowgoDApp />} />
-          )}
-          <Route
-            path="/profile"
-            element={Profile(provider, chainId, currentAccount)}
-          />
-          <Route path="/dowgo-funds" element={<Funds />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+        <AppContext.Provider value={{ state, dispatch, notificationApi: api }}>
+          <Header className="app-header">
+            {<DowgoMenu />}
+            <div className="dowgo-logo-container">
+              <Link to="/">
+                <img
+                  src={DowgoLogo}
+                  alt="dowgo-logo"
+                  className="dowgo-logo-menu"
+                />
+              </Link>
+            </div>
+          </Header>
+          <Content style={{ minHeight: "115vh" }}>
+            {/* For tx toast notifications */}
+            {contextHolder}
+            <Routes>
+              {/* {state.currentAccount !== "0x" ? (
+              <Route path="/" element={<Navigate to="/profile" />} />
+            ) : (
+              <Route path="/" element={<DowgoDApp />} />
+            )} */}
+              <Route path="/" element={<Invest />} />
+              <Route path="/invest" element={OldInvest()} />
+              <Route path="/dowgo-funds" element={<FundsPage />} />
+              <Route path="/my-portfolio" element={<MyPortfolioPage />} />
+              <Route path="/withdraw" element={<WithdrawPage />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </Content>
+          <DowgoFooter />
+        </AppContext.Provider>
       </Layout>
     </div>
   );
