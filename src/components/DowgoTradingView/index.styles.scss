@@ -1,0 +1,71 @@
+.trading-top-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.trading-prompt {
+  width: 100%;
+  height: 29px;
+  left: 0;
+  top: 73%;
+  position: absolute;
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+  z-index: 50;
+}
+
+.trading-container {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 600px;
+  height: 220px;
+  top: 83%;
+
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.8);
+  /* Border & Separator */
+
+  border: 1px solid #303030;
+  backdrop-filter: blur(30px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 8px;
+
+  z-index: 20;
+
+  padding: 28px;
+}
+
+.ant-select {
+  color: white;
+}
+.ant-select-arrow {
+  color: white;
+}
+.ant-select-dropdown {
+  color: red;
+  background-color: #191922;
+}
+.ant-select-item-option-content {
+  color: white;
+}
+.ant-select-item-option.ant-select-item-option-selected {
+  background-color: #191922;
+}
+.ant-select-item-option-active {
+  background-color: green;
+}
+.ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background-color: #1f212a;
+}

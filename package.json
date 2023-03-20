@@ -2,6 +2,7 @@
   "name": "web3-react-template",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dowgo.io",
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
     "@metamask/providers": "^8.1.1",
@@ -10,12 +11,17 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.38",
-    "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
+    "antd": "^4.24.8",
+    "axios": "^1.2.1",
     "ethers": "^5.6.8",
-    "react": "^18.1.0",
+    "jquery": "^3.6.1",
+    "react": "^18.2.0",
     "react-dom": "^18.1.0",
+    "react-jazzicon": "^1.0.4",
+    "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "sass": "^1.56.0",
     "typescript": "^4.7.2",
     "web-vitals": "^2.1.4"
   },
@@ -24,7 +30,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx prettier -w ."
+    "lint": "npx prettier -w src && npx prettier -w public",
+    "predeploy": "npm run build",
+    "deploy": "echo 'dowgo.io' > ./build/CNAME && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -52,5 +60,10 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/joelamouche/web3-react-template/issues"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.8",
+    "gh-pages": "^4.0.0"
   }
 }

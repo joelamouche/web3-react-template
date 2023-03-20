@@ -1,0 +1,35 @@
+.dowgo-contract-card {
+  width: 100%;
+  background-color: black;
+  box-shadow: 0 0 5px #0ff4e9, inset 0 0 5px #0ff4e9;
+  border: 2px solid #0ff4e9;
+  background: black;
+  color: white;
+
+  .ant-card-head-title {
+    color: white;
+    text-align: left;
+    font-size: 15px;
+    margin-top: -5px;
+    color: #0ff4e9;
+    padding-bottom: 5px;
+    letter-spacing: 1px;
+    font-family: var(--font-branded);
+    font-weight: 300;
+  }
+
+  .withdraw-formula {
+    display: block;
+  }
+}
+
+.withdraw-title {
+  text-align: left;
+  font-size: 13px;
+  margin-top: -30px;
+  margin-bottom: 20px;
+  color: white;
+  letter-spacing: 1px;
+  font-family: var(--font-branded);
+  font-weight: 300;
+}
