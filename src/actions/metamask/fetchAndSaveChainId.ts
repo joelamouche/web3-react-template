@@ -8,6 +8,7 @@ export async function fetchAndSaveChainId(
   dispatch: Dispatch<AppAction>,
   formerChainId: ChainId | undefined
 ) {
+  // @ts-ignore
   const ethereum = window.ethereum as MetaMaskInpageProvider;
   const chainIdUnknown = await fetchChainId();
   handleChainChanged(chainIdUnknown);

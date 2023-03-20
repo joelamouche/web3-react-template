@@ -5,6 +5,7 @@ import { Dispatch } from "react";
 import { AppAction } from "../../context/AppContext";
 
 export async function fetchAndSaveAccount(dispatch: Dispatch<AppAction>) {
+  // @ts-ignore
   const ethereum = window.ethereum as MetaMaskInpageProvider;
   const accounts = await fetchAccounts();
   handleAccountsChanged(accounts);
