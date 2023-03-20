@@ -22,6 +22,8 @@ import FundsPage from "./pages/funds/FundsPage";
 import Invest from "./pages/home/home";
 import { fetchAndSaveStockPortfolio } from "./actions/api/fetchAndSaveStockPortfolio";
 import MyPortfolioPage from "./pages/my-portfolio/MyPortfolioPage";
+import { ALLOWED_NETWORKS } from "./constants";
+import { ChainId } from "./types/types";
 
 function App() {
   const { Header } = Layout;
@@ -44,9 +46,9 @@ function App() {
     }
   }, [state.provider]);
 
-  //After we have the chainId, get addresses
+  //After we have the chainId, get addresses, only if we are on an authorized network
   useEffect(() => {
-    if (state.chainId) {
+    if (state.chainId && ALLOWED_NETWORKS.includes(ChainId[state.chainId])) {
       fetchAndSaveContractAddresses(dispatch, state);
     }
   }, [state.chainId]);

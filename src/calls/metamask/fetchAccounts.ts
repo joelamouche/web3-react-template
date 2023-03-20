@@ -1,10 +1,8 @@
 import { MetaMaskInpageProvider } from "@metamask/providers";
-import { ChainId } from "../../types/types";
 
 export const fetchAccounts = async (): Promise<unknown> => {
   try {
     const ethereum = window.ethereum as MetaMaskInpageProvider;
-    console.log(ethereum?.selectedAddress);
     const accounts = await ethereum.request({ method: "eth_accounts" });
 
     return accounts;

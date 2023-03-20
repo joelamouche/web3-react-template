@@ -50,11 +50,11 @@ function DowgoTradingInterface() {
     ) / Number(ONE_DOWGO_UNIT);
   const inputMax =
     inputCurrency === "DWG1"
-      ? Math.min(maxDowgoBuySell, inputBalance)
-      : Math.min(maxDowgoBuySell * price, inputBalance);
+      ? Math.min(maxDowgoBuySell, dowgoBalance)
+      : Math.min(maxDowgoBuySell * price, usdBalance);
   const outputMax =
     inputCurrency === "DWG1"
-      ? Math.min(maxDowgoBuySell / price, dowgoBalance * price)
+      ? Math.min(maxDowgoBuySell * price, dowgoBalance * price)
       : Math.min(maxDowgoBuySell, usdBalance / price);
 
   function handleChangeCurrencyInput(value) {
