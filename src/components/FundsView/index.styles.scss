@@ -1,0 +1,242 @@
+.funds-container {
+  /* Rectangle 2719 */
+  box-sizing: border-box;
+
+  // position: absolute;
+  // left: 15%;
+  // width: 70%;
+  // top: 120px;
+
+  margin-left: 15vw;
+  width: 70vw;
+  margin-top: -80vh;
+
+  min-height: 550px;
+
+  /* Content Background */
+
+  background: #111116;
+  /* Border & Separator */
+
+  border: 1px solid #303030;
+  backdrop-filter: blur(30px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 8px;
+
+  padding: 32px;
+  z-index: 20;
+}
+
+.funds-title {
+  /* H5/Bold */
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+
+  color: #ffffff;
+
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  margin-bottom: 41px;
+}
+
+.fund-container {
+  /* Content Highlight */
+
+  background: #191922;
+  border-radius: 8px;
+
+  padding: 24px 32px;
+  margin-bottom: 16px;
+
+  .fund-name {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+  }
+
+  .fund-subtitle {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+
+    .fund-tag {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      /* identical to box height */
+      color: #ffffff;
+    }
+
+    .fund-more-details {
+      margin-left: 9px;
+
+      /* Paragraph/Regular */
+
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      /* Primary */
+
+      color: #0ff4e9;
+    }
+  }
+
+  .fund-row-right {
+    display: flex;
+    justify-content: flex-end;
+
+    .fund-info-name {
+      /* Paragraph/Regular */
+
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+
+      color: #ffffff;
+    }
+
+    .fund-info-box {
+      margin-left: 16px;
+      border-left: 1px solid #303030;
+      padding-left: 16px;
+
+      .fund-info-value {
+        margin-top: 8px;
+        /* H5/Regular */
+
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+
+        color: #ffffff;
+      }
+    }
+  }
+
+  .other-funds-text {
+    margin-left: 18px;
+
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+
+    /* Light Grey */
+
+    color: #969696;
+  }
+}
+
+// Arrow
+
+.arrow-box {
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+  .arrow-circle-selected {
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    /* Primary */
+
+    border: 1px solid #0ff4e9;
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arrow-circle {
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    /* Primary */
+
+    border: 1px solid #969696;
+    border-radius: 16px;
+    transform: matrix(1, 0, 0, -1, 0, 0);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.fund-button {
+  width: 160px;
+  height: 40px;
+
+  margin-left: 16px;
+  /* Primary */
+
+  border: 1px solid #0ff4e9;
+  border-radius: 4px;
+  /* Sub-Heading/Bold */
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  /* Primary */
+
+  background: #191922;
+  color: #0ff4e9;
+}
+.fund-details-table-header {
+  padding: 12px;
+  margin: 24px -12px;
+
+  background: #1f212a;
+  border-radius: 8px;
+  color: #969696;
+}
+.fund-details-table-line {
+  margin-bottom: 16px;
+
+  /* Paragraph/Regular */
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+
+  color: #ffffff;
+}
