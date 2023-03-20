@@ -31,13 +31,31 @@ const getContractAddresses = async (
         dowgoAddress: MAINNET_DOWGO_ADDRESS,
       };
     case 5: //Goerli
-      const resp = (
+      const respGoerli = (
         await axios.get(
-          "https://211thuucd8.execute-api.eu-west-3.amazonaws.com/latestDeployment"
+          "https://211thuucd8.execute-api.eu-west-3.amazonaws.com/latestDeployment/goerli"
         )
       ).data;
-      return resp
-        ? { usdAddress: resp.mockUSDCAddress, dowgoAddress: resp.dowgoAddress }
+      return respGoerli
+        ? {
+            usdAddress: respGoerli.mockUSDCAddress,
+            dowgoAddress: respGoerli.dowgoAddress,
+          }
+        : {
+            usdAddress: DEFAULT_GOERLI_USDC_ADDRESS,
+            dowgoAddress: DEFAULT_GOERLI_DOWGO_ADDRESS,
+          };
+    case 11155111: //Sepolia
+      const respSepolia = (
+        await axios.get(
+          "https://211thuucd8.execute-api.eu-west-3.amazonaws.com/latestDeployment/sepolia"
+        )
+      ).data;
+      return respSepolia
+        ? {
+            usdAddress: respSepolia.mockUSDCAddress,
+            dowgoAddress: respSepolia.dowgoAddress,
+          }
         : {
             usdAddress: DEFAULT_GOERLI_USDC_ADDRESS,
             dowgoAddress: DEFAULT_GOERLI_DOWGO_ADDRESS,

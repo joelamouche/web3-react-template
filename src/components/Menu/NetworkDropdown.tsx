@@ -1,11 +1,9 @@
-import { Menu } from "antd";
 import { ReactComponent as EthereumIcon } from "../../assets/icons/ethereum-icon.svg";
 import { ReactComponent as SwitchIcon } from "../../assets/icons/switch-icon.svg";
 import { useContext } from "react";
 import AppContext from "../../context/AppContext";
-import { ChainId, EthAddress } from "../../types/types";
+import { ChainId } from "../../types/types";
 import { ALLOWED_NETWORKS } from "../../constants";
-import { shortenedAddress } from "./ProfileDropdown";
 import { smallIconStyle } from "../../styles/iconStyle";
 
 const switchNetwork = async (chainId) => {
@@ -49,52 +47,4 @@ export const NetworkDropdown = () => {
       },
     ],
   };
-  //   return (
-  //     <Menu.SubMenu
-  //       key="profile-container"
-  //       icon={
-  //         <ProfileIcon className="dowgo-menu-icon" />
-  //         // <Link to="/profile" className="profile-icon-link">
-  //         //   <ProfileIcon className="dowgo-menu-icon" />
-  //         // </Link>
-  //       }
-  //     >
-  //       <Menu.Item key="zero" className="">
-  //         <div className="status-menu-item">
-  //           Status :{" "}
-  //           <span
-  //             style={{
-  //               color:
-  //                 status === "Connected"
-  //                   ? "green"
-  //                   : status === "Disconnected"
-  //                   ? "red"
-  //                   : "orange",
-  //             }}
-  //           >
-  //             {status}
-  //           </span>
-  //         </div>
-  //       </Menu.Item>
-  //       <Menu.Item key="un" className="">
-  //         <div className="account-menu-item">
-  //           Account:{" "}
-  //           {state.currentAccount !== "0x"
-  //             ? `${state.currentAccount.substring(
-  //                 0,
-  //                 4
-  //               )}...${state.currentAccount.substring(38, 42)}`
-  //             : "Not Connected"}
-  //         </div>
-  //       </Menu.Item>
-  //       <Menu.Item key="deux" className="">
-  //         <div className="chain-menu-item">
-  //           Chain: {state.chainId ? ChainId[state.chainId] : "Unkown Chain"}
-  //           {supportedNetwork ? null : (
-  //             <span style={{ color: "red" }}> Unsupported Network</span>
-  //           )}
-  //         </div>
-  //       </Menu.Item>
-  //     </Menu.SubMenu>
-  //   );
 };

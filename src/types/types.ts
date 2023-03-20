@@ -13,6 +13,7 @@ export enum ChainId {
   HARMONY_TESTNET = 1666700000,
   MOONRIVER = 1285,
   LOCAL_TESTNET = 1337,
+  SEPOLIA = 11155111,
 }
 export type ConnectMMStatus =
   | "Connected"
