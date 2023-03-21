@@ -55,7 +55,7 @@ export function FundDetails(props: FundDetailsProps) {
               key={`fund-detail-${stock.ticker}`}
             >
               <Col style={{ fontWeight: "600" }} span={9}>
-                {stock.ticker}
+                {stock.stockName}
               </Col>
               <Col span={5}>{stock.ticker}</Col>
               <Col span={5}>{stock.sector}</Col>
