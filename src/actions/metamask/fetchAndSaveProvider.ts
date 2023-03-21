@@ -10,6 +10,7 @@ export async function fetchAndSaveProvider(dispatch: Dispatch<AppAction>) {
   if (_provider) {
     // If the provider returned by detectEthereumProvider is not the same as
     // window.ethereum, something is overwriting it, perhaps another wallet.
+    // @ts-ignore
     if (_provider !== window.ethereum) {
       console.error("Do you have multiple wallets installed?");
     }

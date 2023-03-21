@@ -7,6 +7,6 @@ export async function fetchAndSaveAccountAndChainId(
   dispatch: Dispatch<AppAction>,
   state: AppState
 ) {
-  await fetchAndSaveAccount(dispatch);
+  await fetchAndSaveAccount(dispatch, state);
   await fetchAndSaveChainId(dispatch, state.chainId);
 }
