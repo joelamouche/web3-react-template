@@ -9,6 +9,12 @@ export function FundDetails(props: FundDetailsProps) {
   const { openFundDetails } = props;
 
   const { state } = useContext(AppContext);
+  const totalPortfolioAmount = state.stockPortfolio
+    ? state.stockPortfolio.reduce((sum, currentStock) => {
+        return sum + currentStock.price * currentStock.balance;
+      }, 0)
+    : 0;
+  console.log("totalPortfolioAmount", totalPortfolioAmount);
   return (
     <div
       style={
@@ -41,6 +47,8 @@ export function FundDetails(props: FundDetailsProps) {
       </Row>
       {state.stockPortfolio &&
         state.stockPortfolio.map((stock) => {
+          const prct =
+            (100 * stock.balance * stock.price) / totalPortfolioAmount;
           return (
             <Row
               className="fund-details-table-line"
@@ -51,7 +59,7 @@ export function FundDetails(props: FundDetailsProps) {
               </Col>
               <Col span={5}>{stock.ticker}</Col>
               <Col span={5}>{stock.sector}</Col>
-              <Col span={5}>{stock.balance}</Col>
+              <Col span={5}>{`${prct.toFixed(2)}%`}</Col>
               {/* <Col span={4}>{stock.ticker}</Col> */}
             </Row>
           );

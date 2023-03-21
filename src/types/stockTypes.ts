@@ -18,6 +18,7 @@ export type StockSector =
 export interface StockInformation {
   ticker: AllowedTickers;
   balance: number;
+  price: number;
   sector: StockSector;
   description: string;
 }
