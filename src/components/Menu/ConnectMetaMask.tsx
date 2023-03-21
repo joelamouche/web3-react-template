@@ -51,7 +51,7 @@ function ConnectMetaMask() {
     icon: (
       <Dropdown menu={{ items }} open={state.needMMUnlock}>
         {RoundButton(() => {
-          fetchAndSaveAccount(dispatch);
+          fetchAndSaveAccount(dispatch, state);
         }, "Connect")}
       </Dropdown>
     ),

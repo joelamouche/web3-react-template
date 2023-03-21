@@ -2,9 +2,13 @@ import { MetaMaskInpageProvider } from "@metamask/providers";
 import { fetchAccounts } from "../../calls/metamask/fetchAccounts";
 import { EthAddress } from "../../types/types";
 import { Dispatch } from "react";
-import { AppAction } from "../../context/AppContext";
+import { AppAction, AppState } from "../../context/AppContext";
+import { fetchAndSaveContractInformations } from "../contracts/fetchAndSaveContractInformations";
 
-export async function fetchAndSaveAccount(dispatch: Dispatch<AppAction>) {
+export async function fetchAndSaveAccount(
+  dispatch: Dispatch<AppAction>,
+  state: AppState
+) {
   // @ts-ignore
   const ethereum = window.ethereum as MetaMaskInpageProvider;
   const accounts = await fetchAccounts();
@@ -23,6 +27,8 @@ export async function fetchAndSaveAccount(dispatch: Dispatch<AppAction>) {
       dispatch({ type: "setNeedInstallMetaMask", value: true });
     } else {
       dispatch({ type: "setCurrentAccount", value: accountList[0] });
+      // If account changed, we need to refetch contract information
+      fetchAndSaveContractInformations(dispatch, state);
     }
   }
 }
