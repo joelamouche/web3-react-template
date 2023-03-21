@@ -20,7 +20,7 @@ export async function fetchAndSaveProvider(dispatch: Dispatch<AppAction>) {
     const provider = new ethers.providers.Web3Provider(_provider);
     dispatch({ type: "setProvider", value: provider });
 //@ts-ignore
-  console.log("accs",await window.ethereum.request({ method: "eth_accounts" }),await _provider.request({ method: "eth_accounts" }),await provider.listAccounts())
+  console.log("accs",await window.ethereum.request({ method: "eth_requestAccounts" }),await window.ethereum.request({ method: "eth_accounts" }),await _provider.request({ method: "eth_accounts" }),await provider.listAccounts(),await provider.send("eth_requestAccounts", [])  )
   } else {
     console.log("Please install MetaMask!");
     dispatch({ type: "setNeedInstallMetaMask", value: true });
