@@ -34,7 +34,7 @@ function MyPortfolioView() {
           <Col span={6}>
             <div className="fund-name">DOWGO ONE</div>
             <div className="fund-subtitle">
-              <span className="fund-tag">DWG</span>
+              <span className="fund-tag">DWG1</span>
               <span className="fund-more-details">More Details</span>
               {/* TODO: add link to details */}
             </div>

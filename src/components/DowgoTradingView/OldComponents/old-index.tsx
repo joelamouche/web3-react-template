@@ -149,7 +149,7 @@ function DowgoContract(
                       .mul(collRange)
                       .div(10 ** 8)
                   ) / Number(ONE_DOWGO_UNIT)
-                } DWG`}
+                } DWG1`}
               </div>
               <div style={{ margin }}>
                 {`User USDC Balance on the Contract : ${(
