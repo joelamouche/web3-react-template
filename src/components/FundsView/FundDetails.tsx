@@ -1,6 +1,7 @@
 import { Col, Row } from "antd";
 import { useContext } from "react";
 import AppContext from "../../context/AppContext";
+import { Link } from "react-router-dom";
 
 interface FundDetailsProps {
   openFundDetails: boolean;
@@ -14,7 +15,7 @@ export function FundDetails(props: FundDetailsProps) {
         return sum + currentStock.price * currentStock.balance;
       }, 0)
     : 0;
-  console.log("totalPortfolioAmount", totalPortfolioAmount);
+
   return (
     <div
       style={
@@ -33,8 +34,12 @@ export function FundDetails(props: FundDetailsProps) {
         </Col>
         <Col span={18}>
           <div className="fund-row-right">
-            <button className="fund-button">Sell</button>
-            <button className="fund-button">Buy</button>
+            <Link to="../invest/sell">
+              <button className="fund-button">Sell</button>
+            </Link>
+            <Link to="../invest/buy">
+              <button className="fund-button">Buy</button>
+            </Link>
           </div>
         </Col>
       </Row>

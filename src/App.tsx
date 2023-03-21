@@ -1,8 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 
-import OldInvest from "./pages/invest/Invest";
-
 import { Layout, notification, Space } from "antd";
 
 import DowgoLogo from "./assets/icons/dowgo-logo.png";
@@ -87,13 +85,9 @@ function App() {
             {/* For tx toast notifications */}
             {contextHolder}
             <Routes>
-              {/* {state.currentAccount !== "0x" ? (
-              <Route path="/" element={<Navigate to="/profile" />} />
-            ) : (
-              <Route path="/" element={<DowgoDApp />} />
-            )} */}
               <Route path="/" element={<Invest />} />
               <Route path="/invest" element={<Invest />} />
+              <Route path="/invest/:buyOrSell" element={<Invest />} />
               <Route path="/dowgo-funds" element={<FundsPage />} />
               <Route path="/my-portfolio" element={<MyPortfolioPage />} />
               <Route path="/withdraw" element={<WithdrawPage />} />

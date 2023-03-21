@@ -17,15 +17,21 @@ import { approveUSDAndUpdate } from "../../actions/contracts/usdtContract/approv
 import { ApproveButton } from "./tradingViewComponents/ApproveButton";
 import { Currency } from "../../types/types";
 import { SwapButton } from "./tradingViewComponents/SwapButton";
+import { useParams } from "react-router-dom";
 
 const { Option } = Select;
 
 function DowgoTradingInterface() {
   const { state, dispatch } = useContext(AppContext);
+  let { buyOrSell } = useParams();
 
   // Local State
-  const [inputCurrency, setInputCurrency] = useState<Currency>("USDT");
-  const [outputCurrency, setOutputCurrency] = useState<Currency>("DWG1");
+  const [inputCurrency, setInputCurrency] = useState<Currency>(
+    buyOrSell === "sell" ? "DWG1" : "USDT"
+  );
+  const [outputCurrency, setOutputCurrency] = useState<Currency>(
+    buyOrSell === "sell" ? "USDT" : "DWG1"
+  );
   const [inputValue, setInputValue] = useState<number>(0);
   const [outputValue, setOutputValue] = useState<number>(0);
 
