@@ -23,6 +23,7 @@ import { ChainId, Currency } from "../../types/types";
 import { SwapButton } from "./tradingViewComponents/SwapButton";
 import { useParams } from "react-router-dom";
 import { WrongNetworkOverlay } from "./overlayComponents/WrongNetworkOverlay";
+import { NotWhitelistedOverlay } from "./overlayComponents/NotWhitelistedOverlay";
 
 const { Option } = Select;
 
@@ -107,6 +108,7 @@ function DowgoTradingInterface() {
       <div className="trading-prompt">
         Start investing by swapping our tokens below
       </div>
+      <NotWhitelistedOverlay />
       {!supportedNetwork && <WrongNetworkOverlay />}
       <div className="trading-container">
         <Row>

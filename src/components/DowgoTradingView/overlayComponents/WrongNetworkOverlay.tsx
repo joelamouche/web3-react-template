@@ -15,7 +15,6 @@ export const WrongNetworkOverlay = () => {
           features.
         </div>
         <div
-          //style={{ display: "flex", alignItems: "center" }}
           className="overlay-action-text"
           onClick={() => {
             switchNetwork(ChainId[ALLOWED_NETWORKS[0]]);
