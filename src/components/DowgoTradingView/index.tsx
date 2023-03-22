@@ -12,12 +12,17 @@ import {
   USDTComponent,
 } from "./tradingViewComponents/CurrencyComponents";
 import AppContext from "../../context/AppContext";
-import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../constants";
+import {
+  ALLOWED_NETWORKS,
+  ONE_DOWGO_UNIT,
+  ONE_USDC_UNIT,
+} from "../../constants";
 import { approveUSDAndUpdate } from "../../actions/contracts/usdtContract/approveUSDAndUpdate";
 import { ApproveButton } from "./tradingViewComponents/ApproveButton";
-import { Currency } from "../../types/types";
+import { ChainId, Currency } from "../../types/types";
 import { SwapButton } from "./tradingViewComponents/SwapButton";
 import { useParams } from "react-router-dom";
+import { WrongNetworkOverlay } from "./overlayComponents/WrongNetworkOverlay";
 
 const { Option } = Select;
 
@@ -95,11 +100,14 @@ function DowgoTradingInterface() {
       setInputValue(value * price);
     }
   }
+  const supportedNetwork =
+    state.chainId && ALLOWED_NETWORKS.includes(ChainId[state.chainId]);
   return (
     <div className="trading-top-container">
       <div className="trading-prompt">
         Start investing by swapping our tokens below
       </div>
+      {!supportedNetwork && <WrongNetworkOverlay />}
       <div className="trading-container">
         <Row>
           <Col span={11}>

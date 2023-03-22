@@ -5,18 +5,7 @@ import AppContext from "../../context/AppContext";
 import { ChainId } from "../../types/types";
 import { ALLOWED_NETWORKS } from "../../constants";
 import { smallIconStyle } from "../../styles/iconStyle";
-
-const switchNetwork = async (chainId) => {
-  try {
-    //@ts-ignore
-    await window.ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: `0x${chainId.toString(16)}` }],
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+import { switchNetwork } from "../../calls/metamask/switchNetwork";
 
 export const NetworkDropdown = () => {
   const { state, dispatch } = useContext(AppContext);
