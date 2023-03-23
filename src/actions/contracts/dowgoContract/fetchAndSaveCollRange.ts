@@ -6,12 +6,14 @@ export async function fetchAndSaveCollRange(
   dispatch: Dispatch<AppAction>,
   state: AppState
 ) {
-  const collRange = await fetchTargetRatio(
-    state.contractAddresses.dowgoAddress,
-    state.provider
-  );
-  dispatch({
-    type: "setCollRange",
-    value: collRange,
-  });
+  if (state.contractAddresses){
+    const collRange = await fetchTargetRatio(
+      state.contractAddresses.dowgoAddress,
+      state.provider
+    );
+    dispatch({
+      type: "setCollRange",
+      value: collRange,
+    });
+  }
 }
