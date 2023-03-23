@@ -28,7 +28,8 @@ export async function fetchAndSaveAccount(
     } else {
       dispatch({ type: "setCurrentAccount", value: accountList[0] });
       // If account changed, we need to refetch contract information
-      state.contractAddresses && fetchAndSaveContractInformations(dispatch, state);
+      state.contractAddresses &&
+        fetchAndSaveContractInformations(dispatch, state);
     }
   }
 }

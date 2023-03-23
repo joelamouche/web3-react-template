@@ -5,6 +5,7 @@ import { ALLOWED_NETWORKS } from "../../../constants";
 import { useContext, useState } from "react";
 import AppContext from "../../../context/AppContext";
 import { countryList } from "../../../constants/countryList";
+import { ethers } from "ethers";
 
 export const NotWhitelistedOverlay = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -16,18 +17,18 @@ export const NotWhitelistedOverlay = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    //setLoading(true);
     const url =
       "https://dowgo.us21.list-manage.com/subscribe/post-json?u=389cec789e7c3ea7cb5fc5e67&amp;id=6f5867262d&amp;f_id=0069f5e1f0"; // you can use .env file to replace this
 
-    if (ethKey !== "" && email !== "" && country !== "") {
+    if (!ethers.utils.isAddress(ethKey)) {
+      setErrorMsg("This is not a valid Ethereum Public Address");
+    } else if (ethKey !== "" && email !== "" && country !== "") {
+      setErrorMsg("Sending information...");
       jsonp(
         `${url}&ETHKEY=${ethKey}&EMAIL=${email}&COUNTRY=${country}`,
         { param: "c" },
         (_, { msg }) => {
           setErrorMsg(msg);
-          console.log("message", msg);
-          // setLoading(false);
         }
       );
     } else {
@@ -47,15 +48,6 @@ export const NotWhitelistedOverlay = () => {
         <div className="overlay-text">
           Please fill this form to get whitelisted
         </div>
-        {/* <div
-          className="overlay-action-text"
-          onClick={() => {
-            switchNetwork(ChainId[ALLOWED_NETWORKS[0]]);
-          }}
-        >
-          <SwitchIcon style={{ ...smallIconStyle, marginRight: "10px" }} />
-          Switch to {ALLOWED_NETWORKS[0]}
-        </div> */}
         <div style={{ marginTop: "40px" }}>
           <div className="dowgo-input-label">Ethereum Public Key</div>
           <input

@@ -6,7 +6,7 @@ export async function fetchAndSaveCollRange(
   dispatch: Dispatch<AppAction>,
   state: AppState
 ) {
-  if (state.contractAddresses){
+  if (state.contractAddresses) {
     const collRange = await fetchTargetRatio(
       state.contractAddresses.dowgoAddress,
       state.provider
