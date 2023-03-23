@@ -51,6 +51,13 @@ function App() {
     }
   }, [state.chainId]);
 
+  // If account changed, we need to refetch contract information
+  useEffect(() => {
+    if (state.chainId && state.currentAccount) {
+      fetchAndSaveContractInformations(dispatch, state);
+    }
+  }, [state.currentAccount]);
+
   //After we have the addresses, get contract info
   useEffect(() => {
     if (state.contractAddresses) {

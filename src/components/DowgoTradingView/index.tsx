@@ -6,7 +6,6 @@ import "./index.styles.scss";
 import { AmountLabel } from "./tradingViewComponents/AmountLabel";
 import { TradingInput } from "./tradingViewComponents/TradingInput";
 import { BalanceLabel } from "../displayComponents/BalanceLabel";
-import { TradeButton } from "../displayComponents/TradeButton";
 import {
   DOWGOOneComponent,
   USDTComponent,
@@ -17,7 +16,6 @@ import {
   ONE_DOWGO_UNIT,
   ONE_USDC_UNIT,
 } from "../../constants";
-import { approveUSDAndUpdate } from "../../actions/contracts/usdtContract/approveUSDAndUpdate";
 import { ApproveButton } from "./tradingViewComponents/ApproveButton";
 import { ChainId, Currency } from "../../types/types";
 import { SwapButton } from "./tradingViewComponents/SwapButton";

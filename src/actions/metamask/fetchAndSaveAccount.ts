@@ -27,9 +27,6 @@ export async function fetchAndSaveAccount(
       dispatch({ type: "setNeedInstallMetaMask", value: true });
     } else {
       dispatch({ type: "setCurrentAccount", value: accountList[0] });
-      // If account changed, we need to refetch contract information
-      state.contractAddresses &&
-        fetchAndSaveContractInformations(dispatch, state);
     }
   }
 }

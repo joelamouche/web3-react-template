@@ -7,7 +7,6 @@ export async function fetchAndSaveContractAddresses(
   state: AppState
 ) {
   let addresses = await fetchContractAddresses(state.chainId);
-
   dispatch({
     type: "setContractAddresses",
     value: addresses,
