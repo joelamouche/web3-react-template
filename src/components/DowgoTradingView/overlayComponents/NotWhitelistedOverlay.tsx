@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import AppContext from "../../../context/AppContext";
 import { countryList } from "../../../constants/countryList";
 import { ethers } from "ethers";
+import { whitelistUserAndRefresh } from "../../../actions/api/whitelistUser";
 
 export const NotWhitelistedOverlay = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -15,7 +16,7 @@ export const NotWhitelistedOverlay = () => {
   const [country, setCountry] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
     const url =
       "https://dowgo.us21.list-manage.com/subscribe/post-json?u=389cec789e7c3ea7cb5fc5e67&amp;id=6f5867262d&amp;f_id=0069f5e1f0"; // you can use .env file to replace this
@@ -23,16 +24,20 @@ export const NotWhitelistedOverlay = () => {
     if (!ethers.utils.isAddress(ethKey)) {
       setErrorMsg("This is not a valid Ethereum Public Address");
     } else if (ethKey !== "" && email !== "" && country !== "") {
-      setErrorMsg("Sending information...");
+      setErrorMsg("Sending information and whitelisting...");
       jsonp(
         `${url}&ETHKEY=${ethKey}&EMAIL=${email}&COUNTRY=${country}`,
         { param: "c" },
         (_, { msg }) => {
-          setErrorMsg(msg);
+          setErrorMsg(
+            `Whitelisting address, error during email registration : ${msg}`
+          );
         }
       );
+      let resp = await whitelistUserAndRefresh(dispatch, state);
     } else {
-      setErrorMsg("Missing Input");
+      setErrorMsg("Missing email or country, whitelisting address...");
+      let resp = await whitelistUserAndRefresh(dispatch, state);
     }
   };
 
@@ -46,24 +51,25 @@ export const NotWhitelistedOverlay = () => {
           This Eth Address is not whitelisted.
         </div>
         <div className="overlay-text">
-          Please fill this form to get whitelisted
+          <div>Please fill this form to get whitelisted.</div>
+          <div>Optionally, add Email and Country to stay in touch.</div>
         </div>
         <div style={{ marginTop: "40px" }}>
-          <div className="dowgo-input-label">Ethereum Public Key</div>
+          <div className="dowgo-input-label">Ethereum Public Key*</div>
           <input
             value={ethKey}
             className="dowgo-input"
             placeholder="Enter your ethereum public key for Sepolia testing"
             onChange={(e) => setEthKey(e.target.value)}
           />
-          <div className="dowgo-input-label">Email</div>
+          <div className="dowgo-input-label">Email (optional)</div>
           <input
             value={email}
             className="dowgo-input"
             placeholder="Enter your email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <div className="dowgo-input-label">Country</div>
+          <div className="dowgo-input-label">Country (optional)</div>
           <select
             className="dowgo-input"
             value={country}
@@ -85,6 +91,9 @@ export const NotWhitelistedOverlay = () => {
             }
           >
             {errorMsg}
+            {/* {errorMsg === "Thank you for subscribing! We will send you an email when you are whitelisted."
+                ? "dowgo-success-message"
+                : errorMsg} */}
           </div>
           <div
             style={{
