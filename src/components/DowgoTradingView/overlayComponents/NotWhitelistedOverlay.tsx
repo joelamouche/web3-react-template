@@ -30,13 +30,17 @@ export const NotWhitelistedOverlay = () => {
         { param: "c" },
         (_, { msg }) => {
           setErrorMsg(
-            `Whitelisting address, error during email registration : ${msg}`
+            errorMsg === "Thank you for subscribing!"
+              ? `Thank you for subscribing! Whitelisting address and sending mockUSDT within a few minutes...`
+              : `Whitelisting address and sending mockUSDT within a few minutes... Error during email registration : ${msg}`
           );
         }
       );
       let resp = await whitelistUserAndRefresh(dispatch, state);
     } else {
-      setErrorMsg("Missing email or country, whitelisting address...");
+      setErrorMsg(
+        "Whitelisting address and sending mockUSDT within a few minutes..."
+      );
       let resp = await whitelistUserAndRefresh(dispatch, state);
     }
   };
