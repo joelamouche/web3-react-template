@@ -16,7 +16,7 @@ export const TradingInput = (props: TradingInputProps) => {
       value={props.value}
       onChange={props.onChange}
       min={props.min}
-      max={props.max.toLocaleString(undefined,{maximumFractionDigits: 2})}
+      max={props.max.toLocaleString(undefined, { maximumFractionDigits: 2 })}
       defaultValue={props.defaultValue}
       addonAfter={props.addonAfter}
     />

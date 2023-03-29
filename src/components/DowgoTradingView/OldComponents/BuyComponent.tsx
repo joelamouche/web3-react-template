@@ -84,11 +84,14 @@ export const BuyComponent = (
           <div>{`Cost : ${(
             (Number(buyInput) * Number(price)) /
             Number(ONE_USDC_UNIT)
-          ).toLocaleString(undefined,{maximumFractionDigits: 2})}`}</div>
+          ).toLocaleString(undefined, { maximumFractionDigits: 2 })}`}</div>
           <div>{`USDC Allowance to Dowgo : ${
             allowance.toHexString() === INFINITE_ALLOWANCE
               ? "Infinite"
-              : (Number(allowance) / Number(ONE_USDC_UNIT)).toLocaleString(undefined,{maximumFractionDigits: 2})
+              : (Number(allowance) / Number(ONE_USDC_UNIT)).toLocaleString(
+                  undefined,
+                  { maximumFractionDigits: 2 }
+                )
           }`}</div>
         </div>
       ) : (

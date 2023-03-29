@@ -60,7 +60,9 @@ export function MyPortfolioDetails(props: MyPortfolioDetailsProps) {
               </Col>
               <Col span={5}>{stock.ticker}</Col>
               <Col span={5}>{stock.sector}</Col>
-              <Col span={5}>{`$${myAmount.toLocaleString(undefined,{maximumFractionDigits: 2})}`}</Col>
+              <Col span={5}>{`$${myAmount.toLocaleString(undefined, {
+                maximumFractionDigits: 2,
+              })}`}</Col>
               {/* <Col span={4}>{stock.ticker}</Col> */}
             </Row>
           );

@@ -18,7 +18,10 @@ function USDCBalance(usdBalance: BigNumber) {
           marginRight: 10,
         }}
       />
-      {`${(Number(usdBalance) / Number(ONE_USDC_UNIT)).toLocaleString(undefined,{maximumFractionDigits: 2})} USDC`}
+      {`${(Number(usdBalance) / Number(ONE_USDC_UNIT)).toLocaleString(
+        undefined,
+        { maximumFractionDigits: 2 }
+      )} USDC`}
     </div>
   );
 }

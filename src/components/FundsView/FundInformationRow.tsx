@@ -14,12 +14,14 @@ export function FundInformationRow(props: FundInformationRowProps) {
   const { state } = useContext(AppContext);
 
   const tokenPrice = Number(state.price) / Number(ONE_USDC_UNIT);
-  const tokenPriceFixedDecimals = tokenPrice.toLocaleString(undefined,{maximumFractionDigits: 2})
+  const tokenPriceFixedDecimals = tokenPrice.toLocaleString(undefined, {
+    maximumFractionDigits: 2,
+  });
   const aum = (
     (Number(state.totalSupply) * Number(state.price)) /
     Number(ONE_DOWGO_UNIT) /
     Number(ONE_USDC_UNIT)
-  ).toLocaleString(undefined,{maximumFractionDigits: 2})
+  ).toLocaleString(undefined, { maximumFractionDigits: 2 });
   return (
     <Row>
       <Col span={6}>

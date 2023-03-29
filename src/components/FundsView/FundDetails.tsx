@@ -64,7 +64,9 @@ export function FundDetails(props: FundDetailsProps) {
               </Col>
               <Col span={5}>{stock.ticker}</Col>
               <Col span={5}>{stock.sector}</Col>
-              <Col span={5}>{`${prct.toLocaleString(undefined,{maximumFractionDigits: 2})}%`}</Col>
+              <Col span={5}>{`${prct.toLocaleString(undefined, {
+                maximumFractionDigits: 2,
+              })}%`}</Col>
               {/* <Col span={4}>{stock.ticker}</Col> */}
             </Row>
           );

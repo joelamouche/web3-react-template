@@ -17,12 +17,14 @@ export function MyPortfolioInformationRow(
 
   const tokenPrice = Number(state.price) / Number(ONE_USDC_UNIT);
   const ownedTokens = Number(state.dowgoBalance) / Number(ONE_DOWGO_UNIT);
-  const tokenPriceFixedDecimals = tokenPrice.toLocaleString(undefined,{maximumFractionDigits: 2});
+  const tokenPriceFixedDecimals = tokenPrice.toLocaleString(undefined, {
+    maximumFractionDigits: 2,
+  });
   const investedUSD = (
     (Number(state.dowgoBalance) * Number(state.price)) /
     Number(ONE_DOWGO_UNIT) /
     Number(ONE_USDC_UNIT)
-  ).toLocaleString(undefined,{maximumFractionDigits: 2});
+  ).toLocaleString(undefined, { maximumFractionDigits: 2 });
   return (
     <Row>
       <Col span={6}>
@@ -45,7 +47,7 @@ export function MyPortfolioInformationRow(
           <div className="fund-info-box">
             <div className="fund-info-name">Nb of Tokens</div>
             <div className="fund-info-value">{`${ownedTokens
-              .toLocaleString(undefined,{maximumFractionDigits: 2})
+              .toLocaleString(undefined, { maximumFractionDigits: 2 })
               .replace(/[.,]00$/, "")}`}</div>
           </div>
           <div className="fund-info-box">
