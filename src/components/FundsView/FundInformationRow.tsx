@@ -14,12 +14,12 @@ export function FundInformationRow(props: FundInformationRowProps) {
   const { state } = useContext(AppContext);
 
   const tokenPrice = Number(state.price) / Number(ONE_USDC_UNIT);
-  const tokenPriceFixedDecimals = tokenPrice.toFixed(2);
+  const tokenPriceFixedDecimals = tokenPrice.toLocaleString(undefined,{maximumFractionDigits: 2})
   const aum = (
     (Number(state.totalSupply) * Number(state.price)) /
     Number(ONE_DOWGO_UNIT) /
     Number(ONE_USDC_UNIT)
-  ).toFixed(2);
+  ).toLocaleString(undefined,{maximumFractionDigits: 2})
   return (
     <Row>
       <Col span={6}>
@@ -54,7 +54,7 @@ export function FundInformationRow(props: FundInformationRowProps) {
            */}
           <div className="fund-info-box">
             <div className="fund-info-name">AUM</div>
-            <div className="fund-info-value">{`$${aum}`}</div>
+            <div className="fund-info-value">{`$${aum.toLocaleString()}`}</div>
           </div>
           <div className="fund-info-box">
             <div className="fund-info-name">TokenPrice</div>

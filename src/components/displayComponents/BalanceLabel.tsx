@@ -23,7 +23,7 @@ export function BalanceLabel(props: BalanceLabelProps) {
           fontFamily: "Montserrat",
         }}
       >
-        {`${props.text}: ${props.balance.toFixed(2)}`}
+        {`${props.text}: ${props.balance.toLocaleString(undefined,{maximumFractionDigits: 2})}`}
       </span>
       <span
         style={{
