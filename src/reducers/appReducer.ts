@@ -36,6 +36,8 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
       return { ...state, dowgoBalance: action.value as BigNumber };
     case "setUserUSDBalanceOnDowgo":
       return { ...state, usdBalanceOnDowgo: action.value as BigNumber };
+    case "setWhitelistedStatus":
+      return { ...state, isWhitelisted: action.value as boolean };
     //USDT
     case "setUserAllowance":
       return { ...state, allowance: action.value as BigNumber };

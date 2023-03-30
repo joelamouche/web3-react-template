@@ -30,7 +30,7 @@ export const sellDowgo = async (
       { status: "Tx Sent, Waiting For confirmation..." },
       notificationApi
     );
-    await tx.wait(6);
+    await tx.wait();
     openNotification({ status: "Success: Tx Confirmed" }, notificationApi);
   } catch (error) {
     console.error(error);

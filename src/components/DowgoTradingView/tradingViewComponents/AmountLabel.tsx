@@ -27,7 +27,9 @@ export function AmountLabel(props: AmountProps) {
           fontFamily: "Montserrat",
         }}
       >
-        {`(min: ${props.min}, max ${props.max.toFixed(2)})`}
+        {`(min: ${props.min}, max ${props.max.toLocaleString(undefined, {
+          maximumFractionDigits: 2,
+        })})`}
         <InfoIcon
           style={{
             color: lightGrey,

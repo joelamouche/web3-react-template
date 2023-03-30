@@ -37,7 +37,7 @@ export const launchTxWithStatus = async (
     // checkTxStatus(tx,6,()=>{
     //   callback()
     // })
-    await tx.wait(6);
+    await tx.wait();
     setTxStatus({ status: "Success: Tx Confirmed", message: tx.hash });
     callback();
   } catch (e: any) {

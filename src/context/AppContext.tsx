@@ -23,6 +23,7 @@ export const initialAppState = {
   targetRatio: BigNumber.from(0),
   collRange: BigNumber.from(0),
   totalSupply: BigNumber.from(0),
+  isWhitelisted: false,
 
   // Portfolio
   stockPortfolio: undefined,
@@ -73,6 +74,7 @@ export interface AppState {
   totalSupply: BigNumber;
   targetRatio: BigNumber;
   collRange: BigNumber;
+  isWhitelisted: boolean;
 
   // Portfolio
   stockPortfolio: StockInformation[] | undefined;

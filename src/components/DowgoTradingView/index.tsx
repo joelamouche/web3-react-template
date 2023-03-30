@@ -6,26 +6,36 @@ import "./index.styles.scss";
 import { AmountLabel } from "./tradingViewComponents/AmountLabel";
 import { TradingInput } from "./tradingViewComponents/TradingInput";
 import { BalanceLabel } from "../displayComponents/BalanceLabel";
-import { TradeButton } from "../displayComponents/TradeButton";
 import {
   DOWGOOneComponent,
   USDTComponent,
 } from "./tradingViewComponents/CurrencyComponents";
 import AppContext from "../../context/AppContext";
-import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../constants";
-import { approveUSDAndUpdate } from "../../actions/contracts/usdtContract/approveUSDAndUpdate";
+import {
+  ALLOWED_NETWORKS,
+  ONE_DOWGO_UNIT,
+  ONE_USDC_UNIT,
+} from "../../constants";
 import { ApproveButton } from "./tradingViewComponents/ApproveButton";
-import { Currency } from "../../types/types";
+import { ChainId, Currency } from "../../types/types";
 import { SwapButton } from "./tradingViewComponents/SwapButton";
+import { useParams } from "react-router-dom";
+import { WrongNetworkOverlay } from "./overlayComponents/WrongNetworkOverlay";
+import { NotWhitelistedOverlay } from "./overlayComponents/NotWhitelistedOverlay";
 
 const { Option } = Select;
 
 function DowgoTradingInterface() {
   const { state, dispatch } = useContext(AppContext);
+  let { buyOrSell } = useParams();
 
   // Local State
-  const [inputCurrency, setInputCurrency] = useState<Currency>("USDT");
-  const [outputCurrency, setOutputCurrency] = useState<Currency>("DWG1");
+  const [inputCurrency, setInputCurrency] = useState<Currency>(
+    buyOrSell === "sell" ? "DWG1" : "USDT"
+  );
+  const [outputCurrency, setOutputCurrency] = useState<Currency>(
+    buyOrSell === "sell" ? "USDT" : "DWG1"
+  );
   const [inputValue, setInputValue] = useState<number>(0);
   const [outputValue, setOutputValue] = useState<number>(0);
 
@@ -61,16 +71,20 @@ function DowgoTradingInterface() {
     setInputCurrency(value);
     if (value === "USDT") {
       setOutputCurrency("DWG1");
+      price !== 0 && setOutputValue(inputValue / price);
     } else {
       setOutputCurrency("USDT");
+      setOutputValue(inputValue * price);
     }
   }
   function handleChangeCurrencyOutput(value) {
     setOutputCurrency(value);
     if (value === "USDT") {
       setInputCurrency("DWG1");
+      price !== 0 && setInputValue(outputValue / price);
     } else {
       setInputCurrency("USDT");
+      setInputValue(outputValue * price);
     }
   }
   function handleChangeInputValue(value) {
@@ -89,11 +103,15 @@ function DowgoTradingInterface() {
       setInputValue(value * price);
     }
   }
+  const supportedNetwork =
+    state.chainId && ALLOWED_NETWORKS.includes(ChainId[state.chainId]);
   return (
     <div className="trading-top-container">
       <div className="trading-prompt">
         Start investing by swapping our tokens below
       </div>
+      <NotWhitelistedOverlay />
+      {!supportedNetwork && <WrongNetworkOverlay />}
       <div className="trading-container">
         <Row>
           <Col span={11}>

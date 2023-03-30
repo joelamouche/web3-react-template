@@ -137,7 +137,7 @@ function DowgoContract(
                   (Number(totalSupply) * Number(price)) /
                   Number(ONE_DOWGO_UNIT) /
                   Number(ONE_USDC_UNIT)
-                ).toFixed(2)} USD`}
+                ).toLocaleString(undefined, { maximumFractionDigits: 2 })} USD`}
               </div>
               <div style={{ margin }}>
                 {`Max Buy/Sell Amount : Total Supply * Target Ratio (${
@@ -149,12 +149,14 @@ function DowgoContract(
                       .mul(collRange)
                       .div(10 ** 8)
                   ) / Number(ONE_DOWGO_UNIT)
-                } DWG`}
+                } DWG1`}
               </div>
               <div style={{ margin }}>
                 {`User USDC Balance on the Contract : ${(
                   Number(usdBalanceOnContract) / Number(ONE_USDC_UNIT)
-                ).toFixed(2)} USDC`}
+                ).toLocaleString(undefined, {
+                  maximumFractionDigits: 2,
+                })} USDC`}
               </div>
             </div>
           </Col>

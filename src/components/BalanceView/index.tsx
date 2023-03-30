@@ -34,7 +34,7 @@ export const BalancePanel = (
             boxShadow: "0 0 5px #0ff4e9,inset 0 0 5px #0ff4e9",
             border: "2px solid #0ff4e9",
           }}
-          title="DWG Balance"
+          title="DWG1 Balance"
         >
           <div
             style={{

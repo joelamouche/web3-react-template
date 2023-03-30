@@ -17,7 +17,9 @@ export type StockSector =
   | "Utilities";
 export interface StockInformation {
   ticker: AllowedTickers;
+  stockName: string;
   balance: number;
+  price: number;
   sector: StockSector;
   description: string;
 }

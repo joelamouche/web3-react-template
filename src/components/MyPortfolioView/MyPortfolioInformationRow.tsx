@@ -4,21 +4,24 @@ import AppContext from "../../context/AppContext";
 import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../constants";
 import { ReactComponent as ArrowDown } from "../../assets/icons/arrow-down-icon.svg";
 
-interface FundInformationRowProps {
-  openFundDetails: boolean;
+interface MyPortfolioInformationRowProps {
+  openPortfolioDetails: boolean;
   toggleDetails: () => void;
 }
 
-export function FundInformationRow(props: FundInformationRowProps) {
-  const { openFundDetails, toggleDetails } = props;
+export function MyPortfolioInformationRow(
+  props: MyPortfolioInformationRowProps
+) {
+  const { openPortfolioDetails, toggleDetails } = props;
   const { state } = useContext(AppContext);
 
   const tokenPrice = Number(state.price) / Number(ONE_USDC_UNIT);
+  const ownedTokens = Number(state.dowgoBalance) / Number(ONE_DOWGO_UNIT);
   const tokenPriceFixedDecimals = tokenPrice.toLocaleString(undefined, {
     maximumFractionDigits: 2,
   });
-  const aum = (
-    (Number(state.totalSupply) * Number(state.price)) /
+  const investedUSD = (
+    (Number(state.dowgoBalance) * Number(state.price)) /
     Number(ONE_DOWGO_UNIT) /
     Number(ONE_USDC_UNIT)
   ).toLocaleString(undefined, { maximumFractionDigits: 2 });
@@ -34,36 +37,25 @@ export function FundInformationRow(props: FundInformationRowProps) {
       </Col>
       <Col span={18}>
         <div className="fund-row-right">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <span
-              style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "4px",
-                background: "#54FFB7",
-                marginRight: "8px",
-              }}
-            ></span>
-            <span className="fund-info-name">Active</span>
-          </div>
-          {/*
-          TODO: add performance when we have a longer history on the Fund
-           */}
-          <div className="fund-info-box">
-            <div className="fund-info-name">AUM</div>
-            <div className="fund-info-value">{`$${aum.toLocaleString()}`}</div>
-          </div>
-          <div className="fund-info-box">
+          <div>
             <div className="fund-info-name">Token Price</div>
             <div className="fund-info-value">{`$${tokenPriceFixedDecimals}`}</div>
           </div>
+          {/*
+      TODO: add performance and pNL when we have a longer history on the Fund
+      */}
+          <div className="fund-info-box">
+            <div className="fund-info-name">Nb of Tokens</div>
+            <div className="fund-info-value">{`${ownedTokens
+              .toLocaleString(undefined, { maximumFractionDigits: 2 })
+              .replace(/[.,]00$/, "")}`}</div>
+          </div>
+          <div className="fund-info-box">
+            <div className="fund-info-name">Invested USD</div>
+            <div className="fund-info-value">{`$${investedUSD}`}</div>
+          </div>
           <div className="arrow-box">
-            {openFundDetails ? (
+            {openPortfolioDetails ? (
               <div className="arrow-circle-selected" onClick={toggleDetails}>
                 <ArrowDown style={{ width: "12px", color: "white" }} />
               </div>

@@ -1,8 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 
-import OldInvest from "./pages/invest/Invest";
-
 import { Layout, notification, Space } from "antd";
 
 import DowgoLogo from "./assets/icons/dowgo-logo.png";
@@ -29,7 +27,7 @@ function App() {
   const { Header } = Layout;
 
   const [state, dispatch] = useReducer(appReducer, initialAppState);
-
+  notification.config({ maxCount: 1 });
   const [api, contextHolder] = notification.useNotification();
 
   // CONNECT TO METAMASK
@@ -52,6 +50,13 @@ function App() {
       fetchAndSaveContractAddresses(dispatch, state);
     }
   }, [state.chainId]);
+
+  // If account changed, we need to refetch contract information
+  useEffect(() => {
+    if (state.chainId && state.currentAccount) {
+      fetchAndSaveContractInformations(dispatch, state);
+    }
+  }, [state.currentAccount]);
 
   //After we have the addresses, get contract info
   useEffect(() => {
@@ -87,13 +92,9 @@ function App() {
             {/* For tx toast notifications */}
             {contextHolder}
             <Routes>
-              {/* {state.currentAccount !== "0x" ? (
-              <Route path="/" element={<Navigate to="/profile" />} />
-            ) : (
-              <Route path="/" element={<DowgoDApp />} />
-            )} */}
               <Route path="/" element={<Invest />} />
               <Route path="/invest" element={<Invest />} />
+              <Route path="/invest/:buyOrSell" element={<Invest />} />
               <Route path="/dowgo-funds" element={<FundsPage />} />
               <Route path="/my-portfolio" element={<MyPortfolioPage />} />
               <Route path="/withdraw" element={<WithdrawPage />} />

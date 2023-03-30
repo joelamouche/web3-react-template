@@ -38,7 +38,7 @@ const getContractAddresses = async (
       ).data;
       return respGoerli
         ? {
-            usdAddress: respGoerli.mockUSDCAddress,
+            usdAddress: respGoerli.mockUSDAddress,
             dowgoAddress: respGoerli.dowgoAddress,
           }
         : {
@@ -53,7 +53,7 @@ const getContractAddresses = async (
       ).data;
       return respSepolia
         ? {
-            usdAddress: respSepolia.mockUSDCAddress,
+            usdAddress: respSepolia.mockUSDAddress,
             dowgoAddress: respSepolia.dowgoAddress,
           }
         : {
