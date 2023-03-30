@@ -47,7 +47,8 @@ export const NotWhitelistedOverlay = () => {
 
   const supportedNetwork =
     state.chainId && ALLOWED_NETWORKS.includes(ChainId[state.chainId]);
-  const isDisplayed = supportedNetwork && !state.isWhitelisted;
+  const isDisplayed =
+    supportedNetwork && !state.isWhitelisted && state.currentAccount !== "0x";
   return (
     <div className={isDisplayed ? "get-whitelisted-container" : "hidden"}>
       <div>

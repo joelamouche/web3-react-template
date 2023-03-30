@@ -1,4 +1,4 @@
-import { NotificationInstance } from "antd/lib/notification";
+import notification, { NotificationInstance } from "antd/lib/notification";
 import { TxStatus } from "../../types/types";
 
 export const openNotification = (

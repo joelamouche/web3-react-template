@@ -27,7 +27,7 @@ function App() {
   const { Header } = Layout;
 
   const [state, dispatch] = useReducer(appReducer, initialAppState);
-
+  notification.config({ maxCount: 1 });
   const [api, contextHolder] = notification.useNotification();
 
   // CONNECT TO METAMASK

@@ -38,7 +38,7 @@ export function MyPortfolioInformationRow(
       <Col span={18}>
         <div className="fund-row-right">
           <div>
-            <div className="fund-info-name">TokenPrice</div>
+            <div className="fund-info-name">Token Price</div>
             <div className="fund-info-value">{`$${tokenPriceFixedDecimals}`}</div>
           </div>
           {/*

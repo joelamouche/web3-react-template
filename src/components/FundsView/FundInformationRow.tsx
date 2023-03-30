@@ -59,7 +59,7 @@ export function FundInformationRow(props: FundInformationRowProps) {
             <div className="fund-info-value">{`$${aum.toLocaleString()}`}</div>
           </div>
           <div className="fund-info-box">
-            <div className="fund-info-name">TokenPrice</div>
+            <div className="fund-info-name">Token Price</div>
             <div className="fund-info-value">{`$${tokenPriceFixedDecimals}`}</div>
           </div>
           <div className="arrow-box">
