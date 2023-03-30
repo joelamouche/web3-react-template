@@ -30,7 +30,7 @@ export const NotWhitelistedOverlay = () => {
         { param: "c" },
         (_, { msg }) => {
           setErrorMsg(
-            errorMsg === "Thank you for subscribing!"
+            msg === "Thank you for subscribing!"
               ? `Thank you for subscribing! Whitelisting address and sending mockUSDT within a few minutes...`
               : `Whitelisting address and sending mockUSDT within a few minutes... Error during email registration : ${msg}`
           );
