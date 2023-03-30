@@ -71,16 +71,20 @@ function DowgoTradingInterface() {
     setInputCurrency(value);
     if (value === "USDT") {
       setOutputCurrency("DWG1");
+      price !== 0 && setOutputValue(inputValue / price);
     } else {
       setOutputCurrency("USDT");
+      setOutputValue(inputValue * price);
     }
   }
   function handleChangeCurrencyOutput(value) {
     setOutputCurrency(value);
     if (value === "USDT") {
       setInputCurrency("DWG1");
+      price !== 0 && setInputValue(outputValue / price);
     } else {
       setInputCurrency("USDT");
+      setInputValue(outputValue * price);
     }
   }
   function handleChangeInputValue(value) {
