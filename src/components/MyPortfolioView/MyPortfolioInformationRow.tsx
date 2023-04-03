@@ -31,7 +31,9 @@ export function MyPortfolioInformationRow(
         <div className="fund-name">DOWGO ONE</div>
         <div className="fund-subtitle">
           <span className="fund-tag">DWG1</span>
-          <span className="fund-more-details">More Details</span>
+          <a href="https://www.dowgo.com/token" className="fund-more-details">
+            More Details
+          </a>
           {/* TODO: add link to details */}
         </div>
       </Col>

@@ -79,13 +79,13 @@ function App() {
           <Header className="app-header">
             {<DowgoMenu />}
             <div className="dowgo-logo-container">
-              <Link to="/">
+              <a href="https://www.dowgo.com">
                 <img
                   src={DowgoLogo}
                   alt="dowgo-logo"
                   className="dowgo-logo-menu"
                 />
-              </Link>
+              </a>
             </div>
           </Header>
           <Content style={{ minHeight: "115vh" }}>
