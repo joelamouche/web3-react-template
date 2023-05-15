@@ -17,13 +17,16 @@ export const DowgoFooter = () => {
       }}
     >
       <span
-        style={{
-          left: 0,
-          position: "relative",
-        }}
-      >
-        <img src={EtherscanLogo} alt="etherscan-logo" style={smallIconStyle} />
-      </span>
+    style={{
+      left: 0,
+     position: "relative",
+    }}  
+  >
+    <a href="https://sepolia.etherscan.io/address/0xd770c2f1dbe3553e155c01a9222f21c3430e7c03" target="_blank" rel="noopener noreferrer">
+      <img src={EtherscanLogo} alt="etherscan-logo" style={smallIconStyle} />
+    </a>  
+  </span>
+
       <span
         style={{
           display: "flex",
