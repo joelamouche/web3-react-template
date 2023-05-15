@@ -31,9 +31,13 @@ export const DowgoFooter = () => {
           justifyContent: "flex-end",
         }}
       >
-        <HelpIcon style={smallIconStyle} />
-        <span style={{ ...regularWhiteWord, marginLeft: "10px" }}>Help</span>
+        <a href="https://us21.list-manage.com/contact-form?u=389cec789e7c3ea7cb5fc5e67&form_id=10ec5e5db49734ba1325f9fd7eb6df3b" target="_blank" rel="noopener noreferrer">
+          <HelpIcon style={smallIconStyle} />
+          <span style={{ ...regularWhiteWord, marginLeft: "10px" }}>Help</span>
+        </a>
+        <a href="https://www.dowgo.com/tokenization" target="_blank" rel="noopener noreferrer">
         <span style={{ ...regularWhiteWord, marginLeft: "24px" }}>Docs</span>
+        </a>
       </span>
     </Footer>
   );
