@@ -143,9 +143,9 @@ function DowgoTradingInterface() {
                 />
               </div>
             </Row>
-            {/* <Row>
+            <Row>
              <BalanceLabel balance={inputBalance} text={"Balance"} />
-            </Row> */}
+            </Row>
           </Col>
           <Col span={2}></Col>
           <Col span={11}>
@@ -177,9 +177,9 @@ function DowgoTradingInterface() {
                 />
               </div>
             </Row>
-            {/* <Row>
+            <Row>
              <BalanceLabel balance={outputBalance} text={"Balance"} />
-            </Row> */}
+            </Row>
           </Col>
         </Row>
         <Row>

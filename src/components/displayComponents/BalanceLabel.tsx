@@ -34,7 +34,7 @@ export function BalanceLabel(props: BalanceLabelProps) {
           fontFamily: "Montserrat",
         }}
       >
-       (Max)
+       {/* (Max) */}
       </span>
     </div>
   );
