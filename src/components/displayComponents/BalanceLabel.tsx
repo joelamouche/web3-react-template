@@ -5,7 +5,7 @@ interface BalanceLabelProps {
   text: string;
 }
 export function BalanceLabel(props: BalanceLabelProps) {
-  return (
+   return (
     <div
       style={{
         display: "flex",
@@ -34,7 +34,7 @@ export function BalanceLabel(props: BalanceLabelProps) {
           fontFamily: "Montserrat",
         }}
       >
-       // (Max)
+       (Max)
       </span>
     </div>
   );

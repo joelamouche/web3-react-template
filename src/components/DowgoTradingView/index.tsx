@@ -108,7 +108,7 @@ function DowgoTradingInterface() {
   return (
     <div className="trading-top-container">
       <div className="trading-prompt">
-        Start investing by swapping our tokens below
+        Start investing by swapping our token below
       </div>
       <NotWhitelistedOverlay />
       {!supportedNetwork && <WrongNetworkOverlay />}
@@ -143,9 +143,9 @@ function DowgoTradingInterface() {
                 />
               </div>
             </Row>
-            <Row>
-              <BalanceLabel balance={inputBalance} text={"Balance"} />
-            </Row>
+            {/* <Row>
+             <BalanceLabel balance={inputBalance} text={"Balance"} />
+            </Row> */}
           </Col>
           <Col span={2}></Col>
           <Col span={11}>
@@ -177,9 +177,9 @@ function DowgoTradingInterface() {
                 />
               </div>
             </Row>
-            <Row>
-              <BalanceLabel balance={outputBalance} text={"Balance"} />
-            </Row>
+            {/* <Row>
+             <BalanceLabel balance={outputBalance} text={"Balance"} />
+            </Row> */}
           </Col>
         </Row>
         <Row>
