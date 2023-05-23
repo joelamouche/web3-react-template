@@ -38,7 +38,7 @@ export const DowgoFooter = () => {
           <HelpIcon style={smallIconStyle} />
           <span style={{ ...regularWhiteWord, marginLeft: "10px" }}>Help</span>
         </a>
-        <a href="https://app.gitbook.com/invite/b441M8gWkEI8IBKYrY8g/Dkc8e5zSYEetTV0QTxT3" target="_blank" rel="noopener noreferrer">
+        <a href="https://dowgo.gitbook.io/dowgo-doc/" target="_blank" rel="noopener noreferrer">
         <span style={{ ...regularWhiteWord, marginLeft: "24px" }}>Docs</span>
         </a>
       </span>
