@@ -24,10 +24,10 @@ export function MyPortfolioDetails(props: MyPortfolioDetailsProps) {
       }
     >
       <Row>
-        <Col style={{ display: "flex", alignItems: "center" }} span={6}>
+        <Col style={{ display: "flex", alignItems: "center" }} xs={{ span: 24}} md={{ span: 6}} sm={{ span: 6}} lg={{ span: 6}}>
           <div className="fund-name">My Portfolio</div>
         </Col>
-        <Col span={18}>
+        <Col xs={{ span: 24}} md={{ span: 18}} sm={{ span: 18}} lg={{ span: 18}}>
           <div className="fund-row-right">
             <Link to="../invest/sell">
               <button className="fund-button">Sell</button>
@@ -39,10 +39,18 @@ export function MyPortfolioDetails(props: MyPortfolioDetailsProps) {
         </Col>
       </Row>
       <Row className="fund-details-table-header">
-        <Col span={9}>Company name</Col>
-        <Col span={5}>Acronym</Col>
-        <Col span={5}>Industry</Col>
-        <Col span={5}>Amount Per Stock</Col>
+        <Col xs={{ span: 13}} md={{ span: 9}} sm={{ span: 9}} lg={{ span: 9}}>
+          Company name
+        </Col>
+        <Col xs={{ span: 6}} md={{ span: 5}} sm={{ span: 5}} lg={{ span: 5}} className="fund-acronym-title">
+          Acronym
+        </Col>
+        <Col xs={{ span: 0}} md={{ span: 5}} sm={{ span: 5}} lg={{ span: 5}}>
+          Industry
+        </Col>
+        <Col xs={{ span: 5}} md={{ span: 5}} sm={{ span: 5}} lg={{ span: 5}} className="fund-stock-amount-title">
+          Amount Per Stock
+        </Col>
         {/* <Col span={4}>Performance</Col> */}
       </Row>
       {state.stockPortfolio &&
@@ -55,14 +63,41 @@ export function MyPortfolioDetails(props: MyPortfolioDetailsProps) {
               className="fund-details-table-line"
               key={`fund-detail-${stock.ticker}`}
             >
-              <Col style={{ fontWeight: "600" }} span={9}>
+              <Col 
+                style={{ fontWeight: "600" }} 
+                xs={{ span: 15}} 
+                md={{ span: 9}} 
+                sm={{ span: 9}} 
+                lg={{ span: 9}}
+              >
                 {stock.stockName}
               </Col>
-              <Col span={5}>{stock.ticker}</Col>
-              <Col span={5}>{stock.sector}</Col>
-              <Col span={5}>{`$${myAmount.toLocaleString(undefined, {
-                maximumFractionDigits: 2,
-              })}`}</Col>
+              <Col 
+                xs={{ span: 6}} 
+                md={{ span: 5}} 
+                sm={{ span: 5}} 
+                lg={{ span: 5}}
+              >
+                {stock.ticker}
+              </Col>
+              <Col 
+                xs={{ span: 0}} 
+                md={{ span: 5}} 
+                sm={{ span: 5}} 
+                lg={{ span: 5}}
+              >
+                {stock.sector}
+              </Col>
+              <Col 
+                xs={{ span: 3}} 
+                md={{ span: 5}} 
+                sm={{ span: 5}} 
+                lg={{ span: 5}}
+              >
+                {`$${myAmount.toLocaleString(undefined, {
+                  maximumFractionDigits: 2,
+                })}`}
+              </Col>
               {/* <Col span={4}>{stock.ticker}</Col> */}
             </Row>
           );

@@ -44,28 +44,26 @@
   left: 0px;
   background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
-/* 
+
+
 .app-video-banner{
-  left:-10%
-} */
+  height: 100%;
+  width: 100%; 
+
+  @media (max-width: 480px) {
+    object-fit: cover;
+    display: flex;
+    position: absolute;
+    height: 70vh;
+    width: 100vw;
+  }
+}
 
 .app-banner-container {
   width: 100%;
   z-index: 2;
   position: relative;
 }
-
-/* .app-fund-container {
-  width: auto;
-  background-color: rgb(89, 150, 191, 0.2);
-  margin: 0 50px;
-  padding: 30px 30px;
-  border-radius: 15px;
-  height: auto;
-  display: flex;
-  position: absolute;
-  z-index: 3;
-} */
 
 .App-link {
   color: #61dafb;

@@ -1,14 +1,15 @@
 import React, { useEffect, useReducer } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 
 import { Layout, notification, Space } from "antd";
 
 import DowgoLogo from "./assets/icons/dowgo-logo.png";
 
-import "./App.css";
 import { appReducer } from "./reducers/appReducer";
 import AppContext, { initialAppState } from "./context/AppContext";
 import DowgoMenu from "./components/Menu/DowgoMenu";
+import DowgoMenuMobile from "./components/Menu/DowgoMenuMobile";
 import { Content } from "antd/lib/layout/layout";
 import { DowgoFooter } from "./Footer";
 import { fetchAndSaveProvider } from "./actions/metamask/fetchAndSaveProvider";
@@ -23,12 +24,21 @@ import MyPortfolioPage from "./pages/my-portfolio/MyPortfolioPage";
 import { ALLOWED_NETWORKS } from "./constants";
 import { ChainId } from "./types/types";
 
+//redux 
+import { updateDeviceType } from './redux/reducers/deviceMenu';
+import { selectIsMobile } from './redux/selectors/selectors';
+import { useMediaQuery } from 'react-responsive';
+import "./App.scss";
+
 function App() {
   const { Header } = Layout;
 
   const [state, dispatch] = useReducer(appReducer, initialAppState);
   notification.config({ maxCount: 1 });
   const [api, contextHolder] = notification.useNotification();
+
+  const dispatchMenu = useDispatch();
+  const isMobileDevice = useMediaQuery({ maxWidth: 480 });
 
   // CONNECT TO METAMASK
 
@@ -72,12 +82,19 @@ function App() {
     }
   }, [state.allowance]);
 
+    // Update the device type in the Redux store
+    useEffect(() => {
+      dispatchMenu(updateDeviceType(isMobileDevice ? 'mobile' : 'laptop'));
+    }, [dispatchMenu, isMobileDevice]);
+  
+    const isMobile = useSelector(selectIsMobile); // Use the selector
+
   return (
     <div>
       <Layout>
         <AppContext.Provider value={{ state, dispatch, notificationApi: api }}>
           <Header className="app-header">
-            {<DowgoMenu />}
+          {isMobile ? <DowgoMenuMobile /> : <DowgoMenu />}
             <div className="dowgo-logo-container">
               <a href="https://www.dowgo.com">
                 <img

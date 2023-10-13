@@ -4,7 +4,7 @@ import AppCarousel from "../../components/Carousel/app-carousel.component";
 //@ts-ignore
 import VideoBanner from "../../assets/video-banner/video-banner.mp4";
 
-import "./home.styles.css";
+import "./home.styles.scss";
 
 function DowgoDApp() {
   return (

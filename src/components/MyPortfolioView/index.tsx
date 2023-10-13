@@ -1,12 +1,11 @@
 import { Col, Row } from "antd";
-import "./index.styles.scss";
-
 import { useContext, useState } from "react";
 import AppContext from "../../context/AppContext";
 import { ONE_DOWGO_UNIT, ONE_USDC_UNIT } from "../../constants";
 import CopyButton from "../displayComponents/CopyButton";
 import { MyPortfolioDetails } from "./MyPortfolioDetails";
 import { MyPortfolioInformationRow } from "./MyPortfolioInformationRow";
+import "./index.styles.scss";
 
 function MyPortfolioView() {
   const { state } = useContext(AppContext);
@@ -25,7 +24,7 @@ function MyPortfolioView() {
     <div className="my-portfolio-container">
       <div className="my-portfolio-overview-container">
         <div className="my-portfolio-overview-title">My Portfolio</div>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div className="my-portfolio-current-address">
           <CopyButton text={state.currentAccount} />
           <span className="portfolio-address">{state.currentAccount}</span>
         </div>

@@ -24,7 +24,7 @@ export function FundInformationRow(props: FundInformationRowProps) {
   ).toLocaleString(undefined, { maximumFractionDigits: 2 });
   return (
     <Row>
-      <Col span={6}>
+      <Col xs={{ span: 24}} md={{ span: 6}} sm={{ span: 6}} lg={{ span: 6}}>
         <div className="fund-name">DOWGO ONE</div>
         <div className="fund-subtitle">
           <span className="fund-tag">DWG1</span>
@@ -34,47 +34,41 @@ export function FundInformationRow(props: FundInformationRowProps) {
           {/* TODO: add link to details */}
         </div>
       </Col>
-      <Col span={18}>
+      <Col xs={{ span: 24}} md={{ span: 18}} sm={{ span: 18}} lg={{ span: 18}}>
         <div className="fund-row-right">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <span
+          <div className="fund-status-info">
+            <div
               style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "4px",
-                background: "#54FFB7",
-                marginRight: "8px",
+                display: "flex",
+                alignItems: "center",
               }}
-            ></span>
-            <span className="fund-info-name">Active</span>
+            >
+              <span className="fund-info-active-status"></span>
+              <span className="fund-info-name">Active</span>
+            </div>
           </div>
           {/*
           TODO: add performance when we have a longer history on the Fund
            */}
-          <div className="fund-info-box">
-            <div className="fund-info-name">AUM</div>
-            <div className="fund-info-value">{`$${aum.toLocaleString()}`}</div>
-          </div>
-          <div className="fund-info-box">
-            <div className="fund-info-name">Token Price</div>
-            <div className="fund-info-value">{`$${tokenPriceFixedDecimals}`}</div>
-          </div>
-          <div className="arrow-box">
-            {openFundDetails ? (
-              <div className="arrow-circle-selected" onClick={toggleDetails}>
-                <ArrowDown style={{ width: "12px", color: "white" }} />
-              </div>
-            ) : (
-              <div className="arrow-circle" onClick={toggleDetails}>
-                <ArrowDown style={{ width: "12px", color: "white" }} />
-              </div>
-            )}
-          </div>
+            <div className="fund-info-box">
+              <div className="fund-info-name">AUM</div>
+              <div className="fund-info-value">{`$${aum.toLocaleString()}`}</div>
+            </div>
+            <div className="fund-info-box">
+              <div className="fund-info-name">Token Price</div>
+              <div className="fund-info-value">{`$${tokenPriceFixedDecimals}`}</div>
+            </div>
+            <div className="arrow-box">
+              {openFundDetails ? (
+                <div className="arrow-circle-selected" onClick={toggleDetails}>
+                  <ArrowDown style={{ width: "12px", color: "white" }} />
+                </div>
+              ) : (
+                <div className="arrow-circle" onClick={toggleDetails}>
+                  <ArrowDown style={{ width: "12px", color: "white" }} />
+                </div>
+              )}
+            </div>
         </div>
       </Col>
     </Row>
