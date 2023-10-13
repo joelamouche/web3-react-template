@@ -1,7 +1,7 @@
 //@ts-ignore
 import VideoBanner from "../../assets/video-banner/video-without-logo.mp4";
 
-import "../home/home.styles.css";
+import "../home/home.styles.scss";
 import WithdrawView from "../../components/WithdrawView";
 
 function WithdrawPage() {

@@ -1,7 +1,7 @@
 //@ts-ignore
 import VideoBanner from "../../assets/video-banner/video-banner.mp4";
 
-import "./home.styles.css";
+import "./home.styles.scss";
 import DowgoTradingInterface from "../../components/DowgoTradingView";
 
 function Invest() {

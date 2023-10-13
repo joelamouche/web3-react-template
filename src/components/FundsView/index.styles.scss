@@ -26,6 +26,12 @@
 
   padding: 32px;
   z-index: 20;
+
+  @media (max-width: 480px) {
+    width: 90vw;
+    margin: -80vh auto 0 auto;
+    padding: 10px;
+  }
 }
 
 .funds-title {
@@ -56,6 +62,10 @@
   padding: 24px 32px;
   margin-bottom: 16px;
 
+  @media (max-width: 480px) {
+    padding: 20px 10px;
+  }
+
   .fund-name {
     font-family: "Montserrat";
     font-style: normal;
@@ -74,6 +84,10 @@
     margin-top: 8px;
     display: flex;
     align-items: center;
+
+    @media (max-width: 480px) {
+      justify-content: space-between;
+    }
 
     .fund-tag {
       font-family: "Montserrat";
@@ -104,6 +118,44 @@
   .fund-row-right {
     display: flex;
     justify-content: flex-end;
+    @media (max-width: 480px) {
+      display: block;
+    }
+
+    .fund-button-container {
+      display: flex; 
+      @media (max-width: 480px) {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+    }
+
+    .fund-status-info {
+      @media (max-width: 480px) {
+        display: flex;
+      }
+
+      .fund-info-active-status {
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+        background: #54FFB7;
+        margin-right: 8px;
+        @media (max-width: 480px) {
+          align-items: center;
+          display: flex;
+          line-height: 29px;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .fund-info-container {
+      @media (max-width: 480px) {
+        display: flex;
+      }
+    }
 
     .fund-info-name {
       /* Paragraph/Regular */
@@ -115,12 +167,28 @@
       line-height: 17px;
 
       color: #ffffff;
+
+      @media (max-width: 480px) {
+        line-height: 29px;
+        display: flex; 
+        align-items: center;
+        margin-top: 8px;
+        margin-right: 20px;
+      }
     }
 
     .fund-info-box {
       margin-left: 16px;
       border-left: 1px solid #303030;
       padding-left: 16px;
+      @media (max-width: 480px) {
+        display: flex;
+        align-items: center;
+        border-left: 0px;
+        padding-left: 0px;
+        margin-left: 0px;
+        justify-content: space-between;
+      }
 
       .fund-info-value {
         margin-top: 8px;
@@ -158,6 +226,13 @@
   margin-left: 40px;
   display: flex;
   align-items: center;
+
+  @media (max-width: 480px) {
+    margin-left: 0;
+    margin: 10px auto;
+    justify-content: center;
+  }
+
   .arrow-circle-selected {
     box-sizing: border-box;
     width: 32px;
@@ -170,6 +245,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 480px) {
+      width: 100px;
+      height: 40px;
+      border-radius: 50px;
+    }
+
   }
   .arrow-circle {
     box-sizing: border-box;
@@ -184,6 +266,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 480px) {
+      width: 100px;
+      height: 40px;
+      border-radius: 50px;
+    }
   }
 }
 
@@ -214,6 +302,13 @@
 
   background: #191922;
   color: #0ff4e9;
+
+  
+  @media (max-width: 480px) {
+    display: flex;
+    margin-left: 0px;
+    width: 150px;
+  }
 }
 .fund-details-table-header {
   padding: 12px;
@@ -222,6 +317,18 @@
   background: #1f212a;
   border-radius: 8px;
   color: #969696;
+
+  .fund-acronym-title {
+    @media (max-width: 480px) {
+      text-align: center;
+    }
+  }
+
+  .fund-stock-amount-title {
+    @media (max-width: 480px) {
+      text-align: center;
+    }
+  }
 }
 .fund-details-table-line {
   margin-bottom: 16px;

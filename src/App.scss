@@ -17,11 +17,17 @@
   z-index: 1000;
   margin-left: 20px;
   margin-top: 20px;
+  @media (max-width: 480px) {
+    margin-left: 20px;
+  }
 }
 
 .dowgo-logo-menu {
   height: 40px;
   width: auto;
+  @media (max-width: 480px) {
+    height: 60px;
+  }
 }
 
 .App-link {

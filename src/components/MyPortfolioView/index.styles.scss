@@ -28,6 +28,12 @@
   padding: 32px;
   z-index: 20;
 
+  @media (max-width: 480px) {
+    width: 90vw;
+    padding: 10px;
+    margin: -80vh 20px 0 20px;
+  }
+
   .discover-funds-text {
     /* Sub-Heading/Bold */
 
@@ -48,11 +54,13 @@
     padding-bottom: 70px;
     margin-bottom: 40px;
     border-bottom: 1px solid #191922;
+    @media (max-width: 480px) {
+      margin-bottom: -10px;
+    }
 
     .my-portfolio-overview-title {
       margin-bottom: 12px;
       /* H5/Regular */
-
       font-family: "Montserrat";
       font-style: normal;
       font-weight: 400;
@@ -60,33 +68,45 @@
       line-height: 29px;
       display: flex;
       align-items: center;
-
       color: #ffffff;
+
+      @media (max-width: 480px) {
+        justify-content: center;
+      }
+    }
+
+    .my-portfolio-current-address {
+      display: flex; 
+      align-items: center; 
     }
     .portfolio-address {
       margin-left: 12px;
       /* Paragraph/Regular */
-
       font-family: "Montserrat";
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
       line-height: 17px;
-
       /* Light Grey */
-
       color: #969696;
+      @media (max-width: 480px) {
+        overflow: hidden;
+        margin-top: 20px;
+      }
     }
     .total-portfolio-amount {
       margin-top: 18px;
       /* H1/Bold */
-
       font-family: "Montserrat";
       font-style: normal;
       font-weight: 700;
       font-size: 56px;
       line-height: 68px;
       color: #ffffff;
+      @media (max-width: 480px) {
+        text-align: center;
+        margin-top: 40px;
+      }
     }
   }
 
@@ -117,6 +137,15 @@
 
     padding: 24px 32px;
     margin-bottom: 16px;
+    @media (max-width: 480px) {
+      padding: 20px 15px;
+    }
+
+    .fund-name-container {
+      @media (max-width: 480px) {
+        margin-bottom: 30px;
+      }
+    }
 
     .fund-name {
       font-family: "Montserrat";
@@ -130,12 +159,18 @@
       align-items: center;
 
       color: #ffffff;
+      @media (max-width: 480px) {
+        margin-bottom: 20px;
+      }
     }
 
     .fund-subtitle {
       margin-top: 8px;
       display: flex;
       align-items: center;
+      @media (max-width: 480px) {
+        justify-content: space-between;
+      }
 
       .fund-tag {
         font-family: "Montserrat";

@@ -113,8 +113,8 @@ function DowgoTradingInterface() {
       <NotWhitelistedOverlay />
       {!supportedNetwork && <WrongNetworkOverlay />}
       <div className="trading-container">
-        <Row>
-          <Col span={11}>
+        <Row className="trading-container-row">
+          <Col xs={{ span: 24}} md={{ span: 11}} sm={{ span: 11}} lg={{ span: 11}} >
             <Row>
               <AmountLabel min={0} max={inputMax} />
             </Row>
@@ -144,12 +144,15 @@ function DowgoTradingInterface() {
               </div>
             </Row>
             <Row>
-             <BalanceLabel balance={inputBalance} text={"Balance"} />
+             <BalanceLabel 
+              balance={inputBalance} 
+              text={"Balance"} 
+            />
             </Row>
           </Col>
           <Col span={2}></Col>
-          <Col span={11}>
-            <Row>
+          <Col xs={{ span: 24}} md={{ span: 11}} sm={{ span: 11}} lg={{ span: 11}} >
+            <Row className="trading-amount-dwg">
               <AmountLabel min={0} max={outputMax} />
             </Row>
             <Row>
@@ -177,12 +180,12 @@ function DowgoTradingInterface() {
                 />
               </div>
             </Row>
-            <Row>
+            <Row >
              <BalanceLabel balance={outputBalance} text={"Balance"} />
             </Row>
           </Col>
         </Row>
-        <Row>
+        <Row className="trading-swap-btn">
           {isApprovalNeeded ? (
             <ApproveButton />
           ) : (

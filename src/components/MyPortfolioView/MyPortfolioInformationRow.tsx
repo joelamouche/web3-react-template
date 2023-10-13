@@ -27,7 +27,9 @@ export function MyPortfolioInformationRow(
   ).toLocaleString(undefined, { maximumFractionDigits: 2 });
   return (
     <Row>
-      <Col span={6}>
+      <Col  xs={{ span: 24}} md={{ span: 6}} sm={{ span: 6}} lg={{ span: 6}}
+        className="fund-name-container"
+      >
         <div className="fund-name">DOWGO ONE</div>
         <div className="fund-subtitle">
           <span className="fund-tag">DWG1</span>
@@ -37,7 +39,7 @@ export function MyPortfolioInformationRow(
           {/* TODO: add link to details */}
         </div>
       </Col>
-      <Col span={18}>
+      <Col xs={{ span: 24}} md={{ span: 18}} sm={{ span: 18}} lg={{ span: 18}}>
         <div className="fund-row-right">
           <div>
             <div className="fund-info-name">Token Price</div>
