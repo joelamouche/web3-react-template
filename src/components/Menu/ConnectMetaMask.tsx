@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { Dropdown, MenuProps } from "antd";
-import "./header-animation";
 
 import AppContext from "../../context/AppContext";
 import { RoundButton } from "../displayComponents/RoundButton";

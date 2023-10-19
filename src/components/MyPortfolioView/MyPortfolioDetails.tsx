@@ -23,11 +23,17 @@ export function MyPortfolioDetails(props: MyPortfolioDetailsProps) {
           : { display: "none" }
       }
     >
-      <Row>
+      <Row className="myportfolio-row-container">
         <Col style={{ display: "flex", alignItems: "center" }} xs={{ span: 24}} md={{ span: 6}} sm={{ span: 6}} lg={{ span: 6}}>
           <div className="fund-name">My Portfolio</div>
         </Col>
-        <Col xs={{ span: 24}} md={{ span: 18}} sm={{ span: 18}} lg={{ span: 18}}>
+        <Col 
+          xs={{ span: 24}} 
+          md={{ span: 18}} 
+          sm={{ span: 18}} 
+          lg={{ span: 18}} 
+          className="fund-buy-sell-container"
+        >
           <div className="fund-row-right">
             <Link to="../invest/sell">
               <button className="fund-button">Sell</button>

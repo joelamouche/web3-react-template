@@ -2,11 +2,10 @@ import React, { useContext} from 'react';
 import { Menu, MenuProps } from "antd";
 import { Link } from "react-router-dom";
 
-import { ProfileDropdown } from "./ProfileDropdown";
-import ConnectMetaMask from "./ConnectMetaMask";
-import { NetworkDropdown } from "./NetworkDropdown";
-import AppContext from "../../context/AppContext";
-import "./header-animation";
+import { ProfileDropdown } from "../ProfileDropdown";
+import ConnectMetaMask from "../ConnectMetaMask";
+import { NetworkDropdown } from "../NetworkDropdown";
+import AppContext from "../../../context/AppContext";
 import "./DowgoMenu.styles.scss";
 
 function DowgoMenu() {
@@ -50,7 +49,7 @@ function DowgoMenu() {
   ];
 
   return (
-    <div>
+    <div className='menu-desktop-container'>
       <Menu
         theme="dark"
         mode="horizontal"

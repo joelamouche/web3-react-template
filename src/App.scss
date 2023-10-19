@@ -11,6 +11,18 @@
   /* margin-bottom: 200px; */
 }
 
+.menu {
+  /* Your default menu styles go here */
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+  
+  &.scrolled {
+    /* Styles applied when scrollY > 100px */
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(5px);
+  }
+}
+
 .dowgo-logo-container {
   top: 0;
   position: absolute;
@@ -40,7 +52,6 @@
 
 .ant-layout-footer {
   background: black !important;
-  height: 100px;
 }
 
 .ant-layout-content {
