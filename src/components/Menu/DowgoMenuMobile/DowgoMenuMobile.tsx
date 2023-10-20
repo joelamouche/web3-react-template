@@ -2,15 +2,19 @@ import React, { useState } from 'react';
 import { Menu, MenuProps } from "antd";
 
 import { Link } from "react-router-dom";
-import { ProfileDropdown } from "./ProfileDropdown";
-import ConnectMetaMask from "./ConnectMetaMask";
-import { NetworkDropdown } from "./NetworkDropdown";
+import { ProfileDropdown } from "../ProfileDropdown";
+import ConnectMetaMask from "../ConnectMetaMask";
+import { NetworkDropdown } from "../NetworkDropdown";
 import { useContext } from "react";
-import AppContext from "../../context/AppContext";
+import AppContext from "../../../context/AppContext";
 
-import { ReactComponent as MobileMenuIcon} from '../../assets/header/mobileMenuIcon.svg';
+import { ReactComponent as MobileMenuIcon} from '../../../assets/header/mobileMenuIcon.svg';
+import { ReactComponent as MobileInvestIcon} from '../../../assets/header/menuMobile/invest-token.svg';
+import { ReactComponent as MobileFundsIcon} from '../../../assets/header/menuMobile/funds-icon.svg';
+import { ReactComponent as MobileMyPortfolioIcon} from '../../../assets/header/menuMobile/myportfolio-icon.svg';
+import { ReactComponent as MobileWithdrawIcon} from '../../../assets/header/menuMobile/withdraw-icon.svg';
 
-import "./DowgoMenu.styles.scss";
+import "./DowgoMenuMobile.styles.scss";
 
 function DowgoMenuMobile() {
   
@@ -22,7 +26,10 @@ function DowgoMenuMobile() {
     {
       key: "Invest",
       icon: (
-        <Link to="invest" className="dowgo-menu-item">
+        <MobileInvestIcon className='mobile-menu-icon-invest'/>
+      ),
+      label: (
+        <Link to="invest" className="dowgo-menu-item-invest">
           Invest
         </Link>
       ),
@@ -30,6 +37,9 @@ function DowgoMenuMobile() {
     {
       key: "My Portfolio",
       icon: (
+        <MobileMyPortfolioIcon className='mobile-menu-items-icon mobile-myportfolio-icon'/>
+      ), 
+      label: (
         <Link to="my-portfolio" className="dowgo-menu-item">
           My Portfolio
         </Link>
@@ -38,6 +48,9 @@ function DowgoMenuMobile() {
     {
       key: "Funds",
       icon: (
+        <MobileFundsIcon className='mobile-menu-items-icon'/>
+      ),
+      label: (
         <Link to="dowgo-funds" className="dowgo-menu-item">
           Funds
         </Link>
@@ -46,6 +59,9 @@ function DowgoMenuMobile() {
     {
       key: "Withdraw",
       icon: (
+        <MobileWithdrawIcon className='mobile-menu-items-icon'/>
+      ),
+      label: (
         <Link to="withdraw" className="dowgo-menu-item">
           Withdraw
         </Link>

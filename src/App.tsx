@@ -1,15 +1,17 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 
 import { Layout, notification, Space } from "antd";
 
+import { setScrollY } from '../src/redux/reducers/menuBackground';
+
 import DowgoLogo from "./assets/icons/dowgo-logo.png";
 
 import { appReducer } from "./reducers/appReducer";
 import AppContext, { initialAppState } from "./context/AppContext";
-import DowgoMenu from "./components/Menu/DowgoMenu";
-import DowgoMenuMobile from "./components/Menu/DowgoMenuMobile";
+import DowgoMenu from "./components/Menu/DowgoMenu/DowgoMenu";
+import DowgoMenuMobile from "./components/Menu/DowgoMenuMobile/DowgoMenuMobile";
 import { Content } from "antd/lib/layout/layout";
 import { DowgoFooter } from "./Footer";
 import { fetchAndSaveProvider } from "./actions/metamask/fetchAndSaveProvider";
@@ -27,6 +29,7 @@ import { ChainId } from "./types/types";
 //redux 
 import { updateDeviceType } from './redux/reducers/deviceMenu';
 import { selectIsMobile } from './redux/selectors/selectors';
+import { RootState } from './redux/store';
 import { useMediaQuery } from 'react-responsive';
 import "./App.scss";
 
@@ -39,6 +42,29 @@ function App() {
 
   const dispatchMenu = useDispatch();
   const isMobileDevice = useMediaQuery({ maxWidth: 480 });
+
+  const dispatchScroll = useDispatch();
+  const stateScroll = useSelector((stateScroll: RootState) => stateScroll.menu.scrollY);
+
+  // Update the device type in the Redux store
+  useEffect(() => {
+    dispatchMenu(updateDeviceType(isMobileDevice ? 'mobile' : 'laptop'));
+  }, [dispatchMenu, isMobileDevice]);
+
+  const isMobile = useSelector(selectIsMobile); // Use the selector
+
+  // animation for menu background-color on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      dispatchScroll(setScrollY(window.scrollY));
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [dispatchScroll]);
+
 
   // CONNECT TO METAMASK
 
@@ -82,19 +108,20 @@ function App() {
     }
   }, [state.allowance]);
 
-    // Update the device type in the Redux store
-    useEffect(() => {
-      dispatchMenu(updateDeviceType(isMobileDevice ? 'mobile' : 'laptop'));
-    }, [dispatchMenu, isMobileDevice]);
-  
-    const isMobile = useSelector(selectIsMobile); // Use the selector
-
   return (
     <div>
       <Layout>
         <AppContext.Provider value={{ state, dispatch, notificationApi: api }}>
-          <Header className="app-header">
-          {isMobile ? <DowgoMenuMobile /> : <DowgoMenu />}
+
+          <Header className={`app-header menu ${stateScroll > 10 ? 'scrolled' : ''}`}>
+          
+          {
+          isMobile ? 
+            <DowgoMenuMobile /> 
+              : 
+            <DowgoMenu />
+          }
+
             <div className="dowgo-logo-container">
               <a href="https://www.dowgo.com">
                 <img

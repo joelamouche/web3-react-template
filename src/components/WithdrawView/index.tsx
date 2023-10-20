@@ -28,7 +28,7 @@ function WithdrawView() {
     <div className="withdraw-top-container">
       <div className="withdraw-title">Withdraw Tokens</div>
       <div className="withdraw-subtitle">
-        <div style={{ maxWidth: "392px" }}>
+        <div className="withdraw-subtitle-text">
           In order to secure your fund, we add a step to withdraw your funds
           from the smart contract.
         </div>
