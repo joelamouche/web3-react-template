@@ -68,6 +68,10 @@
     font-weight: 700 !important;
   }
 
+ .ant-menu-item-selected .ant-menu-title-content > .dowgo-menu-item-invest {
+    font-weight: 700 !important;
+  }
+
   .ant-menu-title-content > .dowgo-menu-item-invest {
     padding-left: -3px !important;
   }
@@ -168,6 +172,7 @@
   background: #111116;
   border: 1px solid #303030;
   border-radius: 4px;
+  position: fixed;
 }
 
 .ant-dropdown-placement-bottomLeft {

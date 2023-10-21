@@ -22,16 +22,38 @@ function DowgoMenuMobile() {
   const [collapsed, setCollapsed] = useState(true);
   const [isActive, setIsActive] = useState(true);
 
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+    setIsActive(current => !current);
+  };
+
+  const toggleMenuItem = () => {
+    setCollapsed(!collapsed);
+  };
+
+
+
+
   const menuItems: MenuProps["items"] = [
     {
       key: "Invest",
       icon: (
-        <MobileInvestIcon className='mobile-menu-icon-invest'/>
+        <MobileInvestIcon className='mobile-menu-icon-invest'/> 
       ),
       label: (
-        <Link to="invest" className="dowgo-menu-item-invest">
-          Invest
-        </Link>
+        <>
+          {
+            collapsed ? ""
+            :
+              <Link 
+                to="invest" 
+                className="dowgo-menu-item-invest"
+                onClick={toggleMenuItem}
+              >
+                Invest
+              </Link>
+          }
+        </>
       ),
     },
     {
@@ -40,9 +62,19 @@ function DowgoMenuMobile() {
         <MobileMyPortfolioIcon className='mobile-menu-items-icon mobile-myportfolio-icon'/>
       ), 
       label: (
-        <Link to="my-portfolio" className="dowgo-menu-item">
-          My Portfolio
-        </Link>
+        <>
+          {
+            collapsed ? ""
+            :
+              <Link 
+                to="my-portfolio" 
+                className="dowgo-menu-item"
+                onClick={toggleMenuItem}
+              >
+                My Portfolio
+              </Link>
+          }
+        </>
       ),
     },
     {
@@ -51,9 +83,19 @@ function DowgoMenuMobile() {
         <MobileFundsIcon className='mobile-menu-items-icon'/>
       ),
       label: (
-        <Link to="dowgo-funds" className="dowgo-menu-item">
-          Funds
-        </Link>
+        <>
+          {
+            collapsed ? ""
+            :
+              <Link 
+                to="dowgo-funds" 
+                className="dowgo-menu-item"
+                onClick={toggleMenuItem}
+              >
+                Funds
+              </Link>
+          }
+        </>
       ),
     },
     {
@@ -62,19 +104,24 @@ function DowgoMenuMobile() {
         <MobileWithdrawIcon className='mobile-menu-items-icon'/>
       ),
       label: (
-        <Link to="withdraw" className="dowgo-menu-item">
-          Withdraw
-        </Link>
+        <>
+          {
+            collapsed ? ""
+            :
+              <Link 
+                to="withdraw" 
+                className="dowgo-menu-item"
+                onClick={toggleMenuItem}
+              >
+                Withdraw
+              </Link>
+          }
+        </>
       ),
     },
     NetworkDropdown(),
     state.currentAccount === "0x" ? ConnectMetaMask() : ProfileDropdown(),
   ];
-
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-    setIsActive(current => !current);
-  };
 
   return (
     <div className='mobile-menu-container'>
