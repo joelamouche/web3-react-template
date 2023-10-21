@@ -50,6 +50,17 @@
     width: 80vw;
     height: 48vh;
     top: 75%;
+
+    // max-height for MetaMask App browser
+    @media (max-height: 649px) {
+      top: 79% !important;
+      height: 58vh !important;
+    }
+
+    @media (min-height: 650px) {
+      top: 75% !important;
+      height: 48vh !important;
+    }
   }
 }
   .trading-container-row {
@@ -100,6 +111,10 @@
   /* Note: backdrop-filter has minimal browser support */
 
   border-radius: 8px;
+
+  @media (max-width: 480px) {
+    width: 90vw;
+  }
 }
 
 .trading-container-overlay {

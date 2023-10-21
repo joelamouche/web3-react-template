@@ -12,6 +12,17 @@
   @media (max-width: 480px) {
     height: 20vh;
     align-items: end;
+
+    // max-height for MetaMask App browser
+    @media (max-height: 649px) {
+      height: 40vh;
+      align-items: end;
+    }
+
+    @media (min-height: 650px) {
+      height: 20vh;
+      align-items: end;
+    }
   }
 
   .footer-etherscan-icon {

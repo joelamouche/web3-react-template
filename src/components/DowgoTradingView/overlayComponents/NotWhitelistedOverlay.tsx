@@ -51,7 +51,7 @@ export const NotWhitelistedOverlay = () => {
     supportedNetwork && !state.isWhitelisted && state.currentAccount !== "0x";
   return (
     <div className={isDisplayed ? "get-whitelisted-container" : "hidden"}>
-      <div>
+      <div className="whitelisted-form-container">
         <div className="overlay-warning">
           This Eth Address is not whitelisted.
         </div>
