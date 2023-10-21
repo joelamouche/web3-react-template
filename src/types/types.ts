@@ -1,3 +1,4 @@
+import { BigNumber, providers } from "ethers";
 import { Dispatch } from "react";
 
 export enum ChainId {
@@ -11,8 +12,29 @@ export enum ChainId {
   HARMONY_MAINNET = 1666600000,
   HARMONY_TESTNET = 1666700000,
   MOONRIVER = 1285,
+  LOCAL_TESTNET = 1337,
+  SEPOLIA = 11155111,
 }
-export type ConnectMMStatus="Connected"|"Disconnected"|"Please connect to MetaMask"|"Please install MetaMask"
-export type Address = `0x${string}`;
+export type ConnectMMStatus =
+  | "Connected"
+  | "Disconnected"
+  | "Please connect to MetaMask"
+  | "Please install MetaMask";
+export type EthAddress = `0x${string}`;
 
+export type TxStatus = {
+  status:
+    | "Error"
+    | "Waiting for signature"
+    | "Tx Sent, Waiting For confirmation..."
+    | "Success: Tx Confirmed";
+  message?: string;
+};
+
+export interface ContractAddresses {
+  usdAddress: EthAddress;
+  dowgoAddress: EthAddress;
+}
 export type SetStateFunction<T> = Dispatch<React.SetStateAction<T>>;
+
+export type Currency = "USDT" | "DWG1";

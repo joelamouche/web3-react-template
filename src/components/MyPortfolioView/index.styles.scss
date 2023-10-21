@@ -1,0 +1,303 @@
+.my-portfolio-container {
+  /* Rectangle 2719 */
+  box-sizing: border-box;
+  margin-left: 15vw;
+  width: 70vw;
+  margin-top: -80vh;
+  min-height: 550px;
+
+  /* Content Background */
+  background: #111116;
+  /* Border & Separator */
+  border: 1px solid #303030;
+  backdrop-filter: blur(30px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 8px;
+  padding: 32px;
+  z-index: 20;
+
+  @media (max-width: 480px) {
+    width: 90vw;
+    padding: 10px;
+    margin: -80vh 20px 0 20px;
+  }
+
+  .discover-funds-text {
+    /* Sub-Heading/Bold */
+
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+
+    /* Primary */
+
+    color: #0ff4e9;
+  }
+
+  .my-portfolio-overview-container {
+    width: 100%;
+    padding-bottom: 70px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #191922;
+    @media (max-width: 480px) {
+      margin-bottom: 10px;
+      padding-bottom: 50px;
+    }
+
+    .my-portfolio-overview-title {
+      margin-bottom: 12px;
+      /* H5/Regular */
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 29px;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+
+      @media (max-width: 480px) {
+        justify-content: center;
+      }
+    }
+
+    .my-portfolio-current-address {
+      display: flex; 
+      align-items: center; 
+    }
+    .portfolio-address {
+      margin-left: 12px;
+      /* Paragraph/Regular */
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      /* Light Grey */
+      color: #969696;
+      @media (max-width: 480px) {
+        overflow: hidden;
+        margin-top: 20px;
+      }
+    }
+    .total-portfolio-amount {
+      margin-top: 18px;
+      /* H1/Bold */
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 56px;
+      line-height: 68px;
+      color: #ffffff;
+      @media (max-width: 480px) {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 35px;
+        line-height: 40px;
+      }
+    }
+  }
+
+  .my-deposit-title {
+    /* H5/Bold */
+
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
+
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 41px;
+  }
+
+  .fund-container {
+    /* Content Highlight */
+
+    background: #191922;
+    border-radius: 8px;
+
+    padding: 24px 32px;
+    margin-bottom: 16px;
+    @media (max-width: 480px) {
+      padding: 20px 15px;
+    }
+
+    .fund-name-container {
+      @media (max-width: 480px) {
+        margin-bottom: 30px;
+      }
+    }
+
+    .fund-name {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+      /* identical to box height */
+
+      display: flex;
+      align-items: center;
+
+      color: #ffffff;
+      @media (max-width: 480px) {
+        margin-bottom: 20px;
+      }
+    }
+
+    .fund-subtitle {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      @media (max-width: 480px) {
+        justify-content: space-between;
+      }
+
+      .fund-tag {
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        /* identical to box height */
+        color: #ffffff;
+      }
+
+      .fund-more-details {
+        margin-left: 9px;
+
+        /* Paragraph/Regular */
+
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        /* Primary */
+
+        color: #0ff4e9;
+      }
+    }
+
+    .fund-row-right {
+      display: flex;
+      justify-content: flex-end;
+
+      .fund-info-name {
+        /* Paragraph/Regular */
+
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+
+        color: #ffffff;
+      }
+      .fund-info-value {
+        margin-top: 8px;
+        /* H5/Regular */
+
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+
+        color: #ffffff;
+      }
+
+      .fund-info-box {
+        margin-left: 16px;
+        border-left: 1px solid #303030;
+        padding-left: 16px;
+      }
+    }
+
+    .other-funds-text {
+      margin-left: 18px;
+
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+
+      /* Light Grey */
+
+      color: #969696;
+    }
+
+    // Arrow
+    .arrow-box {
+      margin-left: 40px;
+      display: flex;
+      align-items: center;
+
+      @media (max-width: 480px) {
+        margin-left: 0;
+        margin: 10px auto;
+        justify-content: center;
+      }
+
+      .arrow-circle-selected {
+        box-sizing: border-box;
+        width: 32px;
+        height: 32px;
+        /* Primary */
+
+        border: 1px solid #0ff4e9;
+        border-radius: 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+      }
+      .arrow-circle {
+        box-sizing: border-box;
+        width: 32px;
+        height: 32px;
+        /* Primary */
+
+        border: 1px solid #969696;
+        border-radius: 16px;
+        transform: matrix(1, 0, 0, -1, 0, 0);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;  
+      }
+    }
+  }
+}
+
+.myportfolio-row-container {
+  display: flex;
+
+  .fund-buy-sell-container {
+    .fund-row-right {
+      @media (max-width: 480px) {
+        display: flex;
+        justify-content: space-between;
+      }
+      .fund-button {
+        @media (max-width: 480px) {
+          width: 140px;
+        }
+      }
+    } 
+  }
+
+}
