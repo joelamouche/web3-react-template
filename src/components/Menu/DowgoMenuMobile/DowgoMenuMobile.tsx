@@ -27,12 +27,6 @@ function DowgoMenuMobile() {
     setIsActive(current => !current);
   };
 
-  const toggleMenuItem = () => {
-    setCollapsed(!collapsed);
-  };
-
-
-
 
   const menuItems: MenuProps["items"] = [
     {
@@ -48,7 +42,7 @@ function DowgoMenuMobile() {
               <Link 
                 to="invest" 
                 className="dowgo-menu-item-invest"
-                onClick={toggleMenuItem}
+                onClick={toggleCollapsed}
               >
                 Invest
               </Link>
@@ -69,7 +63,7 @@ function DowgoMenuMobile() {
               <Link 
                 to="my-portfolio" 
                 className="dowgo-menu-item"
-                onClick={toggleMenuItem}
+                onClick={toggleCollapsed}
               >
                 My Portfolio
               </Link>
@@ -90,7 +84,7 @@ function DowgoMenuMobile() {
               <Link 
                 to="dowgo-funds" 
                 className="dowgo-menu-item"
-                onClick={toggleMenuItem}
+                onClick={toggleCollapsed}
               >
                 Funds
               </Link>
@@ -111,7 +105,7 @@ function DowgoMenuMobile() {
               <Link 
                 to="withdraw" 
                 className="dowgo-menu-item"
-                onClick={toggleMenuItem}
+                onClick={toggleCollapsed}
               >
                 Withdraw
               </Link>
