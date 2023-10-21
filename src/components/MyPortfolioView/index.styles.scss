@@ -192,36 +192,80 @@
     .fund-row-right {
       display: flex;
       justify-content: flex-end;
+      width: 100%;
 
-      .fund-info-name {
-        /* Paragraph/Regular */
-
-        font-family: "Montserrat";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-
-        color: #ffffff;
-      }
-      .fund-info-value {
-        margin-top: 8px;
-        /* H5/Regular */
-
-        font-family: "Montserrat";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 29px;
-
-        color: #ffffff;
+      @media (max-width: 480px) {
+        display: block;
       }
 
-      .fund-info-box {
-        margin-left: 16px;
-        border-left: 1px solid #303030;
-        padding-left: 16px;
-      }
+        .fund-row-right-container {
+
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+          @media (max-width: 480px) {
+            justify-content: flex-start;
+            display: block; 
+            width: 100%;
+          }
+
+          .fund-row-container {
+            display: flex; 
+    
+            @media (max-width: 480px) {
+              justify-content: space-between;
+              display: flex; 
+            }
+          }
+
+          .fund-info-container {
+            display: flex; 
+    
+            @media (max-width: 480px) {
+              justify-content: space-between;
+              display: flex !important; 
+              margin-top: 30px;
+            }
+          }
+
+          .fund-info-name {
+            /* Paragraph/Regular */
+    
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+    
+            color: #ffffff;
+          }
+          .fund-info-value {
+            margin-top: 8px;
+            /* H5/Regular */
+    
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+    
+            color: #ffffff;
+          }
+    
+          .fund-info-box {
+            margin-left: 16px;
+            border-left: 1px solid #303030;
+            padding-left: 16px;
+            @media (max-width: 480px) {
+              border-left: 0px solid #303030;
+              margin: 0px;
+              padding: 0px;
+            }
+          }
+
+        }
+     
+
     }
 
     .other-funds-text {
@@ -245,9 +289,8 @@
       align-items: center;
 
       @media (max-width: 480px) {
-        margin-left: 0;
-        margin: 10px auto;
-        justify-content: center;
+        justify-content: flex-end;
+        display: flex;
       }
 
       .arrow-circle-selected {
@@ -263,6 +306,11 @@
         align-items: center;
         justify-content: center;
 
+        @media (max-width: 480px) {
+          height: 40px;
+          width: 100px; 
+          border-radius: 50px;
+        }
 
       }
       .arrow-circle {
@@ -278,6 +326,12 @@
         display: flex;
         align-items: center;
         justify-content: center;  
+
+        @media (max-width: 480px) {
+          height: 40px;
+          width: 100px; 
+          border-radius: 50px;
+        }
       }
     }
   }
