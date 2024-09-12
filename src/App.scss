@@ -1,0 +1,68 @@
+.app-container {
+  text-align: center;
+}
+
+.app-header {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  padding: 0;
+  height: 100px;
+  /* margin-bottom: 200px; */
+}
+
+.menu {
+  /* Your default menu styles go here */
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+  
+  &.scrolled {
+    /* Styles applied when scrollY > 100px */
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(5px);
+  }
+}
+
+.dowgo-logo-container {
+  top: 0;
+  position: absolute;
+  z-index: 1000;
+  margin-left: 20px;
+  margin-top: 20px;
+  @media (max-width: 480px) {
+    margin-left: 20px;
+  }
+}
+
+.dowgo-logo-menu {
+  height: 40px;
+  width: auto;
+  @media (max-width: 480px) {
+    height: 60px;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.ant-layout {
+  background: black !important;
+}
+
+.ant-layout-footer {
+  background: black !important;
+}
+
+.ant-layout-content {
+  min-height: 100vh;
+}
+
+/* Notifications */
+.ant-notification-notice-message {
+  background-color: #191922 !important;
+  color: #969696 !important;
+}
+.ant-notification-notice-close-x {
+  color: #969696;
+}

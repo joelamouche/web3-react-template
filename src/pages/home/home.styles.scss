@@ -1,0 +1,70 @@
+.app-container {
+  text-align: center;
+  min-height: 100vh;
+  background-color: #000;
+  position: relative;
+  padding-top: 120px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.app-video-container {
+  width: 100vw;
+  position: absolute;
+  top: 60px;
+  /* top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%); */
+  z-index: 0;
+  min-width: 900px;
+  /* margin-top: 110px; */
+}
+
+/*
+  Small vertical gradient at the bottom & top
+  of the video container to make the transition
+  between the video and body smoother.
+*/
+.app-video-container::after {
+  content: "";
+  height: 50px;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+.app-video-container::before {
+  content: "";
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+
+.app-video-banner{
+  height: 100%;
+  width: 100%; 
+
+  @media (max-width: 480px) {
+    object-fit: cover;
+    display: flex;
+    position: absolute;
+    height: 70vh;
+    width: 100vw;
+  }
+}
+
+.app-banner-container {
+  width: 100%;
+  z-index: 2;
+  position: relative;
+}
+
+.App-link {
+  color: #61dafb;
+}
