@@ -1,0 +1,117 @@
+.metrics-card-container {
+  width: 100%;
+  .ant-card {
+    border-radius: 7px !important;
+    background-color: black !important;
+  }
+  
+  .ant-card-head {
+    border-bottom: 0px !important;
+    padding: 0px 10px 0 10px !important;
+    min-height: 30px !important;
+  }
+  
+  .ant-card-head-title {
+    text-align: left;
+    font-size: 15px;
+    margin-top: -5px;
+    color: #0ff4e9;
+    padding-bottom: 5px;
+    letter-spacing: 1px;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+  }
+  
+  .metrics-card {
+    border-radius: 7px;
+    box-shadow: 0 0 5px #0ff4e9, inset 0 0 5px #0ff4e9;
+    border: 2px solid #0ff4e9;
+    background: black;
+    height: 200px;
+  }
+  
+  .ant-card-body {
+    padding: 30px 10px 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .metrics-card-body-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .metrics-icon {
+    height: 70px;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .metrics-card-balance {
+    color: white;
+    font-size: 35px;
+    align-items: center;
+    margin-left: 10px;
+    letter-spacing: 1px;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+  
+  .metrics-body-danimer {
+    display: block;
+  }
+  
+  .metrics-holding-logo {
+    height: 50px;
+    width: auto; 
+    margin: 0 auto 5px auto;
+  }
+  
+  .metrics-holding-title {
+    color: white; 
+    letter-spacing: 1px;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+  }
+
+  .metrics-button-funds {
+    background-color: transparent;
+    color: #0ff4e9;
+    letter-spacing: 1px;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    border: none;
+    margin-top: -60px;
+    position: absolute;
+    margin-left: 70px;
+    font-weight: 400;
+
+    .metrics-link-dowgo-funds {
+      border-bottom: 2px solid #0ff4e9;
+    }
+
+  }
+
+  .metrics-button-funds:hover {
+    background-color: transparent;
+    color: #0ff4e9;
+    letter-spacing: 1px;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    border: none;
+    margin-top: -60px;
+    position: absolute;
+    margin-left: 70px;
+    font-weight: 400;
+
+    .metrics-link-dowgo-funds {
+      border-bottom: 2px solid #0ff4e9;
+    }
+    
+  }
+}
+
+

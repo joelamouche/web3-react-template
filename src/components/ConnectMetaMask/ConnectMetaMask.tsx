@@ -1,17 +1,37 @@
+//@ts-ignore
 import React, { useEffect } from "react";
+import { Menu } from "antd";
+import { Link } from 'react-router-dom';
+
 import detectEthereumProvider from "@metamask/detect-provider";
 import { MetaMaskInpageProvider } from "@metamask/providers";
-import { Address, ChainId, ConnectMMStatus, SetStateFunction } from "../types/types";
+import {
+  EthAddress,
+  ChainId,
+  ConnectMMStatus,
+  SetStateFunction,
+} from "../../types/types";
 import { ethers, providers } from "ethers";
+import { DButton } from "../displayComponents/Button";
+import { ALLOWED_NETWORKS } from "../../constants";
+
+//icons import
+import { ReactComponent as ProfileIcon } from "../../assets/header/profile-icon.svg";
+
+import "./header-animation";
+
+import "./ConnectMetaMask.styles.css";
 
 function ConnectMetaMask(
-  provider: providers.Web3Provider|undefined,
-  setProvider: SetStateFunction<providers.Web3Provider|undefined>,
-  currentAccount: Address,
-  setCurrentAccount: SetStateFunction<Address>
+  provider: providers.Web3Provider | undefined,
+  setProvider: SetStateFunction<providers.Web3Provider | undefined>,
+  currentAccount: EthAddress,
+  setCurrentAccount: SetStateFunction<EthAddress>,
+
+  chainId: ChainId | undefined,
+  setChainId: SetStateFunction<ChainId | undefined>
 ) {
   const [status, setStatus] = React.useState<ConnectMMStatus>("Disconnected");
-  const [chainId, setChainId] = React.useState<ChainId | undefined>(undefined);
 
   // CONNECT TO METAMASK
 
@@ -23,7 +43,7 @@ function ConnectMetaMask(
       startApp(provider as MetaMaskInpageProvider); // Initialize your app
     } else {
       console.log("Please install MetaMask!");
-      setStatus("Please install MetaMask")
+      setStatus("Please install MetaMask");
     }
   }
 
@@ -35,9 +55,9 @@ function ConnectMetaMask(
     }
     // Access the decentralized web!
     //@ts-ignore
-      const provider = new ethers.providers.Web3Provider(_provider);
+    const provider = new ethers.providers.Web3Provider(_provider);
     setProvider(provider);
-    setStatus("Connected")
+    setStatus("Connected");
   }
 
   // detect MM at the start of the Dapp
@@ -95,18 +115,17 @@ function ConnectMetaMask(
 
   // For now, 'eth_accounts' will continue to always return an array
   function handleAccountsChanged(accounts: unknown) {
-    console.log("accounts raw",accounts)
-    let accountList: Address[] = [];
+    let accountList: EthAddress[] = [];
     if (accounts && (accounts as string[]).length) {
-      accountList = accounts as Address[];
+      accountList = accounts as EthAddress[];
     }
     if (accountList.length === 0) {
       // MetaMask is locked or the user has not connected any accounts
       console.log("Please connect to MetaMask.");
-      setStatus("Please connect to MetaMask")
+      setStatus("Please connect to MetaMask");
     } else if (accountList[0] !== currentAccount) {
       setCurrentAccount(accountList[0]);
-      setStatus("Connected")
+      setStatus("Connected");
     }
   }
 
@@ -144,24 +163,69 @@ function ConnectMetaMask(
         }
       });
   }
-
+  const supportedNetwork =
+    chainId && ALLOWED_NETWORKS.includes(ChainId[chainId]);
   return (
     <div>
-      <div>Status : {status}</div>
-      <div>
-        Account: {currentAccount !== "0x" ? currentAccount : "Not Connected"}
-      </div>
-      <div>Chain: {chainId ? ChainId[chainId] : "Unkown Chain"}</div>
-      {provider && (
-        <button
-          type="button"
-          onMouseUp={() => {
-            connect(window.ethereum as MetaMaskInpageProvider);
-          }}
+      <Menu theme="dark" mode="horizontal" className="menu-container">
+        
+        <Menu.Item key="dowgo-funds" className="">
+          <Link to="dowgo-funds" className="funds-menu-item">
+            FUNDS
+          </Link>
+        </Menu.Item>
+        
+        <Menu.Item key="governance" className="">
+          GOVERNANCE
+        </Menu.Item>
+        <Menu.SubMenu
+          key="profile-container"
+          icon={<Link to="/profile" className="profile-icon-link"><ProfileIcon className="profile-menu-icon" /></Link>}
         >
-          Connect to MetaMask
-        </button>
-      )}
+          <Menu.Item key="zero" className="">
+            <div className="status-menu-item">
+              Status :{" "}
+              <span
+                style={{
+                  color:
+                    status === "Connected"
+                      ? "green"
+                      : status === "Disconnected"
+                      ? "red"
+                      : "orange",
+                }}
+              >
+                {status}
+              </span>
+            </div>
+          </Menu.Item>
+          <Menu.Item key="un" className="">
+            <div className="account-menu-item">
+              Account:{" "}
+              {currentAccount !== "0x"
+                ? `${currentAccount.substring(
+                    0,
+                    4
+                  )}...${currentAccount.substring(38, 42)}`
+                : "Not Connected"}
+            </div>
+          </Menu.Item>
+          <Menu.Item key="deux" className="">
+            <div className="chain-menu-item">
+              Chain: {chainId ? ChainId[chainId] : "Unkown Chain"}
+              {supportedNetwork ? null : (
+                <span style={{ color: "red" }}> Unsupported Network</span>
+              )}
+            </div>
+          </Menu.Item>
+        </Menu.SubMenu>
+        <Menu.Item key="trois" className="">
+          {provider &&
+            DButton(() => {
+              connect(window.ethereum as MetaMaskInpageProvider);
+            }, `Connect to MetaMask`)}
+        </Menu.Item>
+      </Menu>
     </div>
   );
 }

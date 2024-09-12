@@ -1,38 +1,41 @@
-.App {
+.app-container {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-header {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  padding: 0;
+  height: 100px;
+  margin-bottom: 200px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.dowgo-logo-container {
+  top: 0;
+  position: absolute;
+  z-index: 1000;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.dowgo-logo-menu {
+  height: 80px;
+  width: auto;
 }
+
+
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.ant-layout {
+  background: black !important;
+}
+
+.ant-layout-footer {
+  background: black !important;
+  height: 50vh;
 }
