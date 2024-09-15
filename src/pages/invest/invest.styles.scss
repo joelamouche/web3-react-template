@@ -1,0 +1,29 @@
+.invest-page-container {
+  margin: 50px 30px;
+
+  .invest-balance-container {
+    width: auto;
+    background-color: rgb(89, 150, 191, 0.2);
+    margin: 0 50px;
+    padding: 30px 30px;
+    border-radius: 15px;
+    height: auto;
+    display: flex;
+    margin-top: 100px;
+
+    .balance-panel {
+      margin-top: 100px;
+    }
+  }
+
+  .invest-contract-container {
+    width: auto;
+    background-color: rgb(89, 150, 191, 0.2);
+    margin: 0 50px;
+    padding: 30px 30px;
+    border-radius: 15px;
+    height: auto;
+    display: flex;
+    margin-top: 50px;
+  }
+}

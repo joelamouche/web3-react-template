@@ -1,0 +1,51 @@
+.ant-input-number {
+  background-color: transparent;
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: #303030;
+  border-radius: 4px;
+  color: #969696;
+  height: 38px;
+  font-size: 16px;
+  font-family: "Montserrat";
+}
+.ant-input-number-input-wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.ant-input-number-group-addon {
+  background-color: transparent;
+  border-width: 1px 1px 1px 0px;
+  border-style: solid;
+  border-color: #303030;
+  color: white;
+  font-family: "Montserrat";
+}
+
+// this is hiden for now
+
+//   .ant-input-number-handler{
+//    background-color: transparent;
+//    border-color: transparent;
+//    }
+//  .ant-input-number-handler-wrap{
+//   background-color: transparent;
+//   border-color: transparent;
+//   }
+// .ant-input-number-handler-down{
+//   border-color: transparent;
+//   color:#0FF4E9
+// }
+// .ant-input-number-handler-down-inner{
+//   border-color: transparent;
+//   color:#0FF4E9
+// }
+// .ant-input-number-handler-up{
+//   border-color: transparent;
+//   color:#0FF4E9
+// }
+// .ant-input-number-handler-up-inner{
+//   border-color: transparent;
+//   color:#0FF4E9
+// }
